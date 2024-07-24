@@ -1,2 +1,16 @@
 colorama
 prompt-toolkit
+orjson
+astor
+pydantic
+dumper
+ast2json
+easy-ast
+deep-ast
+typed-ast
+export-ast
+json2ast
+grep-ast
+pydantic-ast
+pycopy-astpip
+prettiest-ast

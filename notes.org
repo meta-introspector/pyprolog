@@ -1,0 +1,14 @@
+
+python ./reflect.py > ast_json.json
+jq . ast_json.json >ast_json_pretty.json
+grep "\"_type\"" ast_json_pretty.json  | cut -d: -f2 | sort |uniq -c | sort -n |tail
+   2817  "Expr",
+   4102  "arg",
+   5543  "Assign",
+   8700  "Store"
+   9233  "Call",
+  10076  "Attribute",
+  10266  "Tuple",
+  40225  "Name",
+  55209  "Load"
+  66254  "Constant",

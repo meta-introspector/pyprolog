@@ -68,7 +68,7 @@ def dump_For(x):
    dump_dummy(x)
 def dump_ClassDef(x):
     _name = x["child"]["name"]
-    add_fact(f"ClassDef({_name}).")
+    add_fact(f"class_def(\"{_name}\").")
    #dump_dummy(x)
    # 2174 ClassDef dict_keys(['_type', 'bases', 'body', 'col_offset', 'decorator_list', 'end_col_offset', 'end_lineno', 'keywords', 'lineno', 'name'])
 def dump_If(x):

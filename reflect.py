@@ -1,4 +1,5 @@
 import prolog.prolog
+import pprint
 import astor
 import orjson
 from prolog.parser import Parser
@@ -12,6 +13,10 @@ tokens = Scanner(rules_text).tokenize()
 rules = Parser(tokens).parse_rules()
 runtime = Runtime(rules)
 def add_fact(s):
+    tokens = Scanner(s).tokenize()
+    rules = Parser(tokens).parse_rules()
+    #dumper.dump(tokens)
+    #dumper.dump(rules)    
     print(s)
 import dumper
 #orjson.dumps(tokens)
@@ -30,13 +35,36 @@ def dump_module(x):
 #         #str=str(x))
 #     ))
 
+### only in function body
+def dump_Global(x):
+   dump_dummy(x)
+def dump_Nonlocal(x):
+   dump_dummy(x)
+def dump_Raise(x):
+   dump_dummy(x)
+def dump_Return(x):
+   dump_dummy(x)
+def dump_AugAssign(x):
+   dump_dummy(x)
+def dump_While(x):
+   dump_dummy(x)
+def dump_Match(x):
+   dump_dummy(x)
+
+
 def dump_dummy(x):
-    #print(x)
-    return
     _type = x["_type"]
-    _child = x["child"]
-    kys =_child.keys()
-    print(_type,kys)
+    _source = x["_source"]
+    print("Dump",_type,_source)
+    #return
+    _ptype = x["car"]
+
+    _cdr = x["cdr"]
+    kys =_cdr.keys()
+    #raise Exception(str(x.keys()))
+    # print(dict(car=_ptype,
+    #           type=_type,
+    #           keys=kys))
 
     #       4 With dict_keys(['_type', 'body', 'col_offset', 'end_col_offset', 'end_lineno', 'items', 'lineno', 'type_comment'])
    #    5 AsyncFunctionDef dict_keys(['_type', 'args', 'body', 'col_offset', 'decorator_list', 'end_col_offset', 'end_lineno', 'lineno', 'name', 'returns', 'type_comment'])
@@ -54,6 +82,7 @@ def dump_dummy(x):
    # 4743 ImportFrom dict_keys(['_type', 'col_offset', 'end_col_offset', 'end_lineno', 'level', 'lineno', 'module', 'names'])
 def dump_ImportFrom(x):
    dump_dummy(x)
+   
 def dump_With(x):
    dump_dummy(x)
 def dump_Expr(x):
@@ -63,12 +92,89 @@ def dump_Import(x):
 def dump_Assign(x):
    dump_dummy(x)
 def dump_FunctionDef(x):
-   dump_dummy(x)
+    #dump_dummy(x)
+    #pprint.pprint(x['cdr'].keys())
+    #dict_keys(['_type', 'args', 'body', 'col_offset', 'decorator_list', 'end_col_offset', 'end_lineno', 'lineno', 'name', 'returns', 'type_comment'])
+    function_body = x['cdr']['body']
+    function_name = x['cdr']['name']
+    args = x['cdr']['args']
+    _return = x['cdr'].get('return',None)
+    type_comment = x['cdr']['type_comment']
+    for y in function_body:
+        _type = y["_type"]
+        if _type not in types:
+            print (f"    \"{_type}\" : dump_{_type},")
+            print (f"def dump_{_type}(x):\n   dump_dummy(x)")
+            types[_type] = dump_dummy
+        else:
+            
+            types[_type](
+                dict(
+                    car=function_name,
+                    _source="function_body",
+                    _type=_type,
+                    cdr=y
+                )
+            )
+    
 def dump_For(x):
    dump_dummy(x)
+
+def dump_ClassDef_bases(x):
+    car=x['car']
+    name=x['name']
+    bases=x['bases']
+    for x in bases:
+        if "id" in x:
+            add_fact(f"class_def_base(\'{name}\',\'{x['id']}\').")
+        elif "attr" in x:
+            add_fact(f"class_def_base(\'{name}\',\'{x['attr']}\').")
+        #else:
+            #BASES2 Url {'_type': 'Call', 'args': [{'_type': 'Constant', 'col_offset': 21, 'end_col_offset': 26, 'end_lineno': 82, 'kind': None, 'lineno': 82, 'n': 'Url', 's': 'Url', 'value': 'Url'}, {'_type': 'Name', 'col_offset': 28, 'ctx': {'_type': 'Load'}, 'end_col_offset': 37, 'end_lineno': 82, 'id': 'url_attrs', 'lineno': 82}], 'col_offset': 10, 'end_col_offset': 38, 'end_lineno': 82, 'func': {'_type': 'Name', 'col_offset': 10, 'ctx': {'_type': 'Load'}, 'end_col_offset': 20, 'end_lineno': 82, 'id': 'namedtuple', 'lineno': 82}, 'keywords': [], 'lineno': 82}
+            #BASES2 _SecretBase {'_type': 'Subscript', 'col_offset': 18, 'ctx': {'_type': 'Load'}, 'end_col_offset': 37, 'end_lineno': 1456, 'lineno': 1456, 'slice': {'_type': 'Name', 'col_offset': 26, 'ctx': {'_type': 'Load'}, 'end_col_offset': 36, 'end_lineno': 1456, 'id': 'SecretType', 'lineno': 1456}, 'value': {'_type': 'Name', 'col_offset': 18, 'ctx': {'_type': 'Load'}, 'end_col_offset': 25, 'end_lineno': 1456, 'id': 'Generic', 'lineno': 1456}}
+            #print("BASES2",name,x)
+    #dict(car=x,bases=_bases))
+
+#        
+def dump_Pass(x):
+   dump_dummy(x)
+
+def dump_ClassDef_body(x):
+    _car = x["car"]
+    class_name = x["class_name"]
+    _body = x["body"]
+    for y in _body:
+        _type = y["_type"]
+        if _type not in types:
+            print (f"    \"{_type}\" : dump_{_type},")
+            print (f"def dump_{_type}(x):\n   dump_dummy(x)")
+            types[_type] = dump_dummy
+        else:
+            
+            types[_type](
+                dict(
+                    car=class_name,
+                    _source="class_body",
+                    _type=_type,
+                    cdr=y
+                )
+            )
+
 def dump_ClassDef(x):
-    _name = x["child"]["name"]
-    add_fact(f"class_def(\"{_name}\").")
+    _name = x["cdr"]["name"]
+    add_fact(f"class_def(\'{_name}\').")
+
+    _bases = x["cdr"]["bases"]
+    dump_ClassDef_bases(dict(car=x,
+                             name=_name,
+                             bases=_bases))
+    _body = x["cdr"]["body"]
+    dump_ClassDef_body(
+        dict(car=x,
+             class_name=_name,
+             body=_body))
+    _keywords = x["cdr"]["keywords"]
+    
    #dump_dummy(x)
    # 2174 ClassDef dict_keys(['_type', 'bases', 'body', 'col_offset', 'decorator_list', 'end_col_offset', 'end_lineno', 'keywords', 'lineno', 'name'])
 def dump_If(x):
@@ -85,6 +191,17 @@ def dump_AsyncFunctionDef(x):
    dump_dummy(x)
 
 types = {
+
+# from function body
+    "Raise" : dump_Raise,
+    "Return" : dump_Return,
+    "AugAssign" : dump_AugAssign,
+    "While" : dump_While,
+    "Global" : dump_Global,
+    "Nonlocal" : dump_Nonlocal,
+    "Match" : dump_Match,
+###
+    "Pass" : dump_Pass,
     "Module" : dump_module,
     "ImportFrom" : dump_ImportFrom,
     "With" : dump_With,
@@ -110,7 +227,10 @@ def dump_body(x):
             print (f"def dump_{_type}(x):\n   dump_dummy(x)")
             types[_type] = dump_dummy
         else:
-            types[_type](dict(parent=x,_type=_type,child=y))
+            types[_type](dict(
+                _source="module",
+                car=x,
+                _type=_type,cdr=y))
             
         
 

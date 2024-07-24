@@ -12,3 +12,41 @@ grep "\"_type\"" ast_json_pretty.json  | cut -d: -f2 | sort |uniq -c | sort -n |
   40225  "Name",
   55209  "Load"
   66254  "Constant",
+
+ * Some of the relationships, this shows the count, the
+   name of the node and the parent context.
+     12 Dump Nonlocal function_body
+     15 Dump AsyncFunctionDef function_body
+     15 Dump Delete module
+     15 Dump For module
+     20 Dump Assert module
+     27 Dump Delete function_body
+     28 Dump AsyncFunctionDef class_body
+     38 Dump Global function_body
+     38 Dump If class_body
+     71 Dump Import function_body
+    133 Dump Try module
+    159 Dump Pass class_body
+    159 Dump Pass function_body
+    180 Dump AugAssign function_body
+    225 Dump AnnAssign module
+    246 Dump While function_body
+    314 Dump ImportFrom function_body
+    341 Dump Raise function_body
+    387 Dump With function_body
+    396 Dump Assert function_body
+    560 Dump If module
+    671 Dump Expr module
+   1086 Dump Try function_body
+   1111 Dump AnnAssign function_body
+   1722 Dump Expr class_body
+   1751 Dump For function_body
+   1768 Dump AnnAssign class_body
+   1788 Dump Assign class_body
+   2202 Dump Import module
+   3017 Dump Assign module
+   5061 Dump ImportFrom module
+   8177 Dump Return function_body
+   8629 Dump If function_body
+  10839 Dump Expr function_body
+  15382 Dump Assign function_body  

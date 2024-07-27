@@ -14,3 +14,6 @@ grep-ast
 pydantic-ast
 #pycopy-ast
 prettiest-ast
+flatten_json
+datasets
+pandas

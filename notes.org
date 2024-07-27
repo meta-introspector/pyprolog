@@ -37,15 +37,19 @@ grep "\"_type\"" ast_json_pretty.json  | cut -d: -f2 | sort |uniq -c | sort -n |
     396 Dump Assert function_body
     560 Dump If module
     671 Dump Expr module
+    
    1086 Dump Try function_body
    1111 Dump AnnAssign function_body
    1722 Dump Expr class_body
    1751 Dump For function_body
+   
    1768 Dump AnnAssign class_body
    1788 Dump Assign class_body
+   
    2202 Dump Import module
    3017 Dump Assign module
    5061 Dump ImportFrom module
+
    8177 Dump Return function_body
    8629 Dump If function_body
   10839 Dump Expr function_body

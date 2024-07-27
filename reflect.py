@@ -1,24 +1,28 @@
 import prolog.prolog
 import pprint
 import astor
+from ast2json import ast2json
 import orjson
 from prolog.parser import Parser
 from prolog.scanner import Scanner
 from prolog.interpreter import Runtime
 import ast2json
 import json
+import dumper
 
-rules_text = "location(desk, office)."
-tokens = Scanner(rules_text).tokenize()
-rules = Parser(tokens).parse_rules()
-runtime = Runtime(rules)
+def example_prolog():
+    rules_text = "location(desk, office)."
+    tokens = Scanner(rules_text).tokenize()
+    rules = Parser(tokens).parse_rules()
+    runtime = Runtime(rules)
+    
 def add_fact(s):
     tokens = Scanner(s).tokenize()
     rules = Parser(tokens).parse_rules()
     #dumper.dump(tokens)
     #dumper.dump(rules)    
     print(s)
-import dumper
+
 #orjson.dumps(tokens)
 #dumper.dump(tokens)
 #dumper.dump(rules)
@@ -231,35 +235,24 @@ def dump_body(x):
                 _source="module",
                 car=x,
                 _type=_type,cdr=y))
-            
-        
-
+                    
 def mydumper(x):
     if "_type" in x:
         _type = x["_type"]
         if _type in types:
             types[_type](x)
-      
-    
-    
-#astor.code_to_ast(Runtime.__init__)
-data = astor.code_to_ast.find_py_files("./")
-#dumper.dump([x for x in data])
-from ast2json import ast2json
-for x in data:
-#    print(x)
-    fname = "/".join(x)
-    if "#" in fname:
-        continue
-    #try:
-    if True:
+             
+def collect_project_files():
+    data = astor.code_to_ast.find_py_files("./")
+    for x in data:
+        fname = "/".join(x)
+        if "#" in fname: # ignore temp files with #
+            continue
+
         data = astor.code_to_ast.parse_file(fname)
         json_ast = ast2json(data)
         #print(json.dumps(dict(fname=fname,ast=json_ast)))
         # for x in json_ast
-        mydumper(json_ast)
+        #mydumper(json_ast)
+        yield json_ast
         
-    #except Exception as e:
-    #    pass
-        
-    #dumper.dump(data)

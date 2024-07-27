@@ -1,0 +1,3 @@
+[submodule "pyprolog-asts"]
+	path = pyprolog-asts
+	url = https://huggingface.co/datasets/introspector/pyprolog-asts

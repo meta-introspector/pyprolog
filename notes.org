@@ -1,4 +1,28 @@
+* idea
 
+The idea is that we can convert the asts to json, flatten them into parquet.
+this gives us many datasets with different features.
+
+Next we can consider the columns and realize that some of the values also reference the columes.
+There is a relationship between columns, and a relationship between columnes and values.
+
+If we vectorize them both, we will find an overlap. We can vectorize the columns and the values and then match them based on that.
+
+This will give us an indication of the areas, or a layout of the data into the vector space.
+We will then want to use this information to embed the datasets row by row.
+We can cluster the rows together and embed them as well based on cluster.
+
+This should give us some clustering and partitioning.
+There will be relationships between different modules and functions as well.
+
+** what we are looking for :
+
+1. descriptions of the fields in the values that match the columns.
+   Some of the values will match the columns exactly. We want to basically vectorize them both and join the most similar to each other.
+
+2. longer paths in the fields will be compounds. We can shorten or longen the paths of the fields.
+
+* data collected
 python ./reflect.py > ast_json.json
 jq . ast_json.json >ast_json_pretty.json
 grep "\"_type\"" ast_json_pretty.json  | cut -d: -f2 | sort |uniq -c | sort -n |tail

@@ -261,3 +261,5 @@ if __name__ == "__main__":
 
 This was inspired and based on this [article](https://curiosity-driven.org/prolog-interpreter)
 
+## Ideas
+

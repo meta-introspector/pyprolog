@@ -78,3 +78,2027 @@ grep "\"_type\"" ast_json_pretty.json  | cut -d: -f2 | sort |uniq -c | sort -n |
    8629 Dump If function_body
   10839 Dump Expr function_body
   15382 Dump Assign function_body  
+
+* next steps
+
+1. look at which fields occur together, many of them should be null, rank them.
+   compare those groups, define variations.
+   find rules to collapse smaller groups into larger.
+
+** First report
+
+Here are the first 1000 rows of the top types in all the samples
+Note that not all the files got converted to datasets but this is good enough
+
+The first thing that you will see are the body_N_types that are top level items.
+I think we could also collapse the number and replace them
+
+created rank_fields_strings.py
+
+|----------------------------------------------+-------+
+| Type                                         | Count |
+|----------------------------------------------+-------+
+| _type                                        |  1640 |
+| type_ignores                                 |  1640 |
+| body_0__type                                 |  1533 |
+| body_1__type                                 |  1512 |
+| body_2__type                                 |  1474 |
+| body_1_names_0__type                         |  1453 |
+| body_3__type                                 |  1421 |
+| body_2_names_0__type                         |  1363 |
+| body_4__type                                 |  1334 |
+| body_5__type                                 |  1233 |
+| body_3_names_0__type                         |  1202 |
+| body_0_names_0__type                         |  1134 |
+| body_6__type                                 |  1121 |
+| body_7__type                                 |  1036 |
+| body_4_names_0__type                         |   980 |
+| body_8__type                                 |   951 |
+| body_9__type                                 |   875 |
+| body_5_names_0__type                         |   811 |
+| body_10__type                                |   805 |
+| body_11__type                                |   751 |
+| body_12__type                                |   689 |
+| body_13__type                                |   642 |
+| body_6_names_0__type                         |   617 |
+| body_14__type                                |   589 |
+| body_15__type                                |   549 |
+| body_16__type                                |   510 |
+| body_9_body_0__type                          |   492 |
+| body_8_body_0__type                          |   491 |
+| body_7_body_0__type                          |   486 |
+| body_17__type                                |   486 |
+| body_10_body_0__type                         |   484 |
+| body_11_body_0__type                         |   476 |
+| body_7_names_0__type                         |   472 |
+| body_18__type                                |   465 |
+| body_12_body_0__type                         |   457 |
+| body_9_type_comment                          |   456 |
+| body_10_type_comment                         |   446 |
+| body_13_body_0__type                         |   442 |
+| body_11_type_comment                         |   436 |
+| body_6_body_0__type                          |   435 |
+| body_19__type                                |   431 |
+| body_10_body_1__type                         |   420 |
+| body_8_type_comment                          |   419 |
+| body_14_body_0__type                         |   415 |
+| body_9_body_1__type                          |   414 |
+| body_12_type_comment                         |   413 |
+| body_13_type_comment                         |   406 |
+| body_11_body_1__type                         |   405 |
+| body_7_type_comment                          |   404 |
+| body_8_body_1__type                          |   404 |
+| body_20__type                                |   404 |
+| body_7_body_1__type                          |   402 |
+| body_15_body_0__type                         |   392 |
+| body_12_body_1__type                         |   389 |
+| body_14_type_comment                         |   389 |
+| body_0_value__type                           |   389 |
+| body_10_args__type                           |   384 |
+| body_13_body_1__type                         |   383 |
+| body_21__type                                |   380 |
+| body_9_args__type                            |   375 |
+| body_10_body_0_value__type                   |   375 |
+| body_11_args__type                           |   374 |
+| body_16_body_0__type                         |   374 |
+| body_8_names_0__type                         |   373 |
+| body_15_type_comment                         |   367 |
+| body_11_body_0_value__type                   |   367 |
+| body_12_args__type                           |   365 |
+| body_5_body_0__type                          |   364 |
+| body_13_args__type                           |   362 |
+| body_6_body_1__type                          |   360 |
+| body_17_body_0__type                         |   356 |
+| body_22__type                                |   355 |
+| body_9_body_0_value__type                    |   353 |
+| body_14_body_1__type                         |   353 |
+| body_18_body_0__type                         |   350 |
+| body_14_args__type                           |   348 |
+| body_11_body_2__type                         |   347 |
+| body_10_body_2__type                         |   347 |
+| body_6_type_comment                          |   345 |
+| body_9_body_2__type                          |   344 |
+| body_8_args__type                            |   342 |
+| body_16_type_comment                         |   339 |
+| body_12_body_0_value__type                   |   339 |
+| body_15_body_1__type                         |   338 |
+| body_7_body_2__type                          |   336 |
+| body_17_type_comment                         |   336 |
+| body_23__type                                |   336 |
+| body_7_args__type                            |   334 |
+| body_8_body_2__type                          |   334 |
+| body_18_type_comment                         |   334 |
+| body_19_body_0__type                         |   333 |
+| body_13_body_0_value__type                   |   332 |
+| body_8_body_0_value__type                    |   331 |
+| body_7_body_0_value__type                    |   331 |
+| body_14_body_0_value__type                   |   331 |
+| body_15_args__type                           |   328 |
+| body_13_body_2__type                         |   327 |
+| body_16_body_1__type                         |   327 |
+| body_7_body_1_type_comment                   |   324 |
+| body_8_body_0_type_comment                   |   323 |
+| body_12_body_2__type                         |   322 |
+| body_19_type_comment                         |   317 |
+| body_10_body_1_type_comment                  |   316 |
+| body_24__type                                |   316 |
+| body_9_body_0_type_comment                   |   315 |
+| body_15_body_0_value__type                   |   314 |
+| body_17_body_1__type                         |   313 |
+| body_20_body_0__type                         |   312 |
+| body_10_body_0_type_comment                  |   311 |
+| body_9_body_1_type_comment                   |   309 |
+| body_7_body_0_type_comment                   |   309 |
+| body_11_body_1_type_comment                  |   309 |
+| body_11_body_0_type_comment                  |   309 |
+| body_8_body_1_type_comment                   |   308 |
+| body_16_args__type                           |   305 |
+| body_14_body_2__type                         |   304 |
+| body_18_args__type                           |   303 |
+| body_12_body_1_type_comment                  |   302 |
+| body_18_body_1__type                         |   301 |
+| body_17_args__type                           |   300 |
+| body_20_type_comment                         |   298 |
+| body_25__type                                |   298 |
+| body_5_body_1__type                          |   297 |
+| body_13_body_1_type_comment                  |   296 |
+| body_15_body_2__type                         |   295 |
+| body_9_names_0__type                         |   294 |
+| body_7_body_3__type                          |   293 |
+| body_6_body_2__type                          |   292 |
+| body_19_args__type                           |   291 |
+| body_19_body_1__type                         |   291 |
+| body_21_body_0__type                         |   290 |
+| body_12_body_0_type_comment                  |   290 |
+| body_11_body_3__type                         |   288 |
+| body_4_body_0__type                          |   287 |
+| body_5_type_comment                          |   286 |
+| body_14_body_1_type_comment                  |   286 |
+| body_20_body_1__type                         |   286 |
+| body_16_body_0_value__type                   |   285 |
+| body_6_args__type                            |   284 |
+| body_10_body_3__type                         |   284 |
+| body_26__type                                |   283 |
+| body_22_body_0__type                         |   281 |
+| body_13_body_0_type_comment                  |   280 |
+| body_21_type_comment                         |   278 |
+| body_11_body_2_type_comment                  |   277 |
+| body_17_body_0_value__type                   |   277 |
+| body_6_body_0_value__type                    |   275 |
+| body_14_body_0_type_comment                  |   275 |
+| body_13_body_3__type                         |   273 |
+| body_18_body_0_value__type                   |   273 |
+| body_8_body_3__type                          |   272 |
+| body_6_body_1_type_comment                   |   271 |
+| body_16_body_2__type                         |   271 |
+| body_20_args__type                           |   271 |
+| body_9_body_3__type                          |   271 |
+| body_6_body_0_type_comment                   |   270 |
+| body_2_names_1__type                         |   269 |
+| body_23_body_0__type                         |   269 |
+| body_10_body_1_value__type                   |   266 |
+| body_15_body_0_type_comment                  |   265 |
+| body_17_body_2__type                         |   264 |
+| body_19_body_0_value__type                   |   262 |
+| body_27__type                                |   261 |
+| body_15_body_1_type_comment                  |   261 |
+| body_22_type_comment                         |   260 |
+| body_13_body_1_value__type                   |   258 |
+| body_21_body_1__type                         |   258 |
+| body_18_body_2__type                         |   258 |
+| body_7_body_2_type_comment                   |   257 |
+| body_11_body_1_value__type                   |   257 |
+| body_15_body_3__type                         |   256 |
+| body_12_body_3__type                         |   255 |
+| body_10_body_2_type_comment                  |   255 |
+| body_24_body_0__type                         |   254 |
+| body_13_args_args_0__type                    |   253 |
+| body_13_args_args_0_type_comment             |   253 |
+| body_13_body_2_type_comment                  |   253 |
+| body_16_body_1_type_comment                  |   253 |
+| body_12_body_1_value__type                   |   253 |
+| body_10_names_0__type                        |   252 |
+| body_22_body_1__type                         |   252 |
+| body_9_body_2_type_comment                   |   252 |
+| body_14_body_3__type                         |   251 |
+| body_10_body_0_targets_0__type               |   251 |
+| body_10_body_0_targets_0_ctx__type           |   251 |
+| body_9_args_args_0__type                     |   249 |
+| body_9_args_args_0_type_comment              |   249 |
+| body_9_body_1_value__type                    |   249 |
+| body_20_body_0_value__type                   |   248 |
+| body_21_args__type                           |   248 |
+| body_28__type                                |   248 |
+| body_23_type_comment                         |   248 |
+| body_11_args_args_0__type                    |   247 |
+| body_11_args_args_0_type_comment             |   247 |
+| body_10_args_args_0__type                    |   246 |
+| body_10_args_args_0_type_comment             |   246 |
+| body_20_body_2__type                         |   246 |
+| body_16_body_0_type_comment                  |   246 |
+| body_7_body_1_value__type                    |   244 |
+| body_19_body_2__type                         |   244 |
+| body_6_body_3__type                          |   243 |
+| body_17_body_1_type_comment                  |   243 |
+| body_8_body_2_type_comment                   |   241 |
+| body_14_body_1_value__type                   |   241 |
+| body_9_body_0_targets_0__type                |   240 |
+| body_9_body_0_targets_0_ctx__type            |   240 |
+| body_24_type_comment                         |   240 |
+| body_14_args_args_0__type                    |   240 |
+| body_14_args_args_0_type_comment             |   240 |
+| body_11_body_0_targets_0__type               |   240 |
+| body_11_body_0_targets_0_ctx__type           |   240 |
+| body_12_body_2_type_comment                  |   239 |
+| body_5_body_0_type_comment                   |   239 |
+| body_17_body_0_type_comment                  |   239 |
+| body_5_body_2__type                          |   238 |
+| body_8_body_1_value__type                    |   238 |
+| body_7_body_4__type                          |   237 |
+| body_12_args_args_0__type                    |   237 |
+| body_12_args_args_0_type_comment             |   237 |
+| body_22_args__type                           |   237 |
+| body_23_body_1__type                         |   237 |
+| body_22_body_0_value__type                   |   236 |
+| body_25_body_0__type                         |   234 |
+| body_5_body_1_type_comment                   |   233 |
+| body_26_body_0__type                         |   233 |
+| body_5_args__type                            |   232 |
+| body_29__type                                |   232 |
+| body_21_body_0_value__type                   |   231 |
+| body_18_body_0_type_comment                  |   230 |
+| body_18_body_1_type_comment                  |   229 |
+| body_14_body_0_targets_0__type               |   228 |
+| body_14_body_0_targets_0_ctx__type           |   228 |
+| body_3_names_1__type                         |   227 |
+| body_17_body_3__type                         |   227 |
+| body_12_body_0_targets_0__type               |   227 |
+| body_12_body_0_targets_0_ctx__type           |   227 |
+| body_4_body_1__type                          |   226 |
+| body_25_type_comment                         |   226 |
+| body_30__type                                |   226 |
+| body_13_body_0_targets_0__type               |   226 |
+| body_13_body_0_targets_0_ctx__type           |   226 |
+| body_11_body_4__type                         |   226 |
+| body_16_body_3__type                         |   225 |
+| body_23_args__type                           |   225 |
+| body_8_body_0_targets_0__type                |   224 |
+| body_8_body_0_targets_0_ctx__type            |   224 |
+| body_13_body_1_targets_0__type               |   224 |
+| body_13_body_1_targets_0_ctx__type           |   224 |
+| body_15_body_1_value__type                   |   223 |
+| body_22_body_2__type                         |   223 |
+| body_10_body_1_targets_0__type               |   222 |
+| body_10_body_1_targets_0_ctx__type           |   222 |
+| body_11_body_1_targets_0__type               |   222 |
+| body_11_body_1_targets_0_ctx__type           |   222 |
+| body_21_body_2__type                         |   222 |
+| body_5_body_0_value__type                    |   222 |
+| body_14_body_2_type_comment                  |   221 |
+| body_24_body_1__type                         |   221 |
+| body_26_type_comment                         |   221 |
+| body_8_args_args_0__type                     |   220 |
+| body_8_args_args_0_type_comment              |   220 |
+| body_7_body_0_targets_0__type                |   220 |
+| body_7_body_0_targets_0_ctx__type            |   220 |
+| body_16_body_1_value__type                   |   219 |
+| body_10_body_2_value__type                   |   219 |
+| body_12_body_1_targets_0__type               |   219 |
+| body_12_body_1_targets_0_ctx__type           |   219 |
+| body_10_body_4__type                         |   219 |
+| body_19_body_0_type_comment                  |   218 |
+| body_15_body_0_targets_0__type               |   218 |
+| body_15_body_0_targets_0_ctx__type           |   218 |
+| body_7_body_1_targets_0__type                |   216 |
+| body_7_body_1_targets_0_ctx__type            |   216 |
+| body_24_args__type                           |   216 |
+| body_18_body_3__type                         |   216 |
+| body_9_body_1_targets_0__type                |   215 |
+| body_9_body_1_targets_0_ctx__type            |   215 |
+| body_11_body_2_value__type                   |   215 |
+| body_25_body_1__type                         |   215 |
+| body_15_args_args_0__type                    |   215 |
+| body_15_args_args_0_type_comment             |   215 |
+| body_19_body_1_type_comment                  |   214 |
+| body_14_body_1_targets_0__type               |   214 |
+| body_14_body_1_targets_0_ctx__type           |   214 |
+| body_6_body_2_type_comment                   |   213 |
+| body_31__type                                |   213 |
+| body_15_body_2_type_comment                  |   213 |
+| body_17_args_args_0__type                    |   213 |
+| body_17_args_args_0_type_comment             |   213 |
+| body_27_body_0__type                         |   213 |
+| body_9_body_2_value__type                    |   212 |
+| body_13_body_4__type                         |   212 |
+| body_18_args_args_0__type                    |   211 |
+| body_18_args_args_0_type_comment             |   211 |
+| body_7_args_args_0__type                     |   210 |
+| body_7_args_args_0_type_comment              |   210 |
+| body_11_names_0__type                        |   210 |
+| body_23_body_2__type                         |   210 |
+| body_26_body_1__type                         |   210 |
+| body_8_body_4__type                          |   210 |
+| body_17_body_1_value__type                   |   210 |
+| body_20_body_1_type_comment                  |   210 |
+| body_12_body_4__type                         |   208 |
+| body_20_body_0_type_comment                  |   208 |
+| body_16_args_args_0__type                    |   208 |
+| body_16_args_args_0_type_comment             |   208 |
+| body_4_type_comment                          |   207 |
+| body_13_body_2_value__type                   |   207 |
+| body_16_body_2_type_comment                  |   207 |
+| body_27_type_comment                         |   207 |
+| body_23_body_0_value__type                   |   206 |
+| body_9_body_4__type                          |   205 |
+| body_4_names_1__type                         |   204 |
+| body_19_body_3__type                         |   204 |
+| body_32__type                                |   204 |
+| body_28_body_0__type                         |   204 |
+| body_14_body_4__type                         |   203 |
+| body_20_body_3__type                         |   203 |
+| body_19_args_args_0__type                    |   203 |
+| body_19_args_args_0_type_comment             |   203 |
+| body_8_body_1_targets_0__type                |   202 |
+| body_8_body_1_targets_0_ctx__type            |   202 |
+| body_24_body_0_value__type                   |   202 |
+| body_16_body_0_targets_0__type               |   202 |
+| body_16_body_0_targets_0_ctx__type           |   202 |
+| body_26_args__type                           |   201 |
+| body_8_body_0_value_func__type               |   199 |
+| body_7_body_3_type_comment                   |   199 |
+| body_25_args__type                           |   199 |
+| body_15_body_4__type                         |   199 |
+| body_5_body_3__type                          |   198 |
+| body_8_body_0_value_func_ctx__type           |   198 |
+| body_18_body_1_value__type                   |   198 |
+| body_33__type                                |   196 |
+| body_20_args_args_0__type                    |   196 |
+| body_20_args_args_0_type_comment             |   196 |
+| body_11_body_3_type_comment                  |   196 |
+| body_11_body_2_targets_0__type               |   195 |
+| body_11_body_2_targets_0_ctx__type           |   195 |
+| body_30_body_0__type                         |   195 |
+| body_17_body_0_targets_0__type               |   194 |
+| body_17_body_0_targets_0_ctx__type           |   194 |
+| body_28_type_comment                         |   194 |
+| body_15_body_1_targets_0__type               |   194 |
+| body_15_body_1_targets_0_ctx__type           |   194 |
+| body_27_body_1__type                         |   194 |
+| body_14_body_2_value__type                   |   193 |
+| body_25_body_0_value__type                   |   193 |
+| body_29_body_0__type                         |   193 |
+| body_25_body_2__type                         |   192 |
+| body_17_body_2_type_comment                  |   191 |
+| body_24_body_2__type                         |   191 |
+| body_16_body_4__type                         |   191 |
+| body_18_body_2_type_comment                  |   190 |
+| body_16_body_1_targets_0__type               |   190 |
+| body_16_body_1_targets_0_ctx__type           |   190 |
+| body_11_body_0_value_func__type              |   189 |
+| body_17_body_1_targets_0__type               |   189 |
+| body_17_body_1_targets_0_ctx__type           |   189 |
+| body_20_body_1_value__type                   |   189 |
+| body_6_body_4__type                          |   188 |
+| body_10_body_0_value_func__type              |   188 |
+| body_10_body_0_value_func_ctx__type          |   188 |
+| body_21_body_0_type_comment                  |   188 |
+| body_11_body_0_value_func_ctx__type          |   188 |
+| body_9_body_0_value_func__type               |   187 |
+| body_18_body_0_targets_0__type               |   187 |
+| body_18_body_0_targets_0_ctx__type           |   187 |
+| body_26_body_2__type                         |   187 |
+| body_29_type_comment                         |   187 |
+| body_6_body_1_value__type                    |   186 |
+| body_9_body_0_value_func_ctx__type           |   186 |
+| body_26_body_0_value__type                   |   186 |
+| body_19_body_1_value__type                   |   186 |
+| body_21_body_1_type_comment                  |   186 |
+| body_12_body_0_value_func__type              |   186 |
+| body_7_body_2_value__type                    |   185 |
+| body_5_names_1__type                         |   185 |
+| body_15_body_2_value__type                   |   185 |
+| body_27_args__type                           |   185 |
+| body_12_body_0_value_func_ctx__type          |   184 |
+| body_10_body_3_type_comment                  |   184 |
+| body_8_body_2_value__type                    |   183 |
+| body_30_type_comment                         |   183 |
+| body_22_body_1_type_comment                  |   183 |
+| body_6_args_args_0__type                     |   182 |
+| body_6_args_args_0_type_comment              |   182 |
+| body_7_body_0_value_func__type               |   182 |
+| body_7_body_0_value_func_ctx__type           |   181 |
+| body_31_body_0__type                         |   181 |
+| body_34__type                                |   181 |
+| body_22_body_3__type                         |   181 |
+| body_28_body_1__type                         |   181 |
+| body_4_body_2__type                          |   180 |
+| body_13_body_2_targets_0__type               |   180 |
+| body_13_body_2_targets_0_ctx__type           |   180 |
+| body_8_body_3_type_comment                   |   180 |
+| body_19_body_0_targets_0__type               |   180 |
+| body_19_body_0_targets_0_ctx__type           |   180 |
+| body_20_body_0_targets_0__type               |   180 |
+| body_20_body_0_targets_0_ctx__type           |   180 |
+| body_23_body_1_type_comment                  |   180 |
+| body_10_body_3_value__type                   |   180 |
+| body_20_body_2_type_comment                  |   180 |
+| body_27_body_0_value__type                   |   180 |
+| body_11_body_3_value__type                   |   179 |
+| body_12_body_2_value__type                   |   179 |
+| body_18_body_1_targets_0__type               |   179 |
+| body_18_body_1_targets_0_ctx__type           |   179 |
+| body_12_names_0__type                        |   178 |
+| body_14_body_3_type_comment                  |   178 |
+| body_17_body_4__type                         |   178 |
+| body_22_body_0_type_comment                  |   178 |
+| body_10_body_2_targets_0__type               |   178 |
+| body_10_body_2_targets_0_ctx__type           |   178 |
+| body_21_body_3__type                         |   178 |
+| body_7_body_5__type                          |   177 |
+| body_21_body_1_value__type                   |   177 |
+| body_21_args_args_0__type                    |   176 |
+| body_21_args_args_0_type_comment             |   176 |
+| body_9_body_2_targets_0__type                |   176 |
+| body_9_body_2_targets_0_ctx__type            |   176 |
+| body_10_body_1_value_func__type              |   176 |
+| body_4_body_0_type_comment                   |   175 |
+| body_23_body_0_type_comment                  |   175 |
+| body_13_body_3_type_comment                  |   175 |
+| body_9_body_3_type_comment                   |   175 |
+| body_28_args__type                           |   175 |
+| body_30_body_1__type                         |   174 |
+| body_23_body_3__type                         |   174 |
+| body_10_body_1_value_func_ctx__type          |   174 |
+| body_29_body_1__type                         |   173 |
+| body_35__type                                |   173 |
+| body_12_body_3_type_comment                  |   172 |
+| body_13_body_0_value_func__type              |   172 |
+| body_31_type_comment                         |   172 |
+| body_32_body_0__type                         |   172 |
+| body_10_body_5__type                         |   172 |
+| body_6_body_0_targets_0__type                |   171 |
+| body_6_body_0_targets_0_ctx__type            |   171 |
+| body_8_body_0_value_args_0__type             |   171 |
+| body_25_body_1_type_comment                  |   171 |
+| body_13_body_0_value_func_ctx__type          |   171 |
+| body_3_body_0__type                          |   171 |
+| body_29_args__type                           |   171 |
+| body_33_body_0__type                         |   171 |
+| body_5_body_2_type_comment                   |   170 |
+| body_18_body_4__type                         |   170 |
+| body_8_body_1_value_func__type               |   169 |
+| body_10_body_0_value_args_0__type            |   169 |
+| body_11_body_5__type                         |   169 |
+| body_4_body_1_type_comment                   |   168 |
+| body_6_body_3_type_comment                   |   168 |
+| body_8_body_5__type                          |   168 |
+| body_18_body_2_value__type                   |   168 |
+| body_14_body_0_value_func__type              |   168 |
+| body_14_body_0_value_func_ctx__type          |   168 |
+| body_27_body_2__type                         |   168 |
+| body_13_body_1_value_func__type              |   167 |
+| body_30_args__type                           |   167 |
+| body_8_body_1_value_func_ctx__type           |   166 |
+| body_9_body_0_value_args_0__type             |   166 |
+| body_19_body_2_type_comment                  |   166 |
+| body_15_body_3_type_comment                  |   166 |
+| body_22_body_1_value__type                   |   166 |
+| body_28_body_0_value__type                   |   166 |
+| body_13_body_1_value_func_ctx__type          |   165 |
+| body_13_body_5__type                         |   165 |
+| body_2_names_2__type                         |   165 |
+| body_11_body_1_value_func__type              |   164 |
+| body_15_body_0_value_func__type              |   164 |
+| body_15_body_0_value_func_ctx__type          |   164 |
+| body_16_body_2_value__type                   |   164 |
+| body_14_body_1_value_func__type              |   164 |
+| body_20_body_4__type                         |   164 |
+| body_29_body_0_value__type                   |   164 |
+| body_31_body_1__type                         |   164 |
+| body_9_body_1_value_func__type               |   163 |
+| body_19_body_4__type                         |   163 |
+| body_22_args_args_0__type                    |   163 |
+| body_22_args_args_0_type_comment             |   163 |
+| body_32_type_comment                         |   163 |
+| body_13_body_3_value__type                   |   163 |
+| body_12_body_1_value_func__type              |   163 |
+| body_14_body_1_value_func_ctx__type          |   163 |
+| body_9_body_1_value_func_ctx__type           |   162 |
+| body_11_body_1_value_func_ctx__type          |   162 |
+| body_10_body_2_value_func__type              |   162 |
+| body_9_decorator_list_0__type                |   162 |
+| body_17_body_2_value__type                   |   161 |
+| body_24_body_1_type_comment                  |   161 |
+| body_36__type                                |   161 |
+| body_10_body_2_value_func_ctx__type          |   161 |
+| body_12_body_1_value_func_ctx__type          |   161 |
+| body_20_body_1_targets_0__type               |   161 |
+| body_20_body_1_targets_0_ctx__type           |   161 |
+| body_15_body_3_value__type                   |   161 |
+| body_7_body_4_type_comment                   |   160 |
+| body_7_body_3_value__type                    |   160 |
+| body_14_body_2_targets_0__type               |   160 |
+| body_14_body_2_targets_0_ctx__type           |   160 |
+| body_21_body_0_targets_0__type               |   160 |
+| body_21_body_0_targets_0_ctx__type           |   160 |
+| body_22_body_0_targets_0__type               |   160 |
+| body_22_body_0_targets_0_ctx__type           |   160 |
+| body_26_body_1_type_comment                  |   160 |
+| body_23_args_args_0__type                    |   160 |
+| body_23_args_args_0_type_comment             |   160 |
+| body_7_body_0_value_args_0__type             |   159 |
+| body_15_body_5__type                         |   159 |
+| body_12_body_0_value_args_0__type            |   159 |
+| body_7_body_2_targets_0__type                |   158 |
+| body_7_body_2_targets_0_ctx__type            |   158 |
+| body_25_body_0_type_comment                  |   158 |
+| body_11_body_0_value_args_0__type            |   158 |
+| body_33_body_1__type                         |   158 |
+| body_19_body_2_value__type                   |   157 |
+| body_24_body_0_type_comment                  |   157 |
+| body_24_body_1_value__type                   |   157 |
+| body_30_body_2__type                         |   157 |
+| body_9_body_3_value__type                    |   157 |
+| body_9_body_5__type                          |   157 |
+| body_19_body_1_targets_0__type               |   157 |
+| body_19_body_1_targets_0_ctx__type           |   157 |
+| body_5_args_args_0__type                     |   157 |
+| body_5_args_args_0_type_comment              |   157 |
+| body_6_body_5__type                          |   156 |
+| body_25_body_3__type                         |   156 |
+| body_30_body_0_value__type                   |   156 |
+| body_33_type_comment                         |   156 |
+| body_4_args__type                            |   155 |
+| body_6_body_1_targets_0__type                |   155 |
+| body_6_body_1_targets_0_ctx__type            |   155 |
+| body_12_body_5__type                         |   155 |
+| body_23_body_2_type_comment                  |   155 |
+| body_15_body_1_value_func__type              |   155 |
+| body_20_body_2_value__type                   |   155 |
+| body_22_body_2_type_comment                  |   155 |
+| body_23_body_1_value__type                   |   155 |
+| body_31_args__type                           |   155 |
+| body_12_body_2_targets_0__type               |   154 |
+| body_12_body_2_targets_0_ctx__type           |   154 |
+| body_24_body_3__type                         |   154 |
+| body_7_body_1_value_func__type               |   154 |
+| body_15_body_2_targets_0__type               |   154 |
+| body_15_body_2_targets_0_ctx__type           |   154 |
+| body_21_body_1_targets_0__type               |   154 |
+| body_21_body_1_targets_0_ctx__type           |   154 |
+| body_8_decorator_list_0__type                |   154 |
+| body_14_body_3_value__type                   |   153 |
+| body_25_body_1_value__type                   |   153 |
+| body_26_body_3__type                         |   153 |
+| body_17_body_3_type_comment                  |   153 |
+| body_13_body_0_value_args_0__type            |   153 |
+| body_28_body_2__type                         |   153 |
+| body_32_body_1__type                         |   153 |
+| body_11_body_2_value_func__type              |   152 |
+| body_26_body_0_type_comment                  |   152 |
+| body_34_type_comment                         |   152 |
+| body_37__type                                |   152 |
+| body_12_decorator_list_0__type               |   152 |
+| body_5_body_4__type                          |   152 |
+| body_11_body_2_value_func_ctx__type          |   151 |
+| body_14_body_5__type                         |   151 |
+| body_13_decorator_list_0__type               |   151 |
+| body_15_body_1_value_func_ctx__type          |   151 |
+| body_21_body_2_type_comment                  |   151 |
+| body_34_body_0__type                         |   151 |
+| body_13_names_0__type                        |   150 |
+| body_16_body_5__type                         |   150 |
+| body_7_body_1_value_func_ctx__type           |   150 |
+| body_13_body_2_value_func__type              |   150 |
+| body_14_decorator_list_0__type               |   150 |
+| body_16_body_0_value_func__type              |   150 |
+| body_16_body_0_value_func_ctx__type          |   150 |
+| body_1_names_1__type                         |   150 |
+| body_6_body_2_value__type                    |   149 |
+| body_4_body_0_value__type                    |   149 |
+| body_7_body_6__type                          |   149 |
+| body_29_body_2__type                         |   149 |
+| body_8_body_3_value__type                    |   149 |
+| body_4_body_3__type                          |   148 |
+| body_35_type_comment                         |   148 |
+| body_10_decorator_list_0__type               |   148 |
+| body_21_body_2_value__type                   |   148 |
+| body_22_body_1_targets_0__type               |   148 |
+| body_22_body_1_targets_0_ctx__type           |   148 |
+| body_31_body_2__type                         |   148 |
+| body_10_body_4_type_comment                  |   147 |
+| body_5_body_1_value__type                    |   146 |
+| body_9_body_2_value_func__type               |   146 |
+| body_5_body_3_type_comment                   |   146 |
+| body_17_body_0_value_func__type              |   146 |
+| body_17_body_0_value_func_ctx__type          |   146 |
+| body_26_body_1_value__type                   |   146 |
+| body_38__type                                |   146 |
+| body_6_body_0_value_func__type               |   146 |
+| body_6_body_0_value_func_ctx__type           |   146 |
+| body_11_decorator_list_0__type               |   146 |
+| body_13_body_2_value_func_ctx__type          |   146 |
+| body_31_body_0_value__type                   |   146 |
+| body_32_args__type                           |   146 |
+| body_19_body_0_value_func__type              |   145 |
+| body_19_body_0_value_func_ctx__type          |   145 |
+| body_23_body_0_targets_0__type               |   145 |
+| body_23_body_0_targets_0_ctx__type           |   145 |
+| body_26_args_args_0__type                    |   145 |
+| body_26_args_args_0_type_comment             |   145 |
+| body_35_body_0__type                         |   145 |
+| body_9_body_2_value_func_ctx__type           |   144 |
+| body_16_body_3_type_comment                  |   144 |
+| body_8_body_2_targets_0__type                |   144 |
+| body_8_body_2_targets_0_ctx__type            |   144 |
+| body_15_body_0_value_args_0__type            |   144 |
+| body_16_body_2_targets_0__type               |   144 |
+| body_16_body_2_targets_0_ctx__type           |   144 |
+| body_36_body_0__type                         |   144 |
+| body_18_body_0_value_func__type              |   143 |
+| body_18_body_0_value_func_ctx__type          |   143 |
+| body_8_body_6__type                          |   143 |
+| body_14_body_0_value_args_0__type            |   143 |
+| body_25_body_1_targets_0__type               |   142 |
+| body_25_body_1_targets_0_ctx__type           |   142 |
+| body_33_args__type                           |   142 |
+| body_6_body_1_body_0__type                   |   141 |
+| body_22_body_2_value__type                   |   141 |
+| body_21_body_4__type                         |   141 |
+| body_27_body_3__type                         |   141 |
+| body_34_body_1__type                         |   141 |
+| body_10_body_6__type                         |   141 |
+| body_18_body_3_type_comment                  |   140 |
+| body_3_names_2__type                         |   139 |
+| body_17_body_5__type                         |   139 |
+| body_24_args_args_0__type                    |   139 |
+| body_24_args_args_0_type_comment             |   139 |
+| body_32_body_0_value__type                   |   139 |
+| body_5_body_0_targets_0__type                |   139 |
+| body_5_body_0_targets_0_ctx__type            |   139 |
+| body_24_body_1_targets_0__type               |   138 |
+| body_24_body_1_targets_0_ctx__type           |   138 |
+| body_39__type                                |   138 |
+| body_13_body_4_type_comment                  |   138 |
+| body_18_body_2_targets_0__type               |   138 |
+| body_18_body_2_targets_0_ctx__type           |   138 |
+| body_12_body_3_value__type                   |   137 |
+| body_17_body_2_targets_0__type               |   137 |
+| body_17_body_2_targets_0_ctx__type           |   137 |
+| body_36_type_comment                         |   137 |
+| body_22_body_4__type                         |   137 |
+| body_23_body_1_targets_0__type               |   137 |
+| body_23_body_1_targets_0_ctx__type           |   137 |
+| body_32_body_2__type                         |   137 |
+| body_13_args_args_1__type                    |   136 |
+| body_13_args_args_1_type_comment             |   136 |
+| body_25_body_0_targets_0__type               |   136 |
+| body_25_body_0_targets_0_ctx__type           |   136 |
+| body_27_body_0_type_comment                  |   136 |
+| body_4_body_2_type_comment                   |   135 |
+| body_24_body_2_type_comment                  |   135 |
+| body_11_body_6__type                         |   135 |
+| body_33_body_0_value__type                   |   135 |
+| body_27_body_1_type_comment                  |   135 |
+| body_10_body_4_value__type                   |   135 |
+| body_9_args_args_1__type                     |   134 |
+| body_9_args_args_1_type_comment              |   134 |
+| body_24_body_2_value__type                   |   134 |
+| body_40__type                                |   134 |
+| body_12_body_1_value_args_0__type            |   134 |
+| body_18_body_3_value__type                   |   134 |
+| body_23_body_4__type                         |   134 |
+| body_33_body_2__type                         |   134 |
+| body_34_args__type                           |   134 |
+| body_8_body_2_value_func__type               |   133 |
+| body_4_names_2__type                         |   133 |
+| body_24_body_0_targets_0__type               |   133 |
+| body_24_body_0_targets_0_ctx__type           |   133 |
+| body_26_body_1_targets_0__type               |   133 |
+| body_26_body_1_targets_0_ctx__type           |   133 |
+| body_37_body_0__type                         |   133 |
+| body_12_body_4_type_comment                  |   133 |
+| body_16_body_1_value_func__type              |   133 |
+| body_20_body_0_value_func__type              |   133 |
+| body_20_body_0_value_func_ctx__type          |   133 |
+| body_11_body_4_type_comment                  |   133 |
+| body_30_body_3__type                         |   133 |
+| body_6_body_4_type_comment                   |   132 |
+| body_5_body_1_body_0__type                   |   132 |
+| body_14_body_4_type_comment                  |   132 |
+| body_26_body_2_type_comment                  |   132 |
+| body_10_body_3_value_func__type              |   132 |
+| body_10_body_3_value_func_ctx__type          |   132 |
+| body_11_body_3_value_func__type              |   132 |
+| body_16_body_1_value_func_ctx__type          |   132 |
+| body_17_body_1_value_func__type              |   132 |
+| body_20_body_3_value__type                   |   132 |
+| body_23_body_2_value__type                   |   132 |
+| body_30_body_1_type_comment                  |   132 |
+| body_34_body_0_value__type                   |   132 |
+| body_8_body_1_value_args_0__type             |   131 |
+| body_25_body_2_type_comment                  |   131 |
+| body_25_body_4__type                         |   131 |
+| body_6_body_1_value_func__type               |   131 |
+| body_11_body_3_value_func_ctx__type          |   131 |
+| body_25_args_args_0__type                    |   131 |
+| body_25_args_args_0_type_comment             |   131 |
+| body_8_body_2_value_func_ctx__type           |   130 |
+| body_13_body_1_value_args_0__type            |   130 |
+| body_19_body_3_type_comment                  |   130 |
+| body_26_body_0_targets_0__type               |   130 |
+| body_26_body_0_targets_0_ctx__type           |   130 |
+| body_17_body_1_value_func_ctx__type          |   130 |
+| body_29_args_args_0__type                    |   130 |
+| body_29_args_args_0_type_comment             |   130 |
+| body_35_args__type                           |   130 |
+| body_37_type_comment                         |   130 |
+| body_9_body_6__type                          |   130 |
+| body_12_body_2_value_func__type              |   129 |
+| body_12_body_2_value_func_ctx__type          |   129 |
+| body_6_body_1_body_0_value__type             |   129 |
+| body_14_body_4_value__type                   |   129 |
+| body_15_decorator_list_0__type               |   129 |
+| body_8_body_4_type_comment                   |   129 |
+| body_15_body_4_type_comment                  |   129 |
+| body_15_body_2_value_func__type              |   129 |
+| body_15_body_2_value_func_ctx__type          |   129 |
+| body_18_body_1_value_func__type              |   129 |
+| body_11_body_3_targets_0__type               |   129 |
+| body_11_body_3_targets_0_ctx__type           |   129 |
+| body_16_body_0_value_args_0__type            |   129 |
+| body_28_body_3__type                         |   129 |
+| body_29_body_1_type_comment                  |   129 |
+| body_10_body_1_value_args_0__type            |   129 |
+| body_27_body_1_value__type                   |   129 |
+| body_17_body_0_value_args_0__type            |   128 |
+| body_19_body_5__type                         |   128 |
+| body_13_body_3_value_func__type              |   128 |
+| body_13_body_3_value_func_ctx__type          |   128 |
+| body_6_body_1_value_func_ctx__type           |   128 |
+| body_15_body_1_value_args_0__type            |   128 |
+| body_18_body_2_value_func__type              |   128 |
+| body_7_body_5_type_comment                   |   127 |
+| body_19_body_2_targets_0__type               |   127 |
+| body_19_body_2_targets_0_ctx__type           |   127 |
+| body_25_body_2_value__type                   |   127 |
+| body_29_body_3__type                         |   127 |
+| body_38_body_0__type                         |   127 |
+| body_14_body_2_value_func__type              |   127 |
+| body_16_body_3_value__type                   |   127 |
+| body_17_body_3_value__type                   |   127 |
+| body_20_body_3_type_comment                  |   127 |
+| body_11_body_4_value__type                   |   127 |
+| body_29_body_1_value__type                   |   127 |
+| body_36_args__type                           |   127 |
+| body_13_body_4_value__type                   |   126 |
+| body_18_body_0_value_args_0__type            |   126 |
+| body_18_decorator_list_0__type               |   126 |
+| body_14_names_0__type                        |   126 |
+| body_14_body_1_value_args_0__type            |   126 |
+| body_18_body_1_value_func_ctx__type          |   126 |
+| body_18_body_2_value_func_ctx__type          |   126 |
+| body_20_body_2_targets_0__type               |   126 |
+| body_20_body_2_targets_0_ctx__type           |   126 |
+| body_19_body_1_value_func__type              |   126 |
+| body_27_args_args_0__type                    |   126 |
+| body_27_args_args_0_type_comment             |   126 |
+| body_28_body_1_type_comment                  |   126 |
+| body_35_body_1__type                         |   126 |
+| body_7_body_2_value_func__type               |   125 |
+| body_11_body_1_value_args_0__type            |   125 |
+| body_9_body_1_body_0__type                   |   125 |
+| body_6_body_6__type                          |   125 |
+| body_26_body_2_value__type                   |   125 |
+| body_41__type                                |   125 |
+| body_10_body_2_value_args_0__type            |   125 |
+| body_14_body_2_value_func_ctx__type          |   125 |
+| body_19_body_3_value__type                   |   125 |
+| body_19_body_1_value_func_ctx__type          |   125 |
+| body_7_body_7__type                          |   125 |
+| body_28_body_0_type_comment                  |   125 |
+| body_35_body_0_value__type                   |   125 |
+| body_5_body_5__type                          |   125 |
+| body_10_body_1_body_0__type                  |   124 |
+| body_38_type_comment                         |   124 |
+| body_6_body_0_value_args_0__type             |   124 |
+| body_12_body_6__type                         |   124 |
+| body_6_names_1__type                         |   124 |
+| body_15_body_4_value__type                   |   124 |
+| body_3_body_1__type                          |   124 |
+| body_36_body_0_value__type                   |   124 |
+| body_10_body_3_targets_0__type               |   124 |
+| body_10_body_3_targets_0_ctx__type           |   124 |
+| body_6_body_3_value__type                    |   123 |
+| body_7_body_2_value_func_ctx__type           |   123 |
+| body_12_body_4_value__type                   |   123 |
+| body_8_body_1_body_0__type                   |   123 |
+| body_14_body_3_value_func__type              |   123 |
+| body_14_body_3_value_func_ctx__type          |   123 |
+| body_13_body_6__type                         |   123 |
+| body_14_args_args_1__type                    |   123 |
+| body_14_args_args_1_type_comment             |   123 |
+| body_15_body_6__type                         |   123 |
+| body_19_body_0_value_args_0__type            |   123 |
+| body_5_body_0_value_func__type               |   123 |
+| body_5_body_0_value_func_ctx__type           |   123 |
+| body_7_body_1_body_0__type                   |   123 |
+| body_5_names_2__type                         |   122 |
+| body_18_body_5__type                         |   122 |
+| body_13_body_2_value_args_0__type            |   122 |
+| body_11_body_2_value_args_0__type            |   121 |
+| body_7_body_3_value_func__type               |   121 |
+| body_7_decorator_list_0__type                |   121 |
+| body_22_body_0_value_func__type              |   121 |
+| body_22_body_0_value_func_ctx__type          |   121 |
+| body_24_body_4__type                         |   121 |
+| body_3_type_comment                          |   121 |
+| body_30_args_args_0__type                    |   121 |
+| body_30_args_args_0_type_comment             |   121 |
+| body_42__type                                |   121 |
+| body_8_body_5_type_comment                   |   121 |
+| body_9_body_4_value__type                    |   121 |
+| body_16_body_4_value__type                   |   121 |
+| body_20_body_0_value_args_0__type            |   121 |
+| body_28_args_args_0__type                    |   121 |
+| body_28_args_args_0_type_comment             |   121 |
+| body_34_body_2__type                         |   121 |
+| body_36_body_1__type                         |   121 |
+| body_8_body_2_body_0__type                   |   120 |
+| body_5_body_1_body_0_value__type             |   120 |
+| body_16_body_6__type                         |   120 |
+| body_21_body_1_value_func__type              |   120 |
+| body_21_body_1_value_func_ctx__type          |   120 |
+| body_37_body_1__type                         |   120 |
+| body_27_body_0_targets_0__type               |   120 |
+| body_27_body_0_targets_0_ctx__type           |   120 |
+| body_29_body_0_type_comment                  |   120 |
+| body_30_body_0_type_comment                  |   120 |
+| body_31_body_1_type_comment                  |   120 |
+| body_37_args__type                           |   120 |
+| body_6_body_2_targets_0__type                |   119 |
+| body_6_body_2_targets_0_ctx__type            |   119 |
+| body_7_body_4_value__type                    |   119 |
+| body_9_body_1_value_args_0__type             |   119 |
+| body_14_body_3_targets_0__type               |   119 |
+| body_14_body_3_targets_0_ctx__type           |   119 |
+| body_16_body_4_type_comment                  |   119 |
+| body_31_body_0_type_comment                  |   119 |
+| body_39_body_0__type                         |   119 |
+| body_20_body_1_value_func__type              |   119 |
+| body_22_body_3_value__type                   |   119 |
+| body_4_body_4__type                          |   118 |
+| body_6_body_2_body_0__type                   |   118 |
+| body_7_body_3_value_func_ctx__type           |   118 |
+| body_17_body_6__type                         |   118 |
+| body_17_decorator_list_0__type               |   118 |
+| body_20_body_1_value_func_ctx__type          |   118 |
+| body_20_body_5__type                         |   118 |
+| body_15_body_3_value_func__type              |   118 |
+| body_17_body_4_value__type                   |   118 |
+| body_9_body_4_type_comment                   |   118 |
+| body_5_body_1_targets_0__type                |   117 |
+| body_5_body_1_targets_0_ctx__type            |   117 |
+| body_21_body_0_value_func__type              |   117 |
+| body_21_body_0_value_func_ctx__type          |   117 |
+| body_40_body_0__type                         |   117 |
+| body_7_body_1_value_args_0__type             |   117 |
+| body_11_body_1_body_0__type                  |   117 |
+| body_7_body_2_body_0__type                   |   117 |
+| body_31_body_3__type                         |   117 |
+| body_6_body_2_value_func__type               |   116 |
+| body_8_args_args_1__type                     |   116 |
+| body_8_args_args_1_type_comment              |   116 |
+| body_8_body_0_body_0__type                   |   116 |
+| body_22_body_1_value_func__type              |   116 |
+| body_22_body_2_targets_0__type               |   116 |
+| body_22_body_2_targets_0_ctx__type           |   116 |
+| body_26_body_4__type                         |   116 |
+| body_6_body_0_body_0__type                   |   115 |
+| body_16_decorator_list_0__type               |   115 |
+| body_8_body_7__type                          |   115 |
+| body_22_body_1_value_func_ctx__type          |   115 |
+| body_23_body_3_value__type                   |   115 |
+| body_39_type_comment                         |   115 |
+| body_6_decorator_list_0__type                |   114 |
+| body_22_body_0_value_args_0__type            |   114 |
+| body_16_body_2_value_func__type              |   114 |
+| body_17_body_4_type_comment                  |   114 |
+| body_9_body_3_value_func__type               |   114 |
+| body_9_body_3_value_func_ctx__type           |   114 |
+| body_10_body_3_value_args_0__type            |   114 |
+| body_21_body_2_targets_0__type               |   114 |
+| body_21_body_2_targets_0_ctx__type           |   114 |
+| body_30_body_1_value__type                   |   114 |
+| body_37_body_0_value__type                   |   114 |
+| body_8_decorator_list_0_func__type           |   114 |
+| body_8_decorator_list_0_func_ctx__type       |   114 |
+| body_10_body_7__type                         |   114 |
+| body_27_body_1_targets_0__type               |   114 |
+| body_27_body_1_targets_0_ctx__type           |   114 |
+| body_6_body_2_value_func_ctx__type           |   113 |
+| body_11_args_args_1__type                    |   113 |
+| body_11_args_args_1_type_comment             |   113 |
+| body_15_names_0__type                        |   113 |
+| body_40_type_comment                         |   113 |
+| body_43__type                                |   113 |
+| body_13_body_3_targets_0__type               |   113 |
+| body_13_body_3_targets_0_ctx__type           |   113 |
+| body_9_decorator_list_0_func__type           |   113 |
+| body_9_decorator_list_0_func_ctx__type       |   113 |
+| body_19_body_2_value_func__type              |   113 |
+| body_15_body_2_value_args_0__type            |   113 |
+| body_15_body_3_value_func_ctx__type          |   113 |
+| body_15_body_3_targets_0__type               |   113 |
+| body_15_body_3_targets_0_ctx__type           |   113 |
+| body_24_body_2_targets_0__type               |   112 |
+| body_24_body_2_targets_0_ctx__type           |   112 |
+| body_7_names_1__type                         |   112 |
+| body_38_args__type                           |   112 |
+| body_44__type                                |   112 |
+| body_16_body_2_value_func_ctx__type          |   112 |
+| body_9_decorator_list_0_func_value__type     |   112 |
+| body_9_decorator_list_0_func_value_ctx__type |   112 |
+| body_19_body_2_value_func_ctx__type          |   112 |
+| body_11_body_7__type                         |   112 |
+| body_5_body_0_value_args_0__type             |   112 |
+| body_19_decorator_list_0__type               |   112 |
+| body_7_body_8__type                          |   112 |
+| body_21_body_3_value__type                   |   112 |
+| body_27_body_2_type_comment                  |   112 |
+| body_27_body_4__type                         |   112 |
+| body_29_body_2_type_comment                  |   112 |
+| body_32_body_0_type_comment                  |   112 |
+| body_8_decorator_list_0_func_value__type     |   112 |
+| body_8_decorator_list_0_func_value_ctx__type |   112 |
+| body_9_body_2_value_args_0__type             |   111 |
+| body_10_args_args_1__type                    |   111 |
+| body_10_args_args_1_type_comment             |   111 |
+| body_38_body_0_value__type                   |   111 |
+| body_38_body_1__type                         |   111 |
+| body_8_body_3_value_func__type               |   111 |
+| body_8_body_3_value_func_ctx__type           |   111 |
+| body_8_body_4_value__type                    |   111 |
+| body_16_body_1_value_args_0__type            |   111 |
+| body_23_body_2_targets_0__type               |   111 |
+| body_23_body_2_targets_0_ctx__type           |   111 |
+| body_27_body_2_value__type                   |   111 |
+| body_31_body_1_value__type                   |   111 |
+| body_33_body_3__type                         |   111 |
+| body_10_body_5_type_comment                  |   111 |
+| body_4_body_3_type_comment                   |   110 |
+| body_5_body_2_body_0__type                   |   110 |
+| body_5_body_3_body_0__type                   |   110 |
+| body_0_names_1__type                         |   110 |
+| body_41_body_0__type                         |   110 |
+| body_11_body_3_value_args_0__type            |   110 |
+| body_12_args_args_1__type                    |   110 |
+| body_12_args_args_1_type_comment             |   110 |
+| body_18_body_2_value_args_0__type            |   110 |
+| body_22_body_5__type                         |   110 |
+| body_31_args_args_0__type                    |   110 |
+| body_31_args_args_0_type_comment             |   110 |
+| body_32_body_1_type_comment                  |   110 |
+| body_33_body_1_type_comment                  |   110 |
+| body_5_body_4_type_comment                   |   110 |
+| body_8_body_1_body_0_value__type             |   109 |
+| body_45__type                                |   109 |
+| body_13_body_3_value_args_0__type            |   109 |
+| body_7_body_3_body_0__type                   |   109 |
+| body_12_body_2_body_0__type                  |   109 |
+| body_15_args_args_1__type                    |   109 |
+| body_15_args_args_1_type_comment             |   109 |
+| body_28_body_1_value__type                   |   109 |
+| body_28_body_2_type_comment                  |   109 |
+| body_29_body_1_targets_0__type               |   109 |
+| body_29_body_1_targets_0_ctx__type           |   109 |
+| body_35_body_2__type                         |   109 |
+| body_23_body_5__type                         |   109 |
+| body_19_body_4_type_comment                  |   108 |
+| body_14_decorator_list_0_func__type          |   108 |
+| body_14_decorator_list_0_func_ctx__type      |   108 |
+| body_9_body_3_targets_0__type                |   108 |
+| body_9_body_3_targets_0_ctx__type            |   108 |
+| body_28_body_0_targets_0__type               |   108 |
+| body_28_body_0_targets_0_ctx__type           |   108 |
+| body_29_body_0_targets_0__type               |   108 |
+| body_29_body_0_targets_0_ctx__type           |   108 |
+| body_32_body_3__type                         |   108 |
+| body_17_body_2_value_func__type              |   107 |
+| body_17_body_1_value_args_0__type            |   107 |
+| body_7_body_1_body_0_value__type             |   107 |
+| body_21_body_3_type_comment                  |   107 |
+| body_23_body_3_type_comment                  |   107 |
+| body_24_body_1_value_func__type              |   107 |
+| body_24_body_1_value_func_ctx__type          |   107 |
+| body_34_body_1_type_comment                  |   107 |
+| body_36_body_2__type                         |   107 |
+| body_9_body_5_type_comment                   |   107 |
+| body_25_body_0_value_func__type              |   107 |
+| body_25_body_0_value_func_ctx__type          |   107 |
+| body_21_body_5__type                         |   107 |
+
+** Report without numbers
+this report gives a more compact representation
+|-------+--------------------------------------------------------------------------------+--------|
+|  Type | Count                                                                          |        |
+|    10 | body_N_body_N_body_N__type                                                     | 116809 |
+|     8 | body_N_body_N__type                                                            |  89679 |
+|    14 | body_N_body_N_body_N_value__type                                               |  87969 |
+|    15 | body_N_body_N_body_N_value_args_N__type                                        |  75187 |
+|    13 | body_N_body_N_body_N_type_comment                                              |  67042 |
+|    17 | body_N_body_N_body_N_value_func__type                                          |  62897 |
+|    18 | body_N_body_N_body_N_value_func_ctx__type                                      |  62426 |
+|    46 | body_N_body_N_type_comment                                                     |  60657 |
+|    12 | body_N_body_N_body_N_targets_N_ctx__type                                       |  59814 |
+|    11 | body_N_body_N_body_N_targets_N__type                                           |  59814 |
+|    16 | body_N_body_N_body_N_value_args_N_ctx__type                                    |  52048 |
+|    30 | body_N_body_N_value__type                                                      |  51231 |
+|    31 | body_N_body_N_value_args_N__type                                               |  41645 |
+|    19 | body_N_body_N_body_N_value_func_value__type                                    |  39620 |
+|   284 | body_N_body_N_args_args_N_type_comment                                         |  38184 |
+|   283 | body_N_body_N_args_args_N__type                                                |  38184 |
+|    45 | body_N_body_N_targets_N_ctx__type                                              |  37081 |
+|    44 | body_N_body_N_targets_N__type                                                  |  37081 |
+|    20 | body_N_body_N_body_N_value_func_value_ctx__type                                |  36431 |
+|    33 | body_N_body_N_value_func__type                                                 |  35653 |
+|    34 | body_N_body_N_value_func_ctx__type                                             |  35365 |
+|   335 | body_N_body_N_body_N_value_keywords_N_value__type                              |  34020 |
+|   334 | body_N_body_N_body_N_value_keywords_N__type                                    |  34020 |
+|    32 | body_N_body_N_value_args_N_ctx__type                                           |  28002 |
+|     1 | body_N__type                                                                   |  27499 |
+|   293 | body_N_body_N_body_N_value_args_N_elts_N__type                                 |  25606 |
+|   343 | body_N_body_N_body_N_body_N__type                                              |  24791 |
+|    35 | body_N_body_N_value_func_value__type                                           |  23519 |
+|    36 | body_N_body_N_value_func_value_ctx__type                                       |  21472 |
+|   431 | body_N_body_N_body_N_test__type                                                |  19465 |
+|   282 | body_N_body_N_args__type                                                       |  18772 |
+|   344 | body_N_body_N_body_N_body_N_value__type                                        |  18004 |
+|     2 | body_N_names_N__type                                                           |  17716 |
+|   229 | body_N_body_N_value_args_N_elts_N__type                                        |  16944 |
+|    38 | body_N_body_N_value_keywords_N_value__type                                     |  16462 |
+|    37 | body_N_body_N_value_keywords_N__type                                           |  16462 |
+|   336 | body_N_body_N_body_N_value_keywords_N_value_ctx__type                          |  15906 |
+|     5 | body_N_args_args_N_type_comment                                                |  15888 |
+|     4 | body_N_args_args_N__type                                                       |  15888 |
+|    41 | body_N_type_comment                                                            |  13678 |
+|   345 | body_N_body_N_body_N_body_N_value_args_N__type                                 |  13307 |
+|   620 | body_N_decorator_list_N_args_N_elts_N_elts_N__type                             |  13296 |
+|   824 | body_N_body_N_body_N_value_args_N_values_N_elts_N__type                        |  12341 |
+|    57 | body_N_body_N_body_N_value_ctx__type                                           |  12181 |
+|   347 | body_N_body_N_body_N_body_N_value_func__type                                   |  12069 |
+|    23 | body_N_body_N_test__type                                                       |  11958 |
+|     3 | body_N_args__type                                                              |  11913 |
+|   348 | body_N_body_N_body_N_body_N_value_func_ctx__type                               |  11880 |
+|  3735 | body_N_body_N_value_args_N_values_N_elts_N__type                               |  11501 |
+|   443 | body_N_body_N_body_N_test_ops_N__type                                          |  11425 |
+|   432 | body_N_body_N_body_N_test_comparators_N__type                                  |  11425 |
+|   435 | body_N_body_N_body_N_test_left__type                                           |  11380 |
+|   619 | body_N_decorator_list_N_args_N_elts_N_dims_N__type                             |  11077 |
+|   236 | body_N_decorator_list_N_args_N_elts_N__type                                    |  10926 |
+|   408 | body_N_body_N_body_N_body_N_type_comment                                       |  10575 |
+|   311 | body_N_body_N_decorator_list_N_args_N_elts_N__type                             |  10309 |
+|   384 | body_N_body_N_body_N_value_args_N_elts_N_elts_N__type                          |  10205 |
+|   314 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N__type                      |   9436 |
+|   407 | body_N_body_N_body_N_body_N_targets_N_ctx__type                                |   9376 |
+|   406 | body_N_body_N_body_N_body_N_targets_N__type                                    |   9376 |
+|   346 | body_N_body_N_body_N_body_N_value_args_N_ctx__type                             |   9239 |
+|   595 | body_N_body_N_body_N_value_keywords_N_value_elts_N__type                       |   8822 |
+|   349 | body_N_body_N_body_N_body_N_value_func_value__type                             |   8471 |
+|    39 | body_N_body_N_value_keywords_N_value_ctx__type                                 |   8326 |
+|   436 | body_N_body_N_body_N_test_left_ctx__type                                       |   8015 |
+|   350 | body_N_body_N_body_N_body_N_value_func_value_ctx__type                         |   7965 |
+|   822 | body_N_body_N_body_N_value_args_N_values_N__type                               |   7625 |
+|   618 | body_N_body_N_value_args_N_elts_N_elts_N__type                                 |   7530 |
+|   309 | body_N_body_N_decorator_list_N_args_N__type                                    |   7469 |
+|  1140 | body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N__type                      |   7315 |
+|   313 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N__type                      |   7287 |
+|   332 | body_N_body_N_body_N_value_args_N_func__type                                   |   7048 |
+|   333 | body_N_body_N_body_N_value_args_N_func_ctx__type                               |   7044 |
+|   821 | body_N_body_N_body_N_value_args_N_keys_N__type                                 |   7031 |
+|    61 | body_N_body_N_test_ops_N__type                                                 |   6991 |
+|    58 | body_N_body_N_test_comparators_N__type                                         |   6991 |
+|    59 | body_N_body_N_test_left__type                                                  |   6965 |
+|   331 | body_N_body_N_body_N_value_args_N_args_N__type                                 |   6952 |
+|   308 | body_N_body_N_decorator_list_N__type                                           |   6910 |
+|   379 | body_N_body_N_body_N_value_args_N_elts_N_ctx__type                             |   6789 |
+|   616 | body_N_body_N_value_elts_N__type                                               |   6730 |
+|  1138 | body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N__type                      |   6701 |
+|    40 | body_N_body_N_value_ctx__type                                                  |   6621 |
+|   389 | body_N_body_N_body_N_body_N_value_keywords_N_value__type                       |   6588 |
+|   388 | body_N_body_N_body_N_body_N_value_keywords_N__type                             |   6588 |
+|   234 | body_N_decorator_list_N_args_N__type                                           |   6542 |
+|   285 | body_N_body_N_body_N_value_elts_N__type                                        |   6465 |
+|    72 | body_N_body_N_value_args_N_values_N__type                                      |   6171 |
+|   298 | body_N_body_N_body_N_value_value__type                                         |   6001 |
+|   237 | body_N_decorator_list_N_args_N_elts_N_ctx__type                                |   5904 |
+|    71 | body_N_body_N_value_args_N_keys_N__type                                        |   5797 |
+|  3004 | body_N_body_N_args_args_N_annotation__type                                     |   5683 |
+|   355 | body_N_body_N_body_N_items_N_context_expr_args_N__type                         |   5552 |
+|   224 | body_N_body_N_body_N_targets_N_value__type                                     |   5465 |
+|   409 | body_N_body_N_body_N_body_N_body_N__type                                       |   5459 |
+|   233 | body_N_decorator_list_N__type                                                  |   5451 |
+|   225 | body_N_body_N_body_N_targets_N_value_ctx__type                                 |   5413 |
+|   354 | body_N_body_N_body_N_items_N_context_expr__type                                |   5386 |
+|   353 | body_N_body_N_body_N_items_N__type                                             |   5386 |
+|   358 | body_N_body_N_body_N_items_N_context_expr_func_ctx__type                       |   5351 |
+|   357 | body_N_body_N_body_N_items_N_context_expr_func__type                           |   5351 |
+|   509 | body_N_body_N_body_N_value_args_N_value__type                                  |   5239 |
+|   444 | body_N_body_N_body_N_value_value_ctx__type                                     |   5222 |
+|  1596 | body_N_body_N_value_keywords_N_value_elts_N__type                              |   5221 |
+|   663 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N__type               |   5118 |
+|   433 | body_N_body_N_body_N_test_comparators_N_ctx__type                              |   5100 |
+|   510 | body_N_body_N_body_N_value_args_N_value_ctx__type                              |   5054 |
+|   359 | body_N_body_N_body_N_items_N_context_expr_func_value__type                     |   4963 |
+|   360 | body_N_body_N_body_N_items_N_context_expr_func_value_ctx__type                 |   4961 |
+|   617 | body_N_body_N_value_args_N_elts_N_ctx__type                                    |   4933 |
+|   525 | body_N_body_N_body_N_test_args_N__type                                         |   4844 |
+|   356 | body_N_body_N_body_N_items_N_context_expr_args_N_ctx__type                     |   4688 |
+|   823 | body_N_body_N_body_N_value_args_N_values_N_ctx__type                           |   4683 |
+|    60 | body_N_body_N_test_left_ctx__type                                              |   4678 |
+|   312 | body_N_body_N_decorator_list_N_args_N_elts_N_ctx__type                         |   4586 |
+|  1537 | body_N_body_N_args_defaults_N__type                                            |   4492 |
+|   339 | body_N_body_N_body_N_value_args_N_func_value__type                             |   4413 |
+|   362 | body_N_body_N_body_N_items_N_context_expr_keywords_N_value__type               |   4398 |
+|   361 | body_N_body_N_body_N_items_N_context_expr_keywords_N__type                     |   4398 |
+|   659 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N__type               |   4245 |
+|   326 | body_N_body_N_decorator_list_N_func_ctx__type                                  |   4157 |
+|   325 | body_N_body_N_decorator_list_N_func__type                                      |   4157 |
+|   544 | body_N_body_N_returns__type                                                    |   4154 |
+|  1107 | body_N_body_N_items_N_context_expr__type                                       |   4058 |
+|  1106 | body_N_body_N_items_N__type                                                    |   4058 |
+|  1108 | body_N_body_N_items_N_context_expr_args_N__type                                |   4050 |
+|   511 | body_N_body_N_body_N_body_N_test__type                                         |   4048 |
+|  1111 | body_N_body_N_items_N_context_expr_func_ctx__type                              |   4039 |
+|  1110 | body_N_body_N_items_N_context_expr_func__type                                  |   4039 |
+|  3248 | body_N_body_N_value_args_N_values_N_ctx__type                                  |   3939 |
+|   526 | body_N_body_N_body_N_test_args_N_ctx__type                                     |   3910 |
+|   416 | body_N_body_N_body_N_body_N_body_N_value__type                                 |   3895 |
+|   241 | body_N_decorator_list_N_func_ctx__type                                         |   3893 |
+|   240 | body_N_decorator_list_N_func__type                                             |   3893 |
+|   338 | body_N_body_N_body_N_value_args_N_args_N_elts_N__type                          |   3880 |
+|   437 | body_N_body_N_body_N_test_left_value__type                                     |   3837 |
+|    53 | body_N_body_N_value_args_N_func__type                                          |   3775 |
+|    54 | body_N_body_N_value_args_N_func_ctx__type                                      |   3772 |
+|   337 | body_N_body_N_body_N_value_args_N_args_N_ctx__type                             |   3756 |
+|  3005 | body_N_body_N_args_args_N_annotation_ctx__type                                 |   3737 |
+|    64 | body_N_body_N_value_args_N_args_N__type                                        |   3679 |
+|   243 | body_N_decorator_list_N_func_value_ctx__type                                   |   3666 |
+|   242 | body_N_decorator_list_N_func_value__type                                       |   3666 |
+|   438 | body_N_body_N_body_N_test_left_value_ctx__type                                 |   3665 |
+|   636 | body_N_body_N_body_N_orelse_N__type                                            |   3643 |
+|  1109 | body_N_body_N_items_N_context_expr_args_N_ctx__type                            |   3600 |
+|   328 | body_N_body_N_decorator_list_N_func_value_ctx__type                            |   3575 |
+|   327 | body_N_body_N_decorator_list_N_func_value__type                                |   3575 |
+|  1112 | body_N_body_N_items_N_context_expr_func_value__type                            |   3555 |
+|  1113 | body_N_body_N_items_N_context_expr_func_value_ctx__type                        |   3549 |
+|   310 | body_N_body_N_decorator_list_N_args_N_ctx__type                                |   3531 |
+|   330 | body_N_body_N_decorator_list_N_func_value_value_ctx__type                      |   3498 |
+|   329 | body_N_body_N_decorator_list_N_func_value_value__type                          |   3498 |
+|   528 | body_N_body_N_body_N_test_func_ctx__type                                       |   3458 |
+|   527 | body_N_body_N_body_N_test_func__type                                           |   3458 |
+|    24 | body_N_body_N_test_args_N__type                                                |   3419 |
+|  1021 | body_N_body_N_body_N_value_values_N__type                                      |   3394 |
+|  2699 | body_N_body_N_value_elts_N_elts_N__type                                        |   3380 |
+|  1139 | body_N_decorator_list_N_args_N_elts_N_elts_N_ctx__type                         |   3272 |
+|   921 | body_N_body_N_body_N_test_op__type                                             |   3264 |
+|   340 | body_N_body_N_body_N_value_args_N_func_value_ctx__type                         |   3243 |
+|   245 | body_N_decorator_list_N_func_value_value_ctx__type                             |   3234 |
+|   244 | body_N_decorator_list_N_func_value_value__type                                 |   3234 |
+|   235 | body_N_decorator_list_N_args_N_ctx__type                                       |   3219 |
+|   504 | body_N_body_N_body_N_value_slice__type                                         |   3164 |
+|   363 | body_N_body_N_body_N_items_N_context_expr_keywords_N_value_ctx__type           |   3131 |
+|   390 | body_N_body_N_body_N_body_N_value_keywords_N_value_ctx__type                   |   3117 |
+|   463 | body_N_body_N_body_N_body_N_value_ctx__type                                    |   3075 |
+|  1515 | body_N_args_args_N_annotation__type                                            |   3030 |
+|  2017 | body_N_body_N_body_N_test_values_N__type                                       |   3007 |
+|    21 | body_N_body_N_body_N_value_func_value_value__type                              |   2976 |
+|   545 | body_N_body_N_returns_ctx__type                                                |   2974 |
+|   366 | body_N_body_N_body_N_value_func_value_func__type                               |   2967 |
+|   367 | body_N_body_N_body_N_value_func_value_func_ctx__type                           |   2958 |
+|   223 | body_N_body_N_body_N_targets_N_slice__type                                     |   2956 |
+|  1137 | body_N_decorator_list_N_args_N_elts_N_dims_N_ctx__type                         |   2936 |
+|  1078 | body_N_body_N_test_comparators_N_ctx__type                                     |   2852 |
+|    25 | body_N_body_N_test_args_N_ctx__type                                            |   2835 |
+|  1115 | body_N_body_N_items_N_context_expr_keywords_N_value__type                      |   2778 |
+|  1114 | body_N_body_N_items_N_context_expr_keywords_N__type                            |   2778 |
+|    22 | body_N_body_N_body_N_value_func_value_value_ctx__type                          |   2777 |
+|   537 | body_N_body_N_body_N_test_left_func__type                                      |   2771 |
+|   631 | body_N_body_N_body_N_body_N_body_N_value_args_N__type                          |   2762 |
+|   538 | body_N_body_N_body_N_test_left_func_ctx__type                                  |   2762 |
+|   541 | body_N_body_N_decorator_list_N_ctx__type                                       |   2753 |
+|  1376 | body_N_value_elts_N__type                                                      |   2709 |
+|  2697 | body_N_body_N_value_elts_N_dims_N__type                                        |   2545 |
+|   289 | body_N_body_N_body_N_value_elts_N_elts_N__type                                 |   2535 |
+|   658 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_ctx__type                  |   2522 |
+|   405 | body_N_body_N_body_N_targets_N_elts_N_ctx__type                                |   2522 |
+|   404 | body_N_body_N_body_N_targets_N_elts_N__type                                    |   2522 |
+|   403 | body_N_body_N_body_N_targets_N_dims_N_ctx__type                                |   2521 |
+|   402 | body_N_body_N_body_N_targets_N_dims_N__type                                    |   2521 |
+|   246 | body_N_body_N_value_value__type                                                |   2498 |
+|  1345 | body_N_body_N_test_left_value__type                                            |   2444 |
+|   667 | body_N_body_N_body_N_value_left__type                                          |   2432 |
+|   124 | body_N_body_N_orelse_N__type                                                   |   2431 |
+|    27 | body_N_body_N_test_func_ctx__type                                              |   2412 |
+|    26 | body_N_body_N_test_func__type                                                  |   2412 |
+|  1373 | body_N_value__type                                                             |   2395 |
+|   483 | body_N_body_N_body_N_body_N_body_N_value_func__type                            |   2392 |
+|  1478 | body_N_body_N_target_ctx__type                                                 |   2373 |
+|  1477 | body_N_body_N_target__type                                                     |   2373 |
+|   484 | body_N_body_N_body_N_body_N_body_N_value_func_ctx__type                        |   2357 |
+|   535 | body_N_body_N_body_N_test_left_args_N__type                                    |   2355 |
+|   415 | body_N_body_N_body_N_body_N_body_N_type_comment                                |   2336 |
+|    51 | body_N_body_N_value_values_N__type                                             |   2327 |
+|    62 | body_N_body_N_value_func_value_value__type                                     |   2319 |
+|  1346 | body_N_body_N_test_left_value_ctx__type                                        |   2309 |
+|   627 | body_N_body_N_body_N_value_keywords_N_value_func__type                         |   2295 |
+|   628 | body_N_body_N_body_N_value_keywords_N_value_func_ctx__type                     |   2294 |
+|   671 | body_N_body_N_body_N_value_op__type                                            |   2241 |
+|  1347 | body_N_body_N_value_elts_N_ctx__type                                           |   2233 |
+|    55 | body_N_body_N_value_args_N_func_value__type                                    |   2225 |
+|   364 | body_N_body_N_body_N_value_func_value_args_N__type                             |   2203 |
+|  1516 | body_N_args_args_N_annotation_ctx__type                                        |   2203 |
+|   626 | body_N_body_N_body_N_value_keywords_N_value_args_N__type                       |   2176 |
+|   411 | body_N_body_N_body_N_body_N_body_N_targets_N_ctx__type                         |   2175 |
+|   410 | body_N_body_N_body_N_body_N_body_N_targets_N__type                             |   2175 |
+|   516 | body_N_body_N_body_N_body_N_test_ops_N__type                                   |   2174 |
+|   512 | body_N_body_N_body_N_body_N_test_comparators_N__type                           |   2174 |
+|   514 | body_N_body_N_body_N_body_N_test_left__type                                    |   2169 |
+|   640 | body_N_body_N_body_N_orelse_N_value__type                                      |   2162 |
+|    63 | body_N_body_N_value_func_value_value_ctx__type                                 |   2108 |
+| 16672 | body_N_body_N_value_elts_N_elts_N_keys_N_args_N__type                          |   2101 |
+| 16664 | body_N_body_N_value_elts_N_dims_N_keys_N_args_N__type                          |   2101 |
+|  2151 | body_N_body_N_body_N_body_N_body_N_value_args_N_ctx__type                      |   2090 |
+|   496 | body_N_body_N_body_N_target_ctx__type                                          |   2068 |
+|   495 | body_N_body_N_body_N_target__type                                              |   2068 |
+|   652 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_ctx__type                  |   2052 |
+|   380 | body_N_body_N_body_N_value_args_N_elts_N_dims_N__type                          |   2048 |
+|   613 | body_N_body_N_body_N_value_keywords_N_value_value__type                        |   2039 |
+|  3734 | body_N_body_N_value_args_N_elts_N_dims_N__type                                 |   2034 |
+|   984 | body_N_body_N_body_N_value_slice_elts_N__type                                  |   2031 |
+|   614 | body_N_body_N_body_N_value_keywords_N_value_value_ctx__type                    |   2023 |
+|   247 | body_N_body_N_value_value_ctx__type                                            |   2011 |
+|   286 | body_N_body_N_body_N_value_elts_N_ctx__type                                    |   2006 |
+|   342 | body_N_body_N_body_N_value_args_N_keywords_N_value__type                       |   1998 |
+|   341 | body_N_body_N_body_N_value_args_N_keywords_N__type                             |   1998 |
+|     9 | body_N_body_N_names_N__type                                                    |   1985 |
+|    65 | body_N_body_N_value_args_N_args_N_ctx__type                                    |   1943 |
+|  1085 | body_N_body_N_value_func_value_func__type                                      |   1935 |
+|  3009 | body_N_body_N_args_args_N_annotation_right__type                               |   1929 |
+|  3008 | body_N_body_N_args_args_N_annotation_op__type                                  |   1929 |
+|  3006 | body_N_body_N_args_args_N_annotation_left__type                                |   1929 |
+|  1086 | body_N_body_N_value_func_value_func_ctx__type                                  |   1921 |
+|   672 | body_N_body_N_body_N_value_right__type                                         |   1883 |
+|   922 | body_N_body_N_body_N_test_operand__type                                        |   1881 |
+|  1049 | body_N_body_N_test_left_func__type                                             |   1871 |
+|  1050 | body_N_body_N_test_left_func_ctx__type                                         |   1869 |
+|    49 | body_N_args_defaults_N__type                                                   |   1836 |
+|    56 | body_N_body_N_value_args_N_func_value_ctx__type                                |   1826 |
+|  2045 | body_N_body_N_body_N_orelse_N_body_N__type                                     |   1821 |
+|  1134 | body_N_decorator_list_N_args_N_elts_N_elts_N_func_ctx__type                    |   1815 |
+|  1133 | body_N_decorator_list_N_args_N_elts_N_elts_N_func__type                        |   1815 |
+|  1130 | body_N_decorator_list_N_args_N_elts_N_elts_N_args_N__type                      |   1805 |
+|   639 | body_N_body_N_body_N_orelse_N_type_comment                                     |   1787 |
+|   581 | body_N_body_N_body_N_value_value_value__type                                   |   1780 |
+|   465 | body_N_body_N_body_N_body_N_value_value__type                                  |   1769 |
+| 37799 | body_N_body_N_value_args_N_elts_N_keys_N_args_N__type                          |   1769 |
+| 37792 | body_N_body_N_value_args_N_dims_N_keys_N_args_N__type                          |   1769 |
+|   668 | body_N_body_N_body_N_value_left_ctx__type                                      |   1749 |
+|   582 | body_N_body_N_body_N_value_value_value_ctx__type                               |   1739 |
+|  1372 | body_N_targets_N_ctx__type                                                     |   1731 |
+|  1371 | body_N_targets_N__type                                                         |   1731 |
+|  1614 | body_N_body_N_value_keywords_N_value_func_ctx__type                            |   1724 |
+|  1613 | body_N_body_N_value_keywords_N_value_func__type                                |   1724 |
+|   485 | body_N_body_N_body_N_body_N_body_N_value_func_value__type                      |   1705 |
+|  1321 | body_N_body_N_body_N_test_operand_args_N__type                                 |   1699 |
+| 16676 | body_N_body_N_value_elts_N_elts_N_values_N_args_N__type                        |   1697 |
+| 16668 | body_N_body_N_value_elts_N_dims_N_values_N_args_N__type                        |   1697 |
+|   795 | body_N_body_N_body_N_value_args_N_elts_N_args_N__type                          |   1692 |
+|  3007 | body_N_body_N_args_args_N_annotation_left_ctx__type                            |   1685 |
+|   368 | body_N_body_N_body_N_value_func_value_func_value__type                         |   1684 |
+|   318 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_args_N__type               |   1666 |
+|  1116 | body_N_body_N_items_N_context_expr_keywords_N_value_ctx__type                  |   1662 |
+|   231 | body_N_body_N_targets_N_value__type                                            |   1655 |
+|   232 | body_N_body_N_targets_N_value_ctx__type                                        |   1645 |
+|   228 | type_ignores                                                                   |   1640 |
+|     0 | _type                                                                          |   1640 |
+|  6398 | body_N_body_N_body_N_value_keywords_N_value_elts_N_elts_N__type                |   1628 |
+|  1127 | body_N_decorator_list_N_args_N_elts_N_dims_N_func_ctx__type                    |   1626 |
+|  1126 | body_N_decorator_list_N_args_N_elts_N_dims_N_func__type                        |   1626 |
+|   486 | body_N_body_N_body_N_body_N_body_N_value_func_value_ctx__type                  |   1624 |
+|   638 | body_N_body_N_body_N_orelse_N_targets_N_ctx__type                              |   1623 |
+|   637 | body_N_body_N_body_N_orelse_N_targets_N__type                                  |   1623 |
+|  1084 | body_N_body_N_value_func_value_args_N__type                                    |   1618 |
+|  4381 | body_N_body_N_args_kwonlyargs_N_type_comment                                   |   1614 |
+|  4380 | body_N_body_N_args_kwonlyargs_N__type                                          |   1614 |
+|   866 | body_N_body_N_body_N_value_args_N_values_N_args_N__type                        |   1605 |
+|  2492 | body_N_body_N_targets_N_elts_N_ctx__type                                       |   1595 |
+|  2491 | body_N_body_N_targets_N_elts_N__type                                           |   1595 |
+|  2490 | body_N_body_N_targets_N_dims_N_ctx__type                                       |   1587 |
+|  2489 | body_N_body_N_targets_N_dims_N__type                                           |   1587 |
+|  3618 | body_N_body_N_value_keywords_N_value_args_N__type                              |   1581 |
+|    47 | body_N_body_N_value_args_N_value__type                                         |   1579 |
+|  1132 | body_N_decorator_list_N_args_N_elts_N_elts_N_args_N_elts_N__type               |   1574 |
+|  1364 | body_N_decorator_list_N_ctx__type                                              |   1558 |
+|  1123 | body_N_decorator_list_N_args_N_elts_N_dims_N_args_N__type                      |   1556 |
+|   466 | body_N_body_N_body_N_body_N_value_value_ctx__type                              |   1552 |
+|   868 | body_N_body_N_body_N_value_args_N_values_N_func_ctx__type                      |   1548 |
+|   867 | body_N_body_N_body_N_value_args_N_values_N_func__type                          |   1548 |
+|  2146 | body_N_body_N_body_N_value_keywords_N_value_args_N_elts_N__type                |   1545 |
+|  2940 | body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N_elts_N__type               |   1534 |
+|   569 | body_N_body_N_body_N_value_args_N_slice__type                                  |   1533 |
+|  1053 | body_N_body_N_test_op__type                                                    |   1532 |
+|   515 | body_N_body_N_body_N_body_N_test_left_ctx__type                                |   1531 |
+|  1020 | body_N_body_N_body_N_value_keys_N__type                                        |   1522 |
+|   697 | body_N_body_N_body_N_value_args_N_elts_N_value__type                           |   1516 |
+| 37802 | body_N_body_N_value_args_N_elts_N_values_N_args_N__type                        |   1515 |
+| 37796 | body_N_body_N_value_args_N_dims_N_values_N_args_N__type                        |   1512 |
+|   698 | body_N_body_N_body_N_value_args_N_elts_N_value_ctx__type                       |   1511 |
+|  2574 | body_N_body_N_value_args_N_args_N_elts_N__type                                 |   1511 |
+|    48 | body_N_body_N_value_args_N_value_ctx__type                                     |   1504 |
+|   874 | body_N_body_N_body_N_value_elts_N_args_N__type                                 |   1489 |
+|  2147 | body_N_body_N_body_N_test_comparators_N_value__type                            |   1483 |
+|  1125 | body_N_decorator_list_N_args_N_elts_N_dims_N_args_N_elts_N__type               |   1475 |
+|   962 | body_N_body_N_body_N_targets_N_slice_elts_N__type                              |   1469 |
+|   490 | body_N_body_N_body_N_iter__type                                                |   1466 |
+|   800 | body_N_body_N_body_N_value_args_N_elts_N_func_ctx__type                        |   1460 |
+|   799 | body_N_body_N_body_N_value_args_N_elts_N_func__type                            |   1460 |
+|   641 | body_N_body_N_body_N_orelse_N_value_args_N__type                               |   1458 |
+|  2938 | body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N_elts_N__type               |   1457 |
+|   529 | body_N_body_N_body_N_test_func_value__type                                     |   1456 |
+|  1535 | body_N_args_kwonlyargs_N_type_comment                                          |   1453 |
+|  1529 | body_N_args_kwonlyargs_N__type                                                 |   1453 |
+|  1087 | body_N_body_N_value_func_value_func_value__type                                |   1451 |
+|   369 | body_N_body_N_body_N_value_func_value_func_value_ctx__type                     |   1446 |
+|  2148 | body_N_body_N_body_N_test_comparators_N_value_ctx__type                        |   1442 |
+|   615 | body_N_body_N_body_N_value_args_N_args_N_dims_N__type                          |   1434 |
+|  1039 | body_N_body_N_body_N_body_N_value_args_N_elts_N__type                          |   1431 |
+|   315 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_args_N__type               |   1416 |
+|  1528 | body_N_args_kw_defaults_N__type                                                |   1403 |
+|  2925 | body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N_ctx__type                  |   1388 |
+|  4379 | body_N_body_N_args_kw_defaults_N__type                                         |   1386 |
+|  1117 | body_N_body_N_test_values_N__type                                              |   1386 |
+|   476 | body_N_body_N_body_N_body_N_value_args_N_value__type                           |   1384 |
+|   395 | body_N_body_N_body_N_value_args_N_op__type                                     |   1382 |
+|   960 | body_N_body_N_body_N_targets_N_slice_dims_N__type                              |   1381 |
+|  2080 | body_N_body_N_value_dims_N__type                                               |   1379 |
+|  1475 | body_N_body_N_annotation__type                                                 |   1376 |
+|   139 | body_N_body_N_value_keys_N__type                                               |   1374 |
+|  4389 | body_N_body_N_args_kwonlyargs_N_annotation__type                               |   1371 |
+|  2907 | body_N_body_N_value_args_N_elts_N_args_N__type                                 |   1370 |
+|  3480 | body_N_body_N_test_comparators_N_elts_N__type                                  |   1357 |
+|   536 | body_N_body_N_body_N_test_left_args_N_ctx__type                                |   1353 |
+|  2053 | body_N_body_N_body_N_orelse_N_body_N_value__type                               |   1352 |
+|   678 | body_N_body_N_body_N_test_left_func_value__type                                |   1351 |
+|  1517 | body_N_returns__type                                                           |   1345 |
+| 12795 | body_N_body_N_value_keywords_N_value_elts_N_elts_N__type                       |   1343 |
+|   497 | body_N_body_N_body_N_test_ctx__type                                            |   1342 |
+|   477 | body_N_body_N_body_N_body_N_value_args_N_value_ctx__type                       |   1340 |
+|  2028 | body_N_body_N_body_N_test_values_N_left__type                                  |   1335 |
+|    73 | body_N_body_N_value_args_N_values_N_args_N__type                               |   1334 |
+|  2033 | body_N_body_N_body_N_test_values_N_ops_N__type                                 |   1333 |
+|  2019 | body_N_body_N_body_N_test_values_N_comparators_N__type                         |   1333 |
+|  2541 | body_N_body_N_body_N_value_args_N_values_N_args_N_elts_N__type                 |   1330 |
+|  2913 | body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N_ctx__type                  |   1325 |
+|  1530 | body_N_args_kwonlyargs_N_annotation__type                                      |   1309 |
+|  1047 | body_N_body_N_test_left_args_N__type                                           |   1307 |
+|   370 | body_N_body_N_decorator_list_N_args_N_elts_N_args_N__type                      |   1306 |
+|  2612 | body_N_body_N_body_N_value_dims_N__type                                        |   1302 |
+|    28 | body_N_body_N_test_func_value__type                                            |   1291 |
+|  1088 | body_N_body_N_value_func_value_func_value_ctx__type                            |   1291 |
+|   983 | body_N_body_N_body_N_value_slice_ctx__type                                     |   1279 |
+|   679 | body_N_body_N_body_N_test_left_func_value_ctx__type                            |   1277 |
+|   964 | body_N_body_N_body_N_targets_N_value_value__type                               |   1274 |
+|   461 | body_N_body_N_body_N_body_N_targets_N_value__type                              |   1274 |
+|   965 | body_N_body_N_body_N_targets_N_value_value_ctx__type                           |   1273 |
+|  1885 | body_N_value_values_N__type                                                    |   1268 |
+|  1324 | body_N_body_N_body_N_test_operand_func_ctx__type                               |   1267 |
+|  1323 | body_N_body_N_body_N_test_operand_func__type                                   |   1267 |
+|   747 | body_N_body_N_body_N_body_N_value_args_N_func__type                            |   1264 |
+|   320 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_func_ctx__type             |   1264 |
+|   319 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_func__type                 |   1264 |
+|   748 | body_N_body_N_body_N_body_N_value_args_N_func_ctx__type                        |   1263 |
+|  2502 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_args_N_elts_N__type        |   1262 |
+|   462 | body_N_body_N_body_N_body_N_targets_N_value_ctx__type                          |   1254 |
+|  2065 | body_N_body_N_body_N_orelse_N_test__type                                       |   1247 |
+|   128 | body_N_body_N_orelse_N_value__type                                             |   1238 |
+|   251 | body_N_decorator_list_N_keywords_N_value_elts_N__type                          |   1235 |
+|  2499 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_args_N_elts_N__type        |   1228 |
+|  1839 | body_N_body_N_value_slice__type                                                |   1222 |
+|    78 | body_N_body_N_value_args_N_values_N_func_ctx__type                             |   1221 |
+|    77 | body_N_body_N_value_args_N_values_N_func__type                                 |   1221 |
+| 16207 | body_N_body_N_value_elts_N_elts_N_args_N__type                                 |   1218 |
+|  1366 | body_N_decorator_list_N_value_ctx__type                                        |   1213 |
+|  1365 | body_N_decorator_list_N_value__type                                            |   1213 |
+|  2195 | body_N_body_N_orelse_N_body_N__type                                            |   1210 |
+|   531 | body_N_body_N_body_N_test_comparators_N_args_N__type                           |   1206 |
+|   445 | body_N_body_N_body_N_value_args_N_left__type                                   |   1205 |
+|   287 | body_N_body_N_body_N_value_elts_N_dims_N__type                                 |   1205 |
+|  1476 | body_N_body_N_annotation_ctx__type                                             |   1205 |
+|  1884 | body_N_value_keys_N__type                                                      |   1201 |
+|   434 | body_N_body_N_body_N_test_comparators_N_elts_N__type                           |   1195 |
+|   643 | body_N_body_N_body_N_orelse_N_value_func__type                                 |   1191 |
+|  1942 | body_N_body_N_body_N_body_N_body_N_body_N__type                                |   1182 |
+|   745 | body_N_body_N_body_N_body_N_value_args_N_args_N__type                          |   1163 |
+|   644 | body_N_body_N_body_N_orelse_N_value_func_ctx__type                             |   1160 |
+| 16204 | body_N_body_N_value_elts_N_dims_N_args_N__type                                 |   1159 |
+|   372 | body_N_body_N_decorator_list_N_args_N_elts_N_func_ctx__type                    |   1153 |
+|  3720 | body_N_body_N_value_keywords_N_value_args_N_elts_N__type                       |   1153 |
+|   371 | body_N_body_N_decorator_list_N_args_N_elts_N_func__type                        |   1153 |
+|  1322 | body_N_body_N_body_N_test_operand_args_N_ctx__type                             |   1150 |
+|   642 | body_N_body_N_body_N_orelse_N_value_args_N_ctx__type                           |   1145 |
+|  2908 | body_N_body_N_value_args_N_elts_N_func__type                                   |   1139 |
+|  2909 | body_N_body_N_value_args_N_elts_N_func_ctx__type                               |   1138 |
+|   588 | body_N_body_N_body_N_value_args_N_func_value_args_N__type                      |   1126 |
+|   590 | body_N_body_N_body_N_value_args_N_func_value_func_ctx__type                    |   1122 |
+|   589 | body_N_body_N_body_N_value_args_N_func_value_func__type                        |   1122 |
+|  2029 | body_N_body_N_body_N_test_values_N_left_ctx__type                              |   1115 |
+|  4360 | body_N_body_N_body_N_value_func_value_keywords_N_value__type                   |   1110 |
+|  4359 | body_N_body_N_body_N_value_func_value_keywords_N__type                         |   1110 |
+|  2570 | body_N_body_N_value_left__type                                                 |   1108 |
+|  2633 | body_N_body_N_value_args_N_values_N_args_N_elts_N__type                        |   1105 |
+|  8565 | body_N_body_N_value_func_value_keywords_N_value__type                          |   1103 |
+|  8564 | body_N_body_N_value_func_value_keywords_N__type                                |   1103 |
+|  2661 | body_N_body_N_value_elts_N_args_N__type                                        |   1099 |
+|    29 | body_N_body_N_test_func_value_ctx__type                                        |   1094 |
+|    50 | body_N_body_N_value_op__type                                                   |   1085 |
+|   591 | body_N_body_N_body_N_value_args_N_func_value_func_value__type                  |   1078 |
+|   451 | body_N_body_N_body_N_value_args_N_right__type                                  |   1075 |
+|   317 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_func_ctx__type             |   1075 |
+|   316 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_func__type                 |   1075 |
+|   365 | body_N_body_N_body_N_value_func_value_args_N_ctx__type                         |   1072 |
+|  1518 | body_N_returns_ctx__type                                                       |   1072 |
+|   530 | body_N_body_N_body_N_test_func_value_ctx__type                                 |   1069 |
+|   488 | body_N_body_N_body_N_body_N_body_N_value_keywords_N_value__type                |   1063 |
+|   487 | body_N_body_N_body_N_body_N_body_N_value_keywords_N__type                      |   1063 |
+|   230 | body_N_body_N_targets_N_slice__type                                            |   1061 |
+|   592 | body_N_body_N_body_N_value_args_N_func_value_func_value_ctx__type              |   1053 |
+|  1913 | body_N_body_N_body_N_body_N_orelse_N__type                                     |   1050 |
+|   587 | body_N_bases_N_ctx__type                                                       |   1049 |
+|   586 | body_N_bases_N__type                                                           |   1049 |
+|   533 | body_N_body_N_body_N_test_comparators_N_func__type                             |   1045 |
+|   534 | body_N_body_N_body_N_test_comparators_N_func_ctx__type                         |   1044 |
+|  2677 | body_N_body_N_body_N_target_elts_N_ctx__type                                   |   1042 |
+|  2676 | body_N_body_N_body_N_target_elts_N__type                                       |   1042 |
+|  2675 | body_N_body_N_body_N_target_dims_N_ctx__type                                   |   1042 |
+|  2674 | body_N_body_N_body_N_target_dims_N__type                                       |   1042 |
+|  2702 | body_N_body_N_body_N_test_values_N_args_N__type                                |   1039 |
+|  2456 | body_N_body_N_orelse_N_test__type                                              |   1037 |
+|   227 | body_N_body_N_test_ctx__type                                                   |   1037 |
+|   127 | body_N_body_N_orelse_N_type_comment                                            |   1037 |
+|   959 | body_N_body_N_body_N_targets_N_slice_ctx__type                                 |   1024 |
+|  4747 | body_N_body_N_body_N_value_slice_dims_N__type                                  |   1023 |
+|   630 | body_N_body_N_body_N_value_keywords_N_value_keywords_N_value__type             |   1015 |
+|   629 | body_N_body_N_body_N_value_keywords_N_value_keywords_N__type                   |   1015 |
+|   702 | body_N_body_N_body_N_value_right_ctx__type                                     |    983 |
+|  1070 | body_N_body_N_test_left_func_value__type                                       |    982 |
+|  2746 | body_N_body_N_body_N_body_N_test_args_N__type                                  |    972 |
+|   513 | body_N_body_N_body_N_body_N_test_comparators_N_ctx__type                       |    955 |
+|  1045 | body_N_body_N_body_N_body_N_exc__type                                          |    948 |
+|   129 | body_N_body_N_orelse_N_value_args_N__type                                      |    946 |
+| 11383 | body_N_body_N_body_N_value_keywords_N_value_args_N_elts_N_elts_N__type         |    946 |
+|  2703 | body_N_body_N_body_N_test_values_N_args_N_ctx__type                            |    944 |
+|  2511 | body_N_body_N_body_N_orelse_N_body_N_value_args_N__type                        |    936 |
+|  1023 | body_N_body_N_body_N_value_values_N_elts_N__type                               |    936 |
+|  2173 | body_N_body_N_body_N_value_func_value_args_N_elts_N__type                      |    921 |
+|  2075 | body_N_body_N_iter__type                                                       |    919 |
+|   126 | body_N_body_N_orelse_N_targets_N_ctx__type                                     |    917 |
+|   125 | body_N_body_N_orelse_N_targets_N__type                                         |    917 |
+|   464 | body_N_body_N_body_N_body_N_value_slice__type                                  |    913 |
+|  3031 | body_N_body_N_body_N_body_N_exc_args_N__type                                   |    913 |
+|  7764 | body_N_value_elts_N_elts_N__type                                               |    911 |
+|  7746 | body_N_value_elts_N_dims_N__type                                               |    911 |
+|  2572 | body_N_body_N_value_right__type                                                |    906 |
+|  2052 | body_N_body_N_body_N_orelse_N_body_N_type_comment                              |    902 |
+|   594 | body_N_body_N_body_N_value_args_N_func_value_func_value_value_ctx__type        |    901 |
+|   593 | body_N_body_N_body_N_value_args_N_func_value_func_value_value__type            |    901 |
+|   439 | body_N_body_N_body_N_test_left_value_value__type                               |    898 |
+|  3063 | body_N_body_N_body_N_body_N_test_values_N__type                                |    895 |
+|  3036 | body_N_body_N_body_N_body_N_exc_func_ctx__type                                 |    892 |
+|  3035 | body_N_body_N_body_N_body_N_exc_func__type                                     |    892 |
+|  2196 | body_N_body_N_orelse_N_body_N_value__type                                      |    889 |
+|  1071 | body_N_body_N_test_left_func_value_ctx__type                                   |    887 |
+|  1054 | body_N_body_N_test_operand__type                                               |    882 |
+|  1001 | body_N_body_N_decorator_list_N_keywords_N_value__type                          |    879 |
+|  1000 | body_N_body_N_decorator_list_N_keywords_N__type                                |    879 |
+|  1048 | body_N_body_N_test_left_args_N_ctx__type                                       |    878 |
+|  3032 | body_N_body_N_body_N_body_N_exc_args_N_values_N__type                          |    876 |
+|  2747 | body_N_body_N_body_N_body_N_test_args_N_ctx__type                              |    873 |
+|   249 | body_N_decorator_list_N_keywords_N_value__type                                 |    873 |
+|   248 | body_N_decorator_list_N_keywords_N__type                                       |    873 |
+|  3723 | body_N_body_N_value_keywords_N_value_args_N_elts_N_elts_N__type                |    872 |
+|   878 | body_N_body_N_body_N_value_elts_N_func__type                                   |    870 |
+|  3993 | body_N_body_N_body_N_test_args_N_value__type                                   |    870 |
+|   440 | body_N_body_N_body_N_test_left_value_value_ctx__type                           |    869 |
+|  4390 | body_N_body_N_args_kwonlyargs_N_annotation_ctx__type                           |    869 |
+|  2664 | body_N_body_N_value_elts_N_func_ctx__type                                      |    868 |
+|  2663 | body_N_body_N_value_elts_N_func__type                                          |    868 |
+|   879 | body_N_body_N_body_N_value_elts_N_func_ctx__type                               |    867 |
+|  1948 | body_N_body_N_body_N_body_N_body_N_test__type                                  |    867 |
+|  1151 | body_N_decorator_list_N_args_N_elts_N_elts_N_func_value__type                  |    865 |
+|  2047 | body_N_body_N_body_N_orelse_N_body_N_targets_N_ctx__type                       |    861 |
+|  2046 | body_N_body_N_body_N_orelse_N_body_N_targets_N__type                           |    861 |
+|  7676 | body_N_body_N_value_values_N_elts_N__type                                      |    859 |
+|  2597 | body_N_body_N_value_args_N_elts_N_value_ctx__type                              |    857 |
+|  2596 | body_N_body_N_value_args_N_elts_N_value__type                                  |    857 |
+|  1616 | body_N_body_N_value_keywords_N_value_keywords_N_value__type                    |    856 |
+|  1615 | body_N_body_N_value_keywords_N_value_keywords_N__type                          |    856 |
+|   759 | body_N_body_N_body_N_value_args_N_keywords_N_value_ctx__type                   |    855 |
+|  3994 | body_N_body_N_body_N_test_args_N_value_ctx__type                               |    855 |
+|   492 | body_N_body_N_body_N_iter_elts_N__type                                         |    847 |
+|  2543 | body_N_body_N_body_N_value_args_N_values_N_keywords_N_value__type              |    847 |
+|  2542 | body_N_body_N_body_N_value_args_N_values_N_keywords_N__type                    |    847 |
+|  3165 | body_N_body_N_body_N_body_N_value_left__type                                   |    845 |
+|   446 | body_N_body_N_body_N_value_args_N_left_ctx__type                               |    844 |
+|  1152 | body_N_decorator_list_N_args_N_elts_N_elts_N_func_value_ctx__type              |    841 |
+| 11187 | body_N_body_N_body_N_test_args_N_args_N__type                                  |    841 |
+|  1534 | body_N_args_kwonlyargs_N_annotation_right__type                                |    831 |
+|  1533 | body_N_args_kwonlyargs_N_annotation_op__type                                   |    831 |
+|  1531 | body_N_args_kwonlyargs_N_annotation_left__type                                 |    831 |
+|  1061 | body_N_body_N_test_comparators_N_func_ctx__type                                |    826 |
+|  1060 | body_N_body_N_test_comparators_N_func__type                                    |    826 |
+|  1144 | body_N_decorator_list_N_args_N_elts_N_dims_N_func_value__type                  |    823 |
+|  2982 | body_N_decorator_list_N_args_N_elts_N_elts_N_values_N__type                    |    821 |
+|  2192 | body_N_body_N_body_N_body_N_value_args_N_values_N__type                        |    819 |
+|  1558 | body_N_args_args_N_annotation_right__type                                      |    817 |
+|  1557 | body_N_args_args_N_annotation_op__type                                         |    817 |
+|  1555 | body_N_args_args_N_annotation_left__type                                       |    817 |
+|   491 | body_N_body_N_body_N_iter_ctx__type                                            |    811 |
+|  1943 | body_N_body_N_body_N_body_N_body_N_body_N_value__type                          |    811 |
+|  2981 | body_N_decorator_list_N_args_N_elts_N_elts_N_keys_N__type                      |    810 |
+|  1211 | body_N_decorator_list_N_args_N_elts_N_args_N__type                             |    810 |
+|   760 | body_N_body_N_body_N_value_keywords_N_value_func_value__type                   |    808 |
+|   832 | body_N_body_N_body_N_args_args_N_type_comment                                  |    806 |
+|   831 | body_N_body_N_body_N_args_args_N__type                                         |    806 |
+|  3503 | body_N_body_N_body_N_body_N_value_values_N__type                               |    806 |
+| 16209 | body_N_body_N_value_elts_N_elts_N_func_ctx__type                               |    804 |
+| 16208 | body_N_body_N_value_elts_N_elts_N_func__type                                   |    804 |
+|  2503 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N_elts_N__type        |    803 |
+|  1145 | body_N_decorator_list_N_args_N_elts_N_dims_N_func_value_ctx__type              |    803 |
+|  1055 | body_N_body_N_test_operand_args_N__type                                        |    803 |
+|   746 | body_N_body_N_body_N_body_N_value_args_N_args_N_ctx__type                      |    802 |
+|  2726 | body_N_body_N_body_N_body_N_value_elts_N__type                                 |    802 |
+|  2145 | body_N_body_N_body_N_value_keywords_N_value_args_N_ctx__type                   |    800 |
+|   757 | body_N_body_N_body_N_orelse_N_value_func_value__type                           |    799 |
+|  1016 | body_N_body_N_body_N_value_args_N_values_N_elts_N_ctx__type                    |    798 |
+|   869 | body_N_body_N_body_N_value_args_N_values_N_func_value__type                    |    796 |
+|  1934 | body_N_body_N_body_N_body_N_test_op__type                                      |    794 |
+|   574 | body_N_body_N_body_N_value_args_N_value_value__type                            |    789 |
+|  2462 | body_N_body_N_items_N_optional_vars_ctx__type                                  |    788 |
+|  2461 | body_N_body_N_items_N_optional_vars__type                                      |    788 |
+|   417 | body_N_body_N_body_N_body_N_body_N_value_ctx__type                             |    786 |
+|   575 | body_N_body_N_body_N_value_args_N_value_value_ctx__type                        |    785 |
+|   376 | body_N_body_N_decorator_list_N_args_N_elts_N_args_N_elts_N__type               |    781 |
+|  2512 | body_N_body_N_body_N_orelse_N_body_N_value_func__type                          |    781 |
+|  2613 | body_N_body_N_body_N_value_dims_N_ctx__type                                    |    780 |
+|   761 | body_N_body_N_body_N_value_keywords_N_value_func_value_ctx__type               |    778 |
+| 16206 | body_N_body_N_value_elts_N_dims_N_func_ctx__type                               |    778 |
+| 16205 | body_N_body_N_value_elts_N_dims_N_func__type                                   |    778 |
+|   749 | body_N_body_N_body_N_body_N_value_args_N_func_value__type                      |    776 |
+|  3083 | body_N_body_N_body_N_value_values_N_value__type                                |    768 |
+|  2513 | body_N_body_N_body_N_orelse_N_body_N_value_func_ctx__type                      |    768 |
+|  2622 | body_N_body_N_value_args_N_elts_N_values_N__type                               |    765 |
+| 38798 | body_N_body_N_value_elts_N_elts_N_values_N_elts_N_args_N__type                 |    764 |
+| 38794 | body_N_body_N_value_elts_N_elts_N_values_N_dims_N_args_N__type                 |    764 |
+| 38787 | body_N_body_N_value_elts_N_dims_N_values_N_elts_N_args_N__type                 |    764 |
+| 38783 | body_N_body_N_value_elts_N_dims_N_values_N_dims_N_args_N__type                 |    764 |
+|  2500 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N_elts_N__type        |    763 |
+|  2057 | body_N_body_N_body_N_orelse_N_orelse_N__type                                   |    762 |
+|  1512 | body_N_body_N_returns_value_ctx__type                                          |    762 |
+|  1511 | body_N_body_N_returns_value__type                                              |    762 |
+|  2969 | body_N_decorator_list_N_args_N_elts_N_dims_N_values_N__type                    |    761 |
+|  2571 | body_N_body_N_value_left_ctx__type                                             |    760 |
+| 24060 | body_N_body_N_value_args_N_elts_N_keys_N__type                                 |    760 |
+|  2081 | body_N_body_N_value_dims_N_ctx__type                                           |    758 |
+|  6447 | body_N_body_N_body_N_body_N_value_keywords_N_value_elts_N__type                |    756 |
+|   351 | body_N_body_N_body_N_body_N_value_func_value_value__type                       |    756 |
+|  2968 | body_N_decorator_list_N_args_N_elts_N_dims_N_keys_N__type                      |    750 |
+|  6397 | body_N_body_N_body_N_value_keywords_N_value_elts_N_ctx__type                   |    748 |
+|   301 | body_N_body_N_body_N_value_value_func__type                                    |    748 |
+|  2707 | body_N_body_N_body_N_test_values_N_func_ctx__type                              |    745 |
+|  2706 | body_N_body_N_body_N_test_values_N_func__type                                  |    745 |
+|   352 | body_N_body_N_body_N_body_N_value_func_value_value_ctx__type                   |    744 |
+|   302 | body_N_body_N_body_N_value_value_func_ctx__type                                |    741 |
+|   758 | body_N_body_N_body_N_orelse_N_value_func_value_ctx__type                       |    739 |
+|  2469 | body_N_body_N_body_N_value_func_args_N__type                                   |    737 |
+|  2998 | body_N_value_args_N__type                                                      |    736 |
+|   226 | body_N_body_N_body_N_value_func_value_slice__type                              |    734 |
+|   137 | body_N_body_N_test_args_N_value__type                                          |    733 |
+|   131 | body_N_body_N_orelse_N_value_func__type                                        |    733 |
+|  1248 | body_N_decorator_list_N_args_N_elts_N_func_ctx__type                           |    732 |
+|  1247 | body_N_decorator_list_N_args_N_elts_N_func__type                               |    732 |
+|    79 | body_N_body_N_value_args_N_values_N_func_value__type                           |    730 |
+|   130 | body_N_body_N_orelse_N_value_args_N_ctx__type                                  |    730 |
+|  2997 | body_N_decorator_list_N_args_N_elts_N_elts_N_values_N_elts_N__type             |    728 |
+|  1022 | body_N_body_N_body_N_value_values_N_ctx__type                                  |    728 |
+|  2927 | body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N_value_ctx__type            |    725 |
+|  2926 | body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N_value__type                |    725 |
+|  2749 | body_N_body_N_body_N_body_N_test_func_ctx__type                                |    723 |
+|  2748 | body_N_body_N_body_N_body_N_test_func__type                                    |    723 |
+|  3647 | body_N_body_N_value_args_N_elts_N_func_value__type                             |    721 |
+|   299 | body_N_body_N_body_N_value_value_args_N__type                                  |    718 |
+|   460 | body_N_body_N_body_N_body_N_targets_N_slice__type                              |    717 |
+|   138 | body_N_body_N_test_args_N_value_ctx__type                                      |    716 |
+|   132 | body_N_body_N_orelse_N_value_func_ctx__type                                    |    716 |
+|   750 | body_N_body_N_body_N_body_N_value_args_N_func_value_ctx__type                  |    712 |
+|  1335 | body_N_body_N_body_N_body_N_test_left_value__type                              |    710 |
+|  3168 | body_N_body_N_body_N_orelse_N_body_N_value_args_N_ctx__type                    |    705 |
+|  3624 | body_N_body_N_value_keywords_N_value_func_value__type                          |    703 |
+|  2178 | body_N_body_N_body_N_value_keywords_N_value_values_N__type                     |    703 |
+|   422 | body_N_body_N_body_N_body_N_items_N_context_expr_args_N__type                  |    701 |
+|  1843 | body_N_body_N_value_slice_elts_N__type                                         |    701 |
+| 17777 | body_N_body_N_value_args_N_elts_N_args_N_elts_N__type                          |    701 |
+|  1136 | body_N_decorator_list_N_args_N_elts_N_elts_N_keywords_N_value__type            |    699 |
+|  1135 | body_N_decorator_list_N_args_N_elts_N_elts_N_keywords_N__type                  |    699 |
+|   664 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N_ctx__type           |    698 |
+|  2470 | body_N_body_N_body_N_value_func_args_N_ctx__type                               |    697 |
+|   421 | body_N_body_N_body_N_body_N_items_N_context_expr__type                         |    694 |
+|   420 | body_N_body_N_body_N_body_N_items_N__type                                      |    694 |
+|  3648 | body_N_body_N_value_args_N_elts_N_func_value_ctx__type                         |    694 |
+|  5191 | body_N_body_N_body_N_body_N_value_op__type                                     |    691 |
+|  1532 | body_N_args_kwonlyargs_N_annotation_left_ctx__type                             |    690 |
+|  1017 | body_N_body_N_body_N_value_args_N_values_N_elts_N_value__type                  |    690 |
+|  2915 | body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N_value_ctx__type            |    689 |
+|  2914 | body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N_value__type                |    689 |
+|   424 | body_N_body_N_body_N_body_N_items_N_context_expr_func__type                    |    683 |
+|  1374 | body_N_value_ctx__type                                                         |    682 |
+|   425 | body_N_body_N_body_N_body_N_items_N_context_expr_func_ctx__type                |    681 |
+|  1018 | body_N_body_N_body_N_value_args_N_values_N_elts_N_value_ctx__type              |    681 |
+|   911 | body_N_body_N_body_N_body_N_target_ctx__type                                   |    678 |
+|   910 | body_N_body_N_body_N_body_N_target__type                                       |    678 |
+|   693 | body_N_body_N_body_N_test_left_slice__type                                     |    678 |
+|  1336 | body_N_body_N_body_N_body_N_test_left_value_ctx__type                          |    666 |
+|  1122 | body_N_body_N_test_values_N_ops_N__type                                        |    664 |
+|  1120 | body_N_body_N_test_values_N_left__type                                         |    664 |
+|  1118 | body_N_body_N_test_values_N_comparators_N__type                                |    664 |
+|  3084 | body_N_body_N_body_N_value_values_N_value_ctx__type                            |    663 |
+|  2995 | body_N_decorator_list_N_args_N_elts_N_dims_N_values_N_elts_N__type             |    660 |
+|   393 | body_N_body_N_body_N_value_args_N_elts_N_op__type                              |    658 |
+|  3625 | body_N_body_N_value_keywords_N_value_func_value_ctx__type                      |    657 |
+|  3619 | body_N_body_N_value_keywords_N_value_args_N_ctx__type                          |    656 |
+|   660 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N_ctx__type           |    655 |
+|  1556 | body_N_args_args_N_annotation_left_ctx__type                                   |    655 |
+|    69 | body_N_body_N_value_args_N_keywords_N_value__type                              |    650 |
+|    68 | body_N_body_N_value_args_N_keywords_N__type                                    |    650 |
+|  5941 | body_N_body_N_orelse_N_body_N_type_comment                                     |    650 |
+|  1079 | body_N_body_N_test_comparators_N_value__type                                   |    648 |
+|  1131 | body_N_decorator_list_N_args_N_elts_N_elts_N_args_N_ctx__type                  |    647 |
+|  3166 | body_N_body_N_body_N_body_N_value_left_ctx__type                               |    642 |
+|   646 | body_N_body_N_body_N_orelse_N_value_keywords_N_value__type                     |    641 |
+|   645 | body_N_body_N_body_N_orelse_N_value_keywords_N__type                           |    641 |
+|  2016 | body_N_body_N_body_N_iter_func_ctx__type                                       |    641 |
+|  2015 | body_N_body_N_body_N_iter_func__type                                           |    641 |
+|  2156 | body_N_body_N_body_N_body_N_orelse_N_value__type                               |    640 |
+|  1082 | body_N_body_N_value_args_N_op__type                                            |    632 |
+|  2009 | body_N_body_N_body_N_iter_args_N__type                                         |    629 |
+|  1507 | body_N_body_N_returns_slice__type                                              |    627 |
+|  1325 | body_N_body_N_body_N_test_operand_func_value__type                             |    626 |
+|  2131 | body_N_body_N_target_elts_N_ctx__type                                          |    624 |
+|  2130 | body_N_body_N_target_elts_N__type                                              |    624 |
+|  2129 | body_N_body_N_target_dims_N_ctx__type                                          |    624 |
+|  2128 | body_N_body_N_target_dims_N__type                                              |    624 |
+|  1472 | body_N_value_slice_elts_N__type                                                |    624 |
+|  1471 | body_N_value_slice_dims_N__type                                                |    624 |
+|  1080 | body_N_body_N_test_comparators_N_value_ctx__type                               |    624 |
+|  1057 | body_N_body_N_test_operand_func_ctx__type                                      |    624 |
+|  1056 | body_N_body_N_test_operand_func__type                                          |    624 |
+|  3000 | body_N_value_func_ctx__type                                                    |    619 |
+|  2999 | body_N_value_func__type                                                        |    619 |
+|  2102 | body_N_body_N_value_keywords_N_value_value__type                               |    617 |
+| 30469 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_args_N_elts_N_elts_N__type |    616 |
+|  2611 | body_N_body_N_body_N_names_N__type                                             |    616 |
+|  1129 | body_N_decorator_list_N_args_N_elts_N_dims_N_keywords_N_value__type            |    613 |
+|  1128 | body_N_decorator_list_N_args_N_elts_N_dims_N_keywords_N__type                  |    613 |
+| 11382 | body_N_body_N_body_N_value_keywords_N_value_args_N_elts_N_dims_N__type         |    612 |
+|  6413 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_values_N__type             |    611 |
+|  6412 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_keys_N__type               |    611 |
+|   489 | body_N_body_N_body_N_body_N_body_N_value_keywords_N_value_ctx__type            |    609 |
+| 30468 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_args_N_elts_N_elts_N__type |    608 |
+|   539 | body_N_body_N_body_N_exc__type                                                 |    607 |
+|  1508 | body_N_body_N_returns_slice_ctx__type                                          |    607 |
+|  2990 | body_N_decorator_list_N_args_N_elts_N_elts_N_args_N_elts_N_elts_N__type        |    605 |
+|   377 | body_N_body_N_decorator_list_N_args_N_elts_N_func_value__type                  |    604 |
+|  2939 | body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N_dims_N__type               |    604 |
+|  2073 | body_N_body_N_body_N_orelse_N_test_ops_N__type                                 |    603 |
+|  2066 | body_N_body_N_body_N_orelse_N_test_comparators_N__type                         |    603 |
+|  2103 | body_N_body_N_value_keywords_N_value_value_ctx__type                           |    602 |
+|  2067 | body_N_body_N_body_N_orelse_N_test_left__type                                  |    601 |
+|  1081 | body_N_body_N_value_args_N_left__type                                          |    601 |
+|  1368 | body_N_decorator_list_N_value_value_ctx__type                                  |    594 |
+|  1367 | body_N_decorator_list_N_value_value__type                                      |    594 |
+|  1124 | body_N_decorator_list_N_args_N_elts_N_dims_N_args_N_ctx__type                  |    594 |
+|  7741 | body_N_decorator_list_N_args_N_elts_N_elts_N_args_N_values_N_elts_N__type      |    592 |
+|  5254 | body_N_body_N_body_N_body_N_value_right__type                                  |    592 |
+| 27582 | body_N_body_N_body_N_value_func_value_args_N_values_N_elts_N__type             |    592 |
+|  3356 | body_N_body_N_body_N_value_generators_N_target_ctx__type                       |    591 |
+|  3355 | body_N_body_N_body_N_value_generators_N_target__type                           |    591 |
+|  3349 | body_N_body_N_body_N_value_generators_N_iter__type                             |    591 |
+|  3343 | body_N_body_N_body_N_value_generators_N__type                                  |    591 |
+|  3678 | body_N_body_N_value_func_value_args_N_ctx__type                                |    589 |
+|   553 | body_N_body_N_body_N_value_body__type                                          |    588 |
+|  3722 | body_N_body_N_value_keywords_N_value_args_N_elts_N_dims_N__type                |    584 |
+|   427 | body_N_body_N_body_N_body_N_items_N_context_expr_func_value_ctx__type          |    582 |
+|   426 | body_N_body_N_body_N_body_N_items_N_context_expr_func_value__type              |    582 |
+|  3292 | body_N_body_N_value_args_N_slice__type                                         |    582 |
+|  5940 | body_N_body_N_orelse_N_body_N_targets_N_ctx__type                              |    580 |
+|  5939 | body_N_body_N_orelse_N_body_N_targets_N__type                                  |    580 |
+|   385 | body_N_body_N_body_N_value_args_N_elts_N_elts_N_ctx__type                      |    578 |
+|   324 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_keywords_N_value__type     |    577 |
+|   323 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_keywords_N__type           |    577 |
+|  1298 | body_N_body_N_test_comparators_N_args_N__type                                  |    576 |
+|  7169 | body_N_body_N_value_value_value__type                                          |    572 |
+|  6789 | body_N_body_N_decorator_list_N_args_N_elts_N_value__type                       |    572 |
+|  1153 | body_N_decorator_list_N_args_N_elts_N_elts_N_value__type                       |    570 |
+|    88 | body_N_body_N_value_args_N_values_N_func_value_ctx__type                       |    569 |
+|  3659 | body_N_body_N_value_keywords_N_value_elts_N_ctx__type                          |    569 |
+|  2977 | body_N_decorator_list_N_args_N_elts_N_dims_N_args_N_elts_N_elts_N__type        |    569 |
+|  7989 | body_N_body_N_body_N_test_operand_args_N_args_N__type                          |    568 |
+|   543 | body_N_body_N_decorator_list_N_value_ctx__type                                 |    568 |
+|   542 | body_N_body_N_decorator_list_N_value__type                                     |    568 |
+|  3784 | body_N_body_N_args_kwarg_type_comment                                          |    568 |
+|  3783 | body_N_body_N_args_kwarg__type                                                 |    568 |
+|    90 | body_N_body_N_value_args_N_values_N_keywords_N_value__type                     |    567 |
+|    89 | body_N_body_N_value_args_N_values_N_keywords_N__type                           |    567 |
+|  7120 | body_N_body_N_body_N_items_N_optional_vars_ctx__type                           |    566 |
+|  7119 | body_N_body_N_body_N_items_N_optional_vars__type                               |    566 |
+|  3598 | body_N_value_elts_N_args_N__type                                               |    566 |
+|  3158 | body_N_body_N_body_N_body_N_targets_N_elts_N_ctx__type                         |    564 |
+|  3157 | body_N_body_N_body_N_body_N_targets_N_elts_N__type                             |    564 |
+|  3156 | body_N_body_N_body_N_body_N_targets_N_dims_N_ctx__type                         |    564 |
+|  3155 | body_N_body_N_body_N_body_N_targets_N_dims_N__type                             |    564 |
+|  7626 | body_N_body_N_body_N_test_args_N_func__type                                    |    563 |
+|    74 | body_N_body_N_value_args_N_values_N_args_N_ctx__type                           |    563 |
+|  7737 | body_N_decorator_list_N_args_N_elts_N_dims_N_args_N_values_N_elts_N__type      |    560 |
+|  1121 | body_N_body_N_test_values_N_left_ctx__type                                     |    559 |
+|  2514 | body_N_body_N_body_N_orelse_N_body_N_value_func_value__type                    |    556 |
+| 37801 | body_N_body_N_value_args_N_elts_N_keys_N_func_ctx__type                        |    554 |
+| 37800 | body_N_body_N_value_args_N_elts_N_keys_N_func__type                            |    554 |
+| 37795 | body_N_body_N_value_args_N_dims_N_values_N__type                               |    554 |
+| 37794 | body_N_body_N_value_args_N_dims_N_keys_N_func_ctx__type                        |    554 |
+| 37793 | body_N_body_N_value_args_N_dims_N_keys_N_func__type                            |    554 |
+| 37791 | body_N_body_N_value_args_N_dims_N_keys_N__type                                 |    554 |
+|  7627 | body_N_body_N_body_N_test_args_N_func_ctx__type                                |    553 |
+|  3780 | body_N_body_N_value_args_N_values_N_elts_N_ctx__type                           |    550 |
+|  1284 | body_N_body_N_body_N_value_ops_N__type                                         |    550 |
+|  1280 | body_N_body_N_body_N_value_comparators_N__type                                 |    550 |
+|  6790 | body_N_body_N_decorator_list_N_args_N_elts_N_value_ctx__type                   |    548 |
+|  3631 | body_N_body_N_test_left_value_value__type                                      |    548 |
+|  8644 | body_N_body_N_iter_elts_N__type                                                |    547 |
+|   423 | body_N_body_N_body_N_body_N_items_N_context_expr_args_N_ctx__type              |    547 |
+|  2197 | body_N_body_N_orelse_N_body_N_value_args_N__type                               |    546 |
+|  1083 | body_N_body_N_value_args_N_right__type                                         |    546 |
+|  6098 | body_N_body_N_value_func_args_N__type                                          |    545 |
+|   259 | body_N_decorator_list_N_keywords_N_value_elts_N_elts_N__type                   |    545 |
+|  2540 | body_N_body_N_body_N_value_args_N_values_N_args_N_ctx__type                    |    545 |
+|  3223 | body_N_body_N_body_N_body_N_body_N_body_N_value_args_N__type                   |    543 |
+|   378 | body_N_body_N_decorator_list_N_args_N_elts_N_func_value_ctx__type              |    542 |
+|  2068 | body_N_body_N_body_N_orelse_N_test_left_ctx__type                              |    542 |
+| 16675 | body_N_body_N_value_elts_N_elts_N_values_N__type                               |    542 |
+|   870 | body_N_body_N_body_N_value_args_N_values_N_func_value_ctx__type                |    541 |
+|  1326 | body_N_body_N_body_N_test_operand_func_value_ctx__type                         |    541 |
+| 11313 | body_N_body_N_body_N_value_args_N_values_N_elts_N_args_N__type                 |    541 |
+| 16671 | body_N_body_N_value_elts_N_elts_N_keys_N__type                                 |    540 |
+| 16667 | body_N_body_N_value_elts_N_dims_N_values_N__type                               |    540 |
+|    52 | body_N_body_N_value_values_N_ctx__type                                         |    539 |
+| 16663 | body_N_body_N_value_elts_N_dims_N_keys_N__type                                 |    538 |
+|  8668 | body_N_body_N_value_elts_N_func_value__type                                    |    537 |
+|   374 | body_N_body_N_decorator_list_N_args_N_elts_N_keywords_N_value__type            |    537 |
+|   373 | body_N_body_N_decorator_list_N_args_N_elts_N_keywords_N__type                  |    537 |
+|  1344 | body_N_body_N_body_N_exc_func_ctx__type                                        |    537 |
+|  1343 | body_N_body_N_body_N_exc_func__type                                            |    537 |
+| 11878 | body_N_body_N_value_elts_N_args_N_elts_N__type                                 |    537 |
+|  1154 | body_N_decorator_list_N_args_N_elts_N_elts_N_value_ctx__type                   |    536 |
+|  1342 | body_N_body_N_body_N_exc_args_N__type                                          |    535 |
+|   915 | body_N_body_N_body_N_value_args_N_args_N_func_ctx__type                        |    534 |
+|   914 | body_N_body_N_body_N_value_args_N_args_N_func__type                            |    534 |
+|  1902 | body_N_body_N_body_N_orelse_N_value_ctx__type                                  |    531 |
+|  8563 | body_N_body_N_value_func_value_args_N_elts_N__type                             |    528 |
+|  6415 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_values_N_elts_N__type      |    528 |
+| 16674 | body_N_body_N_value_elts_N_elts_N_keys_N_func_ctx__type                        |    528 |
+| 16673 | body_N_body_N_value_elts_N_elts_N_keys_N_func__type                            |    528 |
+| 16666 | body_N_body_N_value_elts_N_dims_N_keys_N_func_ctx__type                        |    528 |
+| 16665 | body_N_body_N_value_elts_N_dims_N_keys_N_func__type                            |    528 |
+|  2937 | body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N_dims_N__type               |    527 |
+|  3013 | body_N_body_N_args_args_N_annotation_value_ctx__type                           |    526 |
+|  3012 | body_N_body_N_args_args_N_annotation_value__type                               |    526 |
+|  7170 | body_N_body_N_value_value_value_ctx__type                                      |    525 |
+|  3387 | body_N_body_N_body_N_orelse_N_orelse_N_body_N__type                            |    525 |
+|   447 | body_N_body_N_body_N_value_args_N_left_elts_N__type                            |    524 |
+|  2515 | body_N_body_N_body_N_orelse_N_body_N_value_func_value_ctx__type                |    524 |
+|   830 | body_N_body_N_body_N_args__type                                                |    522 |
+|  2204 | body_N_body_N_orelse_N_orelse_N__type                                          |    522 |
+|  3632 | body_N_body_N_test_left_value_value_ctx__type                                  |    521 |
+|   611 | body_N_body_N_body_N_value_args_N_args_N_value__type                           |    520 |
+|  3572 | body_N_body_N_iter_ctx__type                                                   |    520 |
+|  8669 | body_N_body_N_value_elts_N_func_value_ctx__type                                |    519 |
+|  6407 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_values_N__type             |    518 |
+|  6406 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_keys_N__type               |    518 |
+|  2665 | body_N_body_N_test_operand_args_N_ctx__type                                    |    515 |
+|   621 | body_N_body_N_body_N_value_args_N_dims_N__type                                 |    514 |
+|   322 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_keywords_N_value__type     |    512 |
+|   321 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_keywords_N__type           |    512 |
+|   612 | body_N_body_N_body_N_value_args_N_args_N_value_ctx__type                       |    511 |
+|  3338 | body_N_body_N_body_N_value_elt__type                                           |    511 |
+|  2111 | body_N_body_N_body_N_test_values_N_op__type                                    |    511 |
+| 11122 | body_N_body_N_decorator_list_N_args_N_args_N__type                             |    511 |
+|  1510 | body_N_body_N_returns_slice_elts_N__type                                       |    510 |
+|  1509 | body_N_body_N_returns_slice_dims_N__type                                       |    510 |
+|  5103 | body_N_body_N_body_N_body_N_body_N_body_N_type_comment                         |    509 |
+| 37804 | body_N_body_N_value_args_N_elts_N_values_N_func_ctx__type                      |    507 |
+| 37803 | body_N_body_N_value_args_N_elts_N_values_N_func__type                          |    507 |
+|  2911 | body_N_body_N_value_args_N_elts_N_keywords_N_value__type                       |    507 |
+|  2910 | body_N_body_N_value_args_N_elts_N_keywords_N__type                             |    507 |
+| 37798 | body_N_body_N_value_args_N_dims_N_values_N_func_ctx__type                      |    504 |
+| 37797 | body_N_body_N_value_args_N_dims_N_values_N_func__type                          |    504 |
+|   833 | body_N_body_N_body_N_body_N_value_value_value__type                            |    503 |
+|   238 | body_N_decorator_list_N_args_N_elts_N_value__type                              |    503 |
+|   913 | body_N_body_N_body_N_value_args_N_args_N_args_N__type                          |    502 |
+|  6409 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_values_N_elts_N__type      |    502 |
+|  4497 | body_N_body_N_args_kwonlyargs_N_annotation_right__type                         |    502 |
+|  4496 | body_N_body_N_args_kwonlyargs_N_annotation_op__type                            |    502 |
+|  4494 | body_N_body_N_args_kwonlyargs_N_annotation_left__type                          |    502 |
+|  1484 | body_N_body_N_annotation_value_ctx__type                                       |    502 |
+|  1483 | body_N_body_N_annotation_value__type                                           |    502 |
+| 16695 | body_N_body_N_value_args_N_elts_N_elts_N_args_N__type                          |    496 |
+|  7720 | body_N_value_elts_N_ctx__type                                                  |    493 |
+|   802 | body_N_body_N_body_N_value_args_N_elts_N_keywords_N_value__type                |    491 |
+|   801 | body_N_body_N_body_N_value_args_N_elts_N_keywords_N__type                      |    491 |
+|  5102 | body_N_body_N_body_N_body_N_body_N_body_N_targets_N_ctx__type                  |    491 |
+|  5101 | body_N_body_N_body_N_body_N_body_N_body_N_targets_N__type                      |    491 |
+|   834 | body_N_body_N_body_N_body_N_value_value_value_ctx__type                        |    490 |
+|  7997 | body_N_body_N_test_values_N_args_N__type                                       |    490 |
+|   239 | body_N_decorator_list_N_args_N_elts_N_value_ctx__type                          |    490 |
+|  1200 | body_N_decorator_list_N_args_N_elts_N_elts_N_dims_N__type                      |    490 |
+|  1146 | body_N_decorator_list_N_args_N_elts_N_dims_N_value__type                       |    489 |
+|   923 | body_N_body_N_body_N_test_operand_ctx__type                                    |    488 |
+|  2202 | body_N_body_N_orelse_N_body_N_value_func__type                                 |    488 |
+|  1479 | body_N_body_N_annotation_slice__type                                           |    487 |
+|  2504 | body_N_body_N_body_N_body_N_value_args_N_args_N_elts_N__type                   |    485 |
+|   394 | body_N_body_N_body_N_value_args_N_elts_N_operand__type                         |    484 |
+|   429 | body_N_body_N_body_N_body_N_items_N_context_expr_keywords_N_value__type        |    483 |
+|   428 | body_N_body_N_body_N_body_N_items_N_context_expr_keywords_N__type              |    483 |
+|  1206 | body_N_decorator_list_N_args_N_elts_N_elts_N_elts_N_args_N__type               |    483 |
+|  7402 | body_N_body_N_body_N_test_comparators_N_dims_N__type                           |    482 |
+|  2203 | body_N_body_N_orelse_N_body_N_value_func_ctx__type                             |    482 |
+|  1249 | body_N_decorator_list_N_args_N_elts_N_func_value__type                         |    481 |
+|  4208 | body_N_body_N_body_N_body_N_orelse_N_type_comment                              |    480 |
+|  1914 | body_N_body_N_body_N_body_N_orelse_N_body_N__type                              |    480 |
+| 12748 | body_N_body_N_targets_N_slice_elts_N__type                                     |    478 |
+|  4921 | body_N_body_N_body_N_body_N_body_N_test_ops_N__type                            |    477 |
+|  4916 | body_N_body_N_body_N_body_N_body_N_test_comparators_N__type                    |    477 |
+|   303 | body_N_body_N_body_N_value_value_func_value__type                              |    476 |
+|  4917 | body_N_body_N_body_N_body_N_body_N_test_left__type                             |    474 |
+|  4361 | body_N_body_N_body_N_value_func_value_keywords_N_value_ctx__type               |    474 |
+|  6520 | body_N_body_N_value_func_value_args_N_values_N_elts_N__type                    |    473 |
+|   985 | body_N_body_N_body_N_value_args_N_elts_N_func_value__type                      |    472 |
+|  1536 | body_N_args_kwonlyargs_N_annotation_ctx__type                                  |    472 |
+|  2472 | body_N_body_N_body_N_value_func_func_ctx__type                                 |    471 |
+|  2471 | body_N_body_N_body_N_value_func_func__type                                     |    471 |
+|  1348 | body_N_body_N_value_func_value_slice__type                                     |    471 |
+| 15294 | body_N_body_N_value_func_value_keywords_N_value_ctx__type                      |    470 |
+|  3633 | body_N_body_N_body_N_orelse_N_test_args_N__type                                |    468 |
+|  1250 | body_N_decorator_list_N_args_N_elts_N_func_value_ctx__type                     |    468 |
+|   524 | body_N_body_N_body_N_body_N_test_left_func_ctx__type                           |    466 |
+|   523 | body_N_body_N_body_N_body_N_test_left_func__type                               |    466 |
+|  3542 | body_N_body_N_body_N_handlers_N_body_N__type                                   |    466 |
+|  1195 | body_N_decorator_list_N_args_N_elts_N_dims_N_elts_N_args_N__type               |    464 |
+|  2010 | body_N_body_N_body_N_iter_args_N_ctx__type                                     |    463 |
+|   562 | body_N_body_N_body_N_value_test__type                                          |    462 |
+|   560 | body_N_body_N_body_N_value_orelse__type                                        |    462 |
+|  5047 | body_N_body_N_body_N_body_N_value_func_value_func_ctx__type                    |    461 |
+|  5046 | body_N_body_N_body_N_body_N_value_func_value_func__type                        |    461 |
+|  1062 | body_N_body_N_test_comparators_N_func_value__type                              |    461 |
+|  2953 | body_N_body_N_value_args_N_elts_N_elts_N_ctx__type                             |    460 |
+|  1944 | body_N_body_N_body_N_body_N_body_N_body_N_value_func__type                     |    460 |
+|  2501 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_args_N_ctx__type           |    459 |
+|  1554 | body_N_args_args_N_annotation_value_ctx__type                                  |    458 |
+|  1553 | body_N_args_args_N_annotation_value__type                                      |    458 |
+|  7998 | body_N_body_N_test_values_N_args_N_ctx__type                                   |    457 |
+|  4207 | body_N_body_N_body_N_body_N_orelse_N_targets_N_ctx__type                       |    457 |
+|  4206 | body_N_body_N_body_N_body_N_orelse_N_targets_N__type                           |    457 |
+|   391 | body_N_body_N_body_N_body_N_value_keywords_N_value_value__type                 |    457 |
+|  1901 | body_N_body_N_body_N_body_N_value_slice_ctx__type                              |    457 |
+|  6099 | body_N_body_N_value_func_args_N_ctx__type                                      |    456 |
+|   392 | body_N_body_N_body_N_body_N_value_keywords_N_value_value_ctx__type             |    455 |
+|  1945 | body_N_body_N_body_N_body_N_body_N_body_N_value_func_ctx__type                 |    455 |
+|  1147 | body_N_decorator_list_N_args_N_elts_N_dims_N_value_ctx__type                   |    455 |
+|   498 | body_N_body_N_body_N_test_value__type                                          |    453 |
+|  4480 | body_N_body_N_decorator_list_N_args_N_func_ctx__type                           |    453 |
+|  4479 | body_N_body_N_decorator_list_N_args_N_func__type                               |    453 |
+|   986 | body_N_body_N_body_N_value_args_N_elts_N_func_value_ctx__type                  |    452 |
+| 11381 | body_N_body_N_body_N_value_keywords_N_value_args_N_elts_N_ctx__type            |    451 |
+|  4789 | body_N_body_N_body_N_value_args_N_slice_elts_N__type                           |    449 |
+|  2724 | body_N_body_N_body_N_body_N_value_dims_N__type                                 |    449 |
+|   825 | body_N_body_N_body_N_value_args_N_args_N_elts_N_ctx__type                      |    448 |
+|  2498 | body_N_body_N_decorator_list_N_args_N_elts_N_dims_N_args_N_ctx__type           |    448 |
+|   499 | body_N_body_N_body_N_test_value_ctx__type                                      |    444 |
+|  4087 | body_N_body_N_body_N_orelse_N_value_keywords_N_value_ctx__type                 |    443 |
+|  2756 | body_N_body_N_value_value_func__type                                           |    443 |
+|  4495 | body_N_body_N_args_kwonlyargs_N_annotation_left_ctx__type                      |    442 |
+|  3025 | body_N_body_N_value_args_N_left_ctx__type                                      |    441 |
+|  2757 | body_N_body_N_value_value_func_ctx__type                                       |    441 |
+|   133 | body_N_body_N_orelse_N_value_func_value__type                                  |    441 |
+|   250 | body_N_decorator_list_N_keywords_N_value_ctx__type                             |    440 |
+|   418 | body_N_body_N_body_N_body_N_body_N_value_value__type                           |    438 |
+| 24313 | body_N_decorator_list_N_args_N_dims_N_elts_N_elts_N__type                      |    438 |
+| 16678 | body_N_body_N_value_elts_N_elts_N_values_N_func_ctx__type                      |    438 |
+| 16677 | body_N_body_N_value_elts_N_elts_N_values_N_func__type                          |    438 |
+| 16670 | body_N_body_N_value_elts_N_dims_N_values_N_func_ctx__type                      |    438 |
+| 16669 | body_N_body_N_value_elts_N_dims_N_values_N_func__type                          |    438 |
+| 10698 | body_N_body_N_test_comparators_N_func_value_ctx__type                          |    438 |
+|  3634 | body_N_body_N_body_N_orelse_N_test_args_N_ctx__type                            |    437 |
+|  1241 | body_N_decorator_list_N_args_N_elts_N_args_N_elts_N__type                      |    437 |
+|   387 | body_N_body_N_body_N_value_args_N_elts_N_elts_N_value_ctx__type                |    435 |
+|   386 | body_N_body_N_body_N_value_args_N_elts_N_elts_N_value__type                    |    435 |
+| 15314 | body_N_value_elts_N_elts_N_ctx__type                                           |    434 |
+| 15310 | body_N_value_elts_N_dims_N_ctx__type                                           |    434 |
+| 12745 | body_N_body_N_targets_N_slice_dims_N__type                                     |    434 |
+|   253 | body_N_decorator_list_N_keywords_N_value_elts_N_dims_N__type                   |    431 |
+| 11307 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_dims_N__type               |    430 |
+| 11188 | body_N_body_N_body_N_test_args_N_args_N_ctx__type                              |    430 |
+| 39535 | body_N_decorator_list_N_args_N_dims_N_dims_N_elts_N__type                      |    428 |
+|  2074 | body_N_body_N_body_N_test_values_N_comparators_N_ctx__type                     |    428 |
+|  1480 | body_N_body_N_annotation_slice_ctx__type                                       |    427 |
+|  2700 | body_N_body_N_value_elts_N_elts_N_ctx__type                                    |    426 |
+|  2090 | body_N_returns_slice_elts_N__type                                              |    426 |
+|  2084 | body_N_returns_slice_dims_N__type                                              |    426 |
+|  5950 | body_N_body_N_orelse_N_test_args_N__type                                       |    425 |
+|  2157 | body_N_body_N_body_N_body_N_orelse_N_value_args_N__type                        |    421 |
+| 20769 | body_N_body_N_orelse_N_test_operand_args_N_args_N__type                        |    421 |
+|  1261 | body_N_body_N_test_args_N_args_N__type                                         |    421 |
+|   300 | body_N_body_N_body_N_value_value_args_N_ctx__type                              |    420 |
+|  2460 | body_N_body_N_orelse_N_test_ops_N__type                                        |    420 |
+|  2457 | body_N_body_N_orelse_N_test_comparators_N__type                                |    420 |
+|  2458 | body_N_body_N_orelse_N_test_left__type                                         |    419 |
+|   906 | body_N_body_N_body_N_body_N_iter__type                                         |    418 |
+|  3721 | body_N_body_N_value_keywords_N_value_args_N_elts_N_ctx__type                   |    418 |
+|  3441 | body_N_body_N_body_N_orelse_N_body_N_body_N__type                              |    418 |
+|  2018 | body_N_body_N_body_N_test_values_N_ctx__type                                   |    417 |
+| 11120 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_value__type                |    417 |
+|   532 | body_N_body_N_body_N_test_comparators_N_args_N_ctx__type                       |    416 |
+|  2727 | body_N_body_N_body_N_body_N_value_elts_N_ctx__type                             |    416 |
+| 10958 | body_N_body_N_targets_N_value_value_ctx__type                                  |    416 |
+| 10957 | body_N_body_N_targets_N_value_value__type                                      |    416 |
+|  2076 | body_N_body_N_iter_args_N__type                                                |    414 |
+|   988 | body_N_body_N_body_N_value_args_N_values_N_value__type                         |    412 |
+|  3067 | body_N_body_N_body_N_body_N_test_values_N_ops_N__type                          |    412 |
+|  3064 | body_N_body_N_body_N_body_N_test_values_N_comparators_N__type                  |    412 |
+| 11121 | body_N_body_N_decorator_list_N_args_N_elts_N_elts_N_value_ctx__type            |    411 |
+|   521 | body_N_body_N_body_N_body_N_test_left_args_N__type                             |    410 |
+|  3065 | body_N_body_N_body_N_body_N_test_values_N_left__type                           |    410 |
+|  6103 | body_N_body_N_test_left_slice__type                                            |    409 |
+|  3384 | body_N_body_N_body_N_value_args_N_right_ctx__type                              |    408 |
+|  3224 | body_N_body_N_body_N_body_N_body_N_body_N_value_args_N_ctx__type               |    408 |
+|  1611 | body_N_body_N_value_keywords_N_value_values_N__type                            |    408 |
+|   134 | body_N_body_N_orelse_N_value_func_value_ctx__type                              |    408 |
+|  2464 | body_N_body_N_value_args_N_body__type                                          |    407 |
+|  1840 | body_N_body_N_value_slice_ctx__type                                            |    406 |
+|  1514 | body_N_body_N_returns_slice_elts_N_ctx__type                                   |    405 |
+|  1513 | body_N_body_N_returns_slice_dims_N_ctx__type                                   |    405 |
+|   291 | body_N_body_N_body_N_value_elts_N_value__type                                  |    403 |
+|   304 | body_N_body_N_body_N_value_value_func_value_ctx__type                          |    402 |
+|  1183 | body_N_decorator_list_N_args_N_elts_N_elts_N_keywords_N_value_elts_N__type     |    402 |
+|   871 | body_N_body_N_body_N_value_args_N_keywords_N_value_elts_N__type                |    401 |
+|  3214 | body_N_body_N_args_args_N_annotation_right_ctx__type                           |    401 |
+|  1887 | body_N_body_N_body_N_exc_args_N_values_N__type                                 |    401 |
+| 12331 | body_N_body_N_body_N_value_slice_elts_N_elts_N__type                           |    400 |
+|  2112 | body_N_body_N_body_N_test_values_N_operand__type                               |    399 |
+|   292 | body_N_body_N_body_N_value_elts_N_value_ctx__type                              |    397 |
+|   140 | body_N_body_N_value_values_N_args_N__type                                      |    397 |
+|  2463 | body_N_body_N_value_args_N_args__type                                          |    396 |
+|  2205 | body_N_body_N_orelse_N_orelse_N_body_N__type                                   |    396 |
+|  2477 | body_N_body_N_orelse_N_body_N_value_args_N_ctx__type                           |    394 |
+| 11422 | body_N_body_N_body_N_body_N_value_slice_elts_N__type                           |    394 |
+|  3781 | body_N_body_N_value_args_N_values_N_elts_N_value__type                         |    393 |
+|  2079 | body_N_body_N_iter_func_ctx__type                                              |    392 |
+|  2078 | body_N_body_N_iter_func__type                                                  |    392 |
+|  7679 | body_N_body_N_value_args_N_args_args_N_type_comment                            |    390 |
+|  7678 | body_N_body_N_value_args_N_args_args_N__type                                   |    390 |
+|   419 | body_N_body_N_body_N_body_N_body_N_value_value_ctx__type                       |    390 |
+|  3782 | body_N_body_N_value_args_N_values_N_elts_N_value_ctx__type                     |    388 |
+|  3393 | body_N_body_N_body_N_orelse_N_orelse_N_body_N_value__type                      |    388 |
+| 12329 | body_N_body_N_body_N_value_slice_dims_N_elts_N__type                           |    388 |
+|   413 | body_N_body_N_body_N_body_N_body_N_targets_N_value__type                       |    386 |
+|   252 | body_N_decorator_list_N_keywords_N_value_elts_N_ctx__type                      |    386 |
+|  1886 | body_N_value_values_N_ctx__type                                                |    386 |
+|  1058 | body_N_body_N_test_operand_func_value__type                                    |    384 |
+|  1189 | body_N_decorator_list_N_args_N_elts_N_dims_N_dims_N__type                      |    383 |
+|   989 | body_N_body_N_body_N_value_args_N_values_N_value_ctx__type                     |    381 |
+|  5583 | body_N_body_N_body_N_body_N_value_right_ctx__type                              |    380 |
+|   143 | body_N_body_N_value_values_N_func_ctx__type                                    |    380 |
+|   142 | body_N_body_N_value_values_N_func__type                                        |    380 |
+|  7631 | body_N_body_N_body_N_test_operand_args_N_func_ctx__type                        |    379 |
+|  7630 | body_N_body_N_body_N_test_operand_args_N_func__type                            |    379 |
+|  2097 | body_N_returns_value_ctx__type                                                 |    379 |
+|  2096 | body_N_returns_value__type                                                     |    379 |
+| 12468 | body_N_body_N_value_args_N_func_value_func_ctx__type                           |    379 |
+| 12467 | body_N_body_N_value_args_N_func_value_func__type                               |    379 |
+|   699 | body_N_body_N_body_N_value_keywords_N_value_keywords_N_value_ctx__type         |    378 |
+|   414 | body_N_body_N_body_N_body_N_body_N_targets_N_value_ctx__type                   |    378 |
+|  3033 | body_N_body_N_body_N_body_N_exc_args_N_values_N_value__type                    |    378 |
+|  4223 | body_N_body_N_body_N_orelse_N_body_N_value_keywords_N_value__type              |    377 |
+|  4222 | body_N_body_N_body_N_orelse_N_body_N_value_keywords_N__type                    |    377 |
+|  2152 | body_N_body_N_body_N_body_N_body_N_value_args_N_value__type                    |    377 |
+|   375 | body_N_body_N_decorator_list_N_args_N_elts_N_args_N_ctx__type                  |    375 |
+|3010   | body_N_body_N_args_args_N_annotation_slice__type                               |    375 |
+|12469  | body_N_body_N_value_args_N_func_value_func_value__type                         |    375 |

@@ -20,8 +20,11 @@ for name in glob.glob("pyprolog-asts/*"):
 #if "type" in k:
                 if True:
                     #_type = s[k])
-                    k = re.sub("\d+", "N", k)
-                    c[k]+=1
+                    v = i[k][0] # get the value
+                    k2 = re.sub("\d+", "N", k)
+                    if isinstance(v, (str,float,int)):
+                        # skip none and []
+                        c[k2]+=1
         
 df = pd.DataFrame.from_dict(c, orient='index').reset_index().sort_values(by=0, ascending=False)
 df.to_csv("report_without_numbers_sorted.csv")

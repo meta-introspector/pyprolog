@@ -1,7 +1,16 @@
 * idea
 
 The idea is that we can convert the asts to json, flatten them into parquet.
-this gives us many datasets with different features.
+this gives us many datasets with different features. Each dataset has one row,
+and that row contains a column for each field, where the field name is the path
+to reach that field in the tree, that is the flattend json.
+We then remove the numbers from the fieldnames to produce shorter fieldnames
+removing the positional information from the fieldnames, this merges many fields together.
+Those poisitons we will want later as a value of sorts.
+
+We then select the top N fields after duplicate reduction. Those are the fields that occure the most in all the samples.
+This will allow us to unite the different datasets together with common elements.
+These united datasets can then be used to train autogluon. 
 
 Next we can consider the columns and realize that some of the values also reference the columes.
 There is a relationship between columns, and a relationship between columnes and values.

@@ -126,3 +126,44 @@ After running this for some time.
    quality.
 
 4. We can modify the programs to emit the internal representations.
+
+** New report
+
+#+begin_src shell
+  python ./autogluon_features_read.py
+  cat features2.json | cut '-d"' -f2 | sort |uniq -c | sort -n -r | head -10 
+#+end_src
+
+#+RESULTS:
+| 4197 |           |
+| 4196 | ],        |
+|  989 | Name      |
+|  449 | Attribute |
+|  414 | Constant  |
+|  294 | Call      |
+|  144 | self      |
+|   90 | np        |
+|   82 | List      |
+|   66 | dtype     |
+
+We can see the Name field occurs the most.
+now lets look at what fields it occurs in.
+
+Also we want to see the last part of the name, and concat the fields together.
+
+So look at features4.json and autogluon_features_read4.py, it extracts interesting and readable information from the code.
+
+We can look at this sample. It shows what type of objects occur at the top level of the module.
+
+#+begin_src json
+  {
+    "body_N__type": {
+      "|Assign|ClassDef|Expr|FunctionDef|ImportFrom|With": 1,
+      "|Assert|Assign|Expr|For|FunctionDef|If|Return|With": 1,
+      "|Assert|Assign|Expr|If|Raise|Return|With": 1,
+      "|Assert|Assign|AugAssign|Expr|If|Return": 1,
+      "|Assert|Assign|AugAssign|Expr|If|Raise|Return": 1,
+      "|Expr|Pass|Raise|Return": 1,
+      "|Assign": 4
+  }
+#+end_src

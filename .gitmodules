@@ -1,3 +1,6 @@
 [submodule "pyprolog-asts"]
 	path = pyprolog-asts
 	url = https://huggingface.co/datasets/introspector/pyprolog-asts
+[submodule "pyprolog-asts-csv-data"]
+	path = pyprolog-asts-csv-data
+	url = https://huggingface.co/datasets/introspector/pyprolog-asts-csv

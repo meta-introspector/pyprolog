@@ -1,0 +1,2724 @@
+[
+  {
+    "body_N__type": {
+      "|Assign|ClassDef|Expr|FunctionDef|ImportFrom|With": 1,
+      "|Assert|Assign|Expr|For|FunctionDef|If|Return|With": 1,
+      "|Assert|Assign|Expr|If|Raise|Return|With": 1,
+      "|Assert|Assign|AugAssign|Expr|If|Return": 1,
+      "|Assert|Assign|AugAssign|Expr|If|Raise|Return": 1,
+      "|Expr|Pass|Raise|Return": 1,
+      "|Assign": 4,
+      "|Assign|AugAssign|Expr|If|Raise|Return": 1,
+      "|Assign|Continue|Expr|If|Return": 1,
+      "|Assign|Expr|If|Return": 1,
+      "|Assign|Expr|Return": 3,
+      "|Assign|Return": 3,
+      "|Return": 2,
+      "|Pass|Raise|Return": 2,
+      "|Assign|Expr|Raise|Return": 1,
+      "": 8,
+      "|Assign|Raise": 2,
+      "|If|Return": 1,
+      "|Raise": 4,
+      "|Assign|If|Raise|Return": 1,
+      "|Assign|Expr": 2,
+      "|Assign|Expr|If": 1,
+      "|Expr": 1,
+      "|Assign|If": 1,
+      "|If": 1,
+      "|Break": 1
+    },
+    "N_names_N_name": {
+      "|ASTNode|Version|notna|pandas._testing|util": 1,
+      "|ReadBuffer|Series|pandas": 1,
+      "|Series": 1
+    },
+    "N_names_N_asname": {
+      "|algos|cf|com|np|nv|pa|pd|tm": 1,
+      "|pd": 1,
+      "": 1
+    },
+    "body_N_module": {
+      "|__future__|_base|_make|pandas|pandas.core.arrays|pandas.core.arrays.integer|pandas.io.common|pandas.io.formats|pandas.util._validators|pandas.util.version|pyarrow.tests|std|typing": 1
+    },
+    "args_args_N_arg": {
+      "|_fname|b|dtype|expected|idx|indexer|key|kwargs|method|name|request": 1,
+      "|cls|name|other|self|unit": 1,
+      "|i|self|x|y": 1,
+      "|x": 5,
+      "": 1
+    },
+    "N_args_kwarg_arg": {
+      "|kwargs": 2
+    },
+    "N_body_N_module": {
+      "|pandas|pandas._typing": 1,
+      "": 2,
+      "|pandas": 2
+    },
+    "targets_N__type": {
+      "|Attribute|Name|Subscript": 2,
+      "|Attribute|Name|Subscript|Tuple": 2,
+      "|Name": 27,
+      "|Name|Subscript": 6,
+      "": 1
+    },
+    "N_targets_N_id": {
+      "|arr|df|expected|idx|msg|res|result": 1,
+      "|df|expected|msg|path|result": 1,
+      "|data|expected|msg": 1,
+      "|df|encoding|expected|msg|name|res|result": 1,
+      "|expected|msg|res|result": 1,
+      "|__all__": 1,
+      "": 28,
+      "|result|values": 2,
+      "|result": 3,
+      "|values": 2
+    },
+    "N_value__type": {
+      "|Attribute|BinOp|Call|Constant|Name|Subscript|Tuple": 1,
+      "|Attribute|Call|Constant|Name|Tuple": 1,
+      "|Attribute|Constant|List|Name": 2,
+      "|Attribute|Name": 33,
+      "|Name": 60,
+      "|Attribute|Constant|Name": 3,
+      "|Constant": 15,
+      "|Attribute|BinOp|Call|Name|Tuple": 1,
+      "|Constant|List": 1,
+      "|Constant|List|Name": 2,
+      "|Attribute|Call|Constant|List|Name|Subscript": 1,
+      "|BinOp|Call|Constant|JoinedStr|Name|Subscript|Tuple": 1,
+      "|Constant|Name": 17,
+      "|Call|Constant": 6,
+      "|Attribute|Call|Constant|Name": 3,
+      "|Attribute|Name|Subscript": 1,
+      "|Call|Constant|Name": 4,
+      "|Attribute|Call|Constant|Name|Subscript|Tuple": 2,
+      "|Constant|Lambda|List|Name|Subscript": 1,
+      "|Attribute|Call|Name": 5,
+      "|Attribute|Call|Constant|Dict|List|Name": 1,
+      "|Attribute": 3,
+      "|Attribute|Call|Constant": 1,
+      "|Call": 24,
+      "|Call|Name": 6,
+      "": 13,
+      "|Attribute|Call|Name|Subscript": 1,
+      "|Attribute|Call": 3,
+      "|BinOp|Call": 1,
+      "|Call|Subscript": 1,
+      "|Attribute|Constant": 1
+    },
+    "args_N__type": {
+      "|Attribute|Call|Constant|Dict|GeneratorExp|List|Name|Starred|Tuple": 1,
+      "|Attribute|GeneratorExp|Name": 1,
+      "|Call|Constant|Dict|List|Name|Starred|Subscript": 1,
+      "|Call|Constant|List|Name|Tuple": 1,
+      "|Constant|List|Name": 10,
+      "|Name": 69,
+      "|Constant|List": 6,
+      "|Constant": 21,
+      "|Call|Constant|List|Name": 2,
+      "|Attribute|Call|Constant|Dict|List|Name": 1,
+      "|Attribute|Constant|List|Name": 1,
+      "|Constant|Dict|List": 3,
+      "|Attribute|Call|Constant|List|ListComp|Name|Tuple": 1,
+      "|Attribute|Call|Constant|JoinedStr|List|Name|Tuple": 1,
+      "|Constant|Name|Tuple": 1,
+      "|Attribute|BinOp|Call|Constant|List|Name": 1,
+      "|Constant|Name": 19,
+      "|Tuple": 1,
+      "|Attribute|Name": 18,
+      "|Attribute|Compare|Constant|GeneratorExp|Name": 1,
+      "|Attribute|Constant|Name": 9,
+      "|Attribute|Call|Name": 2,
+      "|Call|Constant|List|ListComp|Name": 1,
+      "|Attribute|Call|Constant|List|Name": 1,
+      "": 49,
+      "|Constant|JoinedStr|Name": 2,
+      "|JoinedStr|Name": 1,
+      "|JoinedStr": 4,
+      "|Attribute|Call|Name|Subscript": 1,
+      "|Call|Name": 4,
+      "|Attribute|Call|Constant|Name": 2,
+      "|Attribute": 5,
+      "|Call|Constant|List|Name|Subscript": 1,
+      "|Call|Constant|List": 1,
+      "|Call|Constant|JoinedStr|Name": 1,
+      "|Name|Tuple": 1,
+      "|Call|Name|Tuple": 1,
+      "|Attribute|Constant|Name|Subscript": 1,
+      "|Constant|JoinedStr": 5,
+      "|List": 1,
+      "|Name|Subscript": 1,
+      "|List|Name": 1,
+      "|Call": 4,
+      "|BinOp": 1
+    },
+    "value_args_N_id": {
+      "|FutureWarning|arr2|b|compat_args|data|df|expected|frame|idx|index|other|result|right|value": 1,
+      "|FutureWarning|arr|b|compat_args|expected|result": 1,
+      "|expected|vals": 1,
+      "": 46,
+      "|b|expected|name|obj|other|path": 1,
+      "|arr|float|self": 1,
+      "|FutureWarning": 2,
+      "|dtype": 2,
+      "|self": 2,
+      "|msg": 1
+    },
+    "value_func__type": {
+      "|Attribute|Name": 38,
+      "|Attribute|Call|Name": 1,
+      "": 8,
+      "|Attribute": 21,
+      "|Name": 9
+    },
+    "N_value_func_attr": {
+      "|append|asarray|assert_frame_equal|assert_index_equal|assert_numpy_array_equal|assert_series_equal|astype|read_csv|split|warn": 1,
+      "|DataFrame|array|assert_extension_array_equal|assert_frame_equal|assert_numpy_array_equal|assert_series_equal|get|register_option|view": 1,
+      "|assert_frame_equal": 1,
+      "|append|array|assert_index_equal|astype|shift|skip": 1,
+      "": 31,
+      "|array|astype|warn": 1,
+      "|arange": 1,
+      "|skip_if_no|xfail": 1,
+      "|skip_if_no": 1,
+      "|append|copy|pop": 1,
+      "|append": 2,
+      "|astype": 2,
+      "|compile|importorskip|usefixtures": 1,
+      "|reindex": 1,
+      "|copy|warn": 1,
+      "|close": 1
+    },
+    "func_value__type": {
+      "|Attribute|Call|Name": 7,
+      "|Name": 53,
+      "|Call|Name": 11,
+      "|Attribute|Name": 11,
+      "|Attribute": 1,
+      "|Attribute|Call|Constant|Name": 1,
+      "|Attribute|Call|Name|Subscript": 1,
+      "|Attribute|Compare|Name": 1,
+      "|Attribute|Name|Subscript": 1,
+      "|Constant|Name": 1,
+      "|Attribute|Call|Compare|Name": 1,
+      "": 1
+    },
+    "value_func_value_attr": {
+      "|columns|dt|index|path": 1,
+      "|index|path|values": 1,
+      "|_data|_mgr|array|obj": 1,
+      "|random": 1,
+      "": 8,
+      "|mark": 1
+    },
+    "value_value__type": {
+      "|Attribute|Call|Name": 6,
+      "|Name": 42,
+      "|Attribute|Name": 13,
+      "|Attribute|Call|Name|Subscript": 1,
+      "": 8,
+      "|Call|Name": 4,
+      "|Call": 3,
+      "|Attribute": 1
+    },
+    "func_value_value_id": {
+      "|df|expected|os|result|self": 1,
+      "|os|ser": 1,
+      "|df|self": 1,
+      "|np": 1,
+      "": 6,
+      "|pytest": 1,
+      "|self": 4,
+      "|result": 1,
+      "|os": 1
+    },
+    "N_test__type": {
+      "|Attribute|BoolOp|Call|Compare|Name|UnaryOp": 2,
+      "|BoolOp|Call|Compare|Name|UnaryOp": 2,
+      "|Compare|Name": 1,
+      "|BoolOp|Call|Compare|UnaryOp": 2,
+      "|BoolOp|Call|Compare": 2,
+      "|Compare": 9,
+      "|Call|Compare": 8,
+      "|Call|Compare|Name": 1,
+      "|Call|Compare|UnaryOp": 2,
+      "": 2,
+      "|BoolOp": 1,
+      "|BoolOp|Call": 2,
+      "|Name": 1,
+      "|Call": 1
+    },
+    "test_args_N_id": {
+      "|Series|dict": 1,
+      "|Timestamp|other|result|str": 1,
+      "|dtype": 1,
+      "": 11,
+      "|str": 1,
+      "|ExtensionArray": 1,
+      "|dict": 1
+    },
+    "test_func__type": {
+      "|Attribute|Name": 9,
+      "|Name": 1
+    },
+    "N_test_func_attr": {
+      "|all|equals|shares_memory": 1,
+      "|all|any|equals|is_|is_bool_indexer|isnan|startswith": 1,
+      "|all|any|equals": 1,
+      "|all": 1,
+      "": 2
+    },
+    "test_func_value_id": {
+      "|np|result": 1,
+      "|com|lib|mask|np": 1,
+      "|mask|np": 1,
+      "": 2
+    },
+    "value_func_value_id": {
+      "|MultiIndex|cf|idx|np|pd|tm": 1,
+      "|MultiIndex|arr|df|np|parser|pd|self|tm|warnings": 1,
+      "|np|self": 3,
+      "|df|np|pd": 1,
+      "|df|idx|np|pd|pytest|result|self|tm|ts": 1,
+      "|np": 7,
+      "|np|self|tm|warnings": 1,
+      "": 6,
+      "|np|self|tm": 1,
+      "|MultiIndex|np|pd|self": 1,
+      "|tm": 1,
+      "|df|self": 1,
+      "|self": 8,
+      "|pytest|re": 1,
+      "|MultiIndex|pa|pd": 1,
+      "|np|warnings": 1,
+      "|df": 1,
+      "|df|pd": 1,
+      "|np|tm": 1,
+      "|labels|self|values": 1
+    },
+    "keywords_N_value_id": {
+      "|copy|dtype|kwargs|mi|object": 1,
+      "|dtype|object": 1,
+      "|tz": 2,
+      "|codes|data|dtype|freq|kwargs|mi|sort": 1,
+      "|match|msg": 1,
+      "|msg": 2,
+      "|dtype": 1,
+      "|engine|kwargs|object": 1,
+      "|object": 2,
+      "": 23,
+      "|kwargs": 1,
+      "|copy": 1
+    },
+    "body_N_value_id": {
+      "|df|mi": 1,
+      "|arg|arr|data|df|result|value|x": 1,
+      "|NotImplemented|result|self": 1,
+      "|arr|res|val": 1,
+      "|result|val": 1,
+      "": 9
+    },
+    "body_N_name": {
+      "|__getattr__|test_validation": 1
+    },
+    "N_args_vararg_arg": {
+      "|args": 2
+    },
+    "args_N_value_id": {
+      "|args|np": 1,
+      "": 15,
+      "|pa": 1,
+      "|np|other|self": 1,
+      "|args|expected|np|pd|rng|self|tdi|ts": 1,
+      "|np|self": 4,
+      "|self": 14,
+      "|other|self": 1,
+      "|np|result|self": 1,
+      "|_shared_docs": 1,
+      "|expected|self": 1
+    },
+    "value_keywords_N_arg": {
+      "|dtype|errors|index|method|validator": 1,
+      "|dtype|tz": 1,
+      "|axis|columns|copy|dtype|freq|how|index|name|names|skipna|unit": 1,
+      "|axis|dtype|errors|freq|skipna|sort": 1,
+      "|axis|dtype|freq|stacklevel": 1,
+      "|dtype|periods": 1,
+      "|axis|dtype|names": 1,
+      "|freq|size": 1,
+      "|name|names": 1,
+      "|copy": 2,
+      "": 18,
+      "|bound": 1,
+      "|stacklevel": 1,
+      "|columns|dtype": 1
+    },
+    "keywords_N_value_n": {
+      "False|True|100||D|UTC|boolean": 1,
+      "": 17,
+      "False||int64": 1,
+      "1|2|": 1,
+      "False|True|4|5||s": 1,
+      "0|True|2|5||foo": 1,
+      "|B": 1,
+      "False|True|": 5,
+      "False|": 8,
+      "|ignore": 1,
+      "|a": 1,
+      "1|": 1,
+      "0|": 1,
+      "2|": 1
+    },
+    "keywords_N_value_s": {
+      "False|True|100||D|UTC|boolean": 1,
+      "": 1,
+      "|ignore": 1,
+      "False|True|": 1
+    },
+    "keywords_N_value_value": {
+      "False|True|100||D|UTC|boolean": 1,
+      "": 1,
+      "|ignore": 1,
+      "False|True|": 1
+    },
+    "defaults_N__type": {
+      "|Constant": 2
+    },
+    "value_op__type": {
+      "|Add|And|BitOr|Div|Mult|Or|USub": 1,
+      "|Add|BitOr|Mult|Not|Or|Sub|USub": 1,
+      "": 3,
+      "|Add|Mult|Or|Pow": 1,
+      "|USub": 4,
+      "|Add|Sub": 1,
+      "|Add": 2,
+      "|Add|Mult": 1,
+      "|Add|Or|USub": 1
+    },
+    "values_N__type": {
+      "|Call|Compare|Constant|FormattedValue|List": 1,
+      "|Call|Constant|List|Name": 2,
+      "|Attribute|BoolOp|Call|Compare|Constant|Dict|List|Name": 1,
+      "|BoolOp|Call|Compare|Name|UnaryOp": 1,
+      "|Constant": 9,
+      "|Attribute|Constant|Name": 1,
+      "|Constant|FormattedValue": 3,
+      "|Call|Compare|Name|UnaryOp": 1,
+      "|BoolOp|Call|Name": 1,
+      "|Name": 1,
+      "|Call|Compare|UnaryOp": 2,
+      "|Constant|FormattedValue|Name": 2,
+      "": 4,
+      "|Compare|Name": 1,
+      "|Constant|List": 2,
+      "|Call|Compare": 3,
+      "|Compare": 5,
+      "|Call": 2,
+      "|FormattedValue": 2,
+      "|List": 1
+    },
+    "value_values_N_id": {
+      "": 4
+    },
+    "N_value_func_id": {
+      "|DataFrame|PeriodIndex|Series|getattr|tuple|zip": 1,
+      "|DataFrame|DatetimeIndex|Index|MultiIndex|Series|TimedeltaIndex|len|list|repr|tuple": 1,
+      "|DataFrame|Series|Timedelta|date_range|find_common_type|len": 1,
+      "|Index|date_range|find_stack_level|range": 1,
+      "|find_stack_level|list": 1,
+      "|op": 1,
+      "": 24,
+      "|Index|range": 1,
+      "|DatetimeIndex|getattr|list": 1,
+      "|NegativeInfinityType": 1,
+      "|find_stack_level": 1,
+      "|len": 2,
+      "|repr|type": 1
+    },
+    "N_func__type": {
+      "|Attribute|Name": 35,
+      "|Name": 17,
+      "|Attribute": 11,
+      "": 6
+    },
+    "args_N_func_attr": {
+      "|array|reshape": 1,
+      "|array|astype|ones|random|reshape|shift": 1,
+      "": 16,
+      "|copy": 1,
+      "|array": 1,
+      "|unique": 1,
+      "|view": 1
+    },
+    "N_func_value_id": {
+      "|np": 10,
+      "|np|pd": 1,
+      "|pytest|td": 1,
+      "|df|idx|np|pd|self": 1,
+      "|np|pytest": 1,
+      "|ax|pa|self": 1,
+      "|np|pa": 1,
+      "|np|pd|pytest": 1,
+      "": 5,
+      "|pd": 1,
+      "|datetime|np|pa": 1,
+      "|com|self": 1,
+      "|pa|pd": 1,
+      "|lib": 1
+    },
+    "comparators_N__type": {
+      "|Attribute|Call|Constant|Name": 1,
+      "|Constant": 18,
+      "|Attribute|Call|Constant|List|Name": 1,
+      "|Attribute|Call|Constant|Name|Subscript": 2,
+      "|Attribute|Subscript": 1,
+      "|Constant|List|Name": 1,
+      "|Attribute": 4,
+      "|Call|Constant|Name|UnaryOp": 1,
+      "|Attribute|Constant": 4,
+      "": 7,
+      "|Attribute|Call|Constant|List|Name|Tuple": 1,
+      "|Constant|Name": 1,
+      "|Attribute|Constant|Name": 2,
+      "|Constant|Name|UnaryOp": 1,
+      "|Constant|List": 3,
+      "|Call|Constant": 1,
+      "|Attribute|Constant|List|Name": 1,
+      "|Call|Constant|Name": 1,
+      "|Name": 1
+    },
+    "test_left__type": {
+      "|Attribute|Call|Name|Subscript": 4,
+      "|Attribute|Call|Name": 2,
+      "|Attribute|Name": 7,
+      "|Name": 7,
+      "|Call|Name": 1,
+      "|Attribute": 1
+    },
+    "N_test_left_id": {
+      "|dtype|name|result": 1,
+      "|axis|item|match|res|result|val": 1,
+      "|axis|dtype_backend|frame_or_series|key|op|res|result": 1,
+      "|op": 1,
+      "": 11,
+      "|name": 3,
+      "|dtype": 1
+    },
+    "ops_N__type": {
+      "|Eq|In|Is|IsNot|NotEq": 1,
+      "|In|IsNot": 3,
+      "|Eq|Gt|In|Is|IsNot|Lt|NotEq|NotIn": 1,
+      "|Eq|Gt|IsNot|Lt|LtE|NotEq": 1,
+      "|Eq|Is": 2,
+      "|Eq|Is|IsNot|NotEq|NotIn": 1,
+      "|Eq|In": 3,
+      "|IsNot": 3,
+      "|Eq|GtE|In|Is|IsNot|NotEq": 1,
+      "|Eq|Gt|In|Is|IsNot|NotEq": 1,
+      "|Eq": 15,
+      "|Eq|In|NotIn": 1,
+      "|Eq|In|Is": 1,
+      "|Eq|In|Is|IsNot": 1,
+      "|Is": 1,
+      "|Eq|In|IsNot": 2,
+      "": 6
+    },
+    "value_args_N_n": {
+      "0|2||pyarrow": 1,
+      "0|True|2|": 1,
+      "": 25,
+      "0|2|10|": 1,
+      "2|": 3,
+      "10||1/1/2000": 1,
+      "0|1|": 1,
+      "1|2|": 1,
+      "0|": 1
+    },
+    "value_args_N_s": {
+      "0|2||pyarrow": 1,
+      "0|True|2|": 1,
+      "": 8
+    },
+    "value_args_N_value": {
+      "0|2||pyarrow": 1,
+      "0|True|2|": 1,
+      "": 8
+    },
+    "N_args_N_attr": {
+      "": 9,
+      "|index|values": 1,
+      "|dtype|index|ndarray": 1,
+      "|dtype": 2
+    },
+    "args_N_func_id": {
+      "|StringIO|list|range": 1,
+      "|DataFrame|StringIO|len|list|map|range|repr": 1,
+      "": 7,
+      "|len|zip": 1,
+      "|list": 1,
+      "|slice": 1,
+      "|len": 2,
+      "|reversed": 1,
+      "|range": 1,
+      "|type": 1
+    },
+    "N_args_N_id": {
+      "|data": 1,
+      "": 29,
+      "|arr|data|self": 1,
+      "|other|ts": 1,
+      "|self": 2,
+      "|ABCSeries|Series|self": 1,
+      "|arr": 1,
+      "|bool|dict": 1,
+      "|dtype": 1
+    },
+    "N_keywords_N_arg": {
+      "|dtype": 5,
+      "": 6,
+      "|ids|params|reason": 1,
+      "|dtype|freq|periods|tz": 1,
+      "|days|dtype|marks": 1,
+      "|dtype|tz": 1,
+      "|ids|klass|params": 1,
+      "|columns|dtype": 2,
+      "|dtype|marks": 1,
+      "|dtype|freq": 1,
+      "|deep": 1,
+      "|tz": 1
+    },
+    "args_defaults_N_n": {
+      "False|True||raise": 1,
+      "False|True|": 1,
+      "0|": 1
+    },
+    "keys_N__type": {
+      "|Constant": 8,
+      "": 2
+    },
+    "N_keys_N_n": {
+      "|A|B|C|a|b": 1,
+      "1||B|a": 1,
+      "": 10,
+      "1|": 2,
+      "|b": 1
+    },
+    "values_N_func_id": {
+      "|Series|range": 1,
+      "|Series|date_range|list|range": 1,
+      "|isinstance": 3,
+      "|all|isinstance|using_copy_on_write": 1,
+      "": 6,
+      "|isinstance|using_copy_on_write": 1
+    },
+    "values_N_func_attr": {
+      "|array": 2,
+      "": 4,
+      "|any": 1,
+      "|all": 1
+    },
+    "keywords_N_value_attr": {
+      "": 9,
+      "|dtype": 1,
+      "|columns|dtype|int64": 1,
+      "|bool_|float64|int64|nan": 1,
+      "|float64|intp": 1,
+      "|float64": 1,
+      "|int64": 1
+    },
+    "N_op__type": {
+      "|Mult": 4,
+      "|USub": 7,
+      "|Mult|USub": 1,
+      "|Add|Div|Mult|USub": 1,
+      "": 13,
+      "|Add|Mult|Pow": 1,
+      "|Add|Sub": 2,
+      "|Not": 4,
+      "|Not|Or": 2,
+      "|Add": 4,
+      "|Add|USub": 2,
+      "|And|Not": 2,
+      "|Mult|Sub|USub": 1
+    },
+    "N_right__type": {
+      "": 3,
+      "|Call|Constant|Name": 2,
+      "|Attribute|BinOp|Constant|List": 1,
+      "|Constant": 5,
+      "|BinOp|Constant": 1,
+      "|Constant|Name": 1
+    },
+    "orelse_N__type": {
+      "|Assert|Assign|Expr|If|Return|With": 1,
+      "|Assert|Assign|Expr|For|If|Return": 1,
+      "": 4,
+      "|Assign|Expr|If|Return": 2,
+      "|Assign|If|Return": 1,
+      "|Assert|If|Raise|Return": 1,
+      "|Assign|If": 5,
+      "|If": 6,
+      "|Assign|If|Raise": 1,
+      "|Assign": 5,
+      "|If|Raise": 1
+    },
+    "test_args_N_attr": {
+      "|dtype": 4,
+      "|dtype|tz": 1,
+      "": 2
+    },
+    "N_test_func_id": {
+      "|all|isinstance": 2,
+      "|hasattr|isinstance": 1,
+      "|isinstance": 8,
+      "|is_integer_dtype|isinstance": 1,
+      "|is_bool_dtype": 1
+    },
+    "value_keys_N_n": {
+      "": 5,
+      "|C|col2": 1
+    },
+    "N_comparators_N_n": {
+      "0|": 3,
+      "0|1|2|": 1,
+      "1|": 3,
+      "0|2|": 1,
+      "": 5
+    },
+    "N_left__type": {
+      "|Call|Name": 2,
+      "|Attribute|Constant": 2,
+      "|BinOp|Call|Constant|List|Name": 1,
+      "|Name|Subscript": 1,
+      "": 11,
+      "|Name": 7,
+      "|Attribute|BinOp|Constant|List": 1,
+      "|Attribute|Name": 4,
+      "|Attribute|Call|Constant|Name": 1,
+      "|Attribute|Call|Name": 3,
+      "|Attribute": 2,
+      "|Call": 1,
+      "|Constant": 1
+    },
+    "left_func__type": {
+      "|Attribute": 1,
+      "|Attribute|Name": 11,
+      "|Name": 2,
+      "": 1
+    },
+    "N_left_func_attr": {
+      "": 2
+    },
+    "N_args_N_n": {
+      "": 27,
+      "|dtype|indexer": 1,
+      "|freq|other": 1,
+      "0|1|3|4|5|": 1,
+      "3|": 2,
+      "5|": 1,
+      "|2000-01-02": 1,
+      "|ABCD": 1,
+      "1|": 1,
+      "0|": 1,
+      "10|": 1
+    },
+    "N_slice__type": {
+      "|Constant|Name|Slice|Tuple": 1,
+      "|Constant|Name|Tuple": 1,
+      "|Constant|Name|Slice": 4,
+      "|Constant|Name": 1,
+      "|Name": 6,
+      "|Constant|Tuple": 1,
+      "": 9,
+      "|Attribute|Name": 1,
+      "|Slice": 1,
+      "|Constant|Slice": 2,
+      "|Constant": 2
+    },
+    "targets_N_slice_n": {
+      "0|": 3,
+      "": 2
+    },
+    "targets_N_value_id": {
+      "|arr|df|expected|result|self": 1,
+      "|arr|expected|ser": 1,
+      "|self": 2,
+      "|expected|kwargs|result|self": 1,
+      "": 9
+    },
+    "value_slice__type": {
+      "|Constant|List|Slice": 1,
+      "|Constant|List|Name|Slice": 1,
+      "|Constant|Slice": 2,
+      "|Constant|List|Name|Slice|UnaryOp": 1,
+      "": 4,
+      "|Name|Tuple": 1,
+      "|Slice": 3,
+      "|Tuple": 1,
+      "|Constant|Name|Slice|Tuple": 1,
+      "|Slice|Tuple|UnaryOp": 1,
+      "|Constant|Name": 2,
+      "|Name": 4,
+      "|Constant": 2
+    },
+    "func_value_slice_n": {
+      "0||A": 1,
+      "0|": 1
+    },
+    "body_N_test_id": {
+      "|as_series|using_copy_on_write": 1,
+      "|using_copy_on_write|using_infer_string": 1,
+      "": 1,
+      "|TYPE_CHECKING": 1
+    },
+    "elts_N__type": {
+      "|Call|Constant|List|Name": 1,
+      "|Attribute|Call|Constant|List|Tuple": 1,
+      "|Attribute|Constant": 3,
+      "|Attribute|Call|Constant|List|Name|Tuple": 1,
+      "|Call|Constant": 5,
+      "|Attribute|Call|Constant|List|Name": 1,
+      "|Attribute|Call|Constant|Tuple": 1,
+      "|Attribute|Call|Constant|List": 1,
+      "|Attribute|Constant|UnaryOp": 1,
+      "|Constant": 32,
+      "|Constant|Name": 4,
+      "|Attribute|Call|Constant|Name|Tuple": 1,
+      "|Call|Constant|List|Tuple": 1,
+      "": 23,
+      "|Name": 4,
+      "|Attribute|Constant|Name": 1,
+      "|Constant|List": 2,
+      "|Attribute|Call|Constant": 1,
+      "|Constant|Tuple": 1,
+      "|Attribute|Constant|Tuple": 1,
+      "|Call|Constant|Name": 2,
+      "|List": 1,
+      "|Call": 3,
+      "|Call|Name": 1
+    },
+    "N_elts_N_n": {
+      "False|True|3|": 1,
+      "False|1|": 1,
+      "False||M": 1,
+      "2|3|5|": 1,
+      "": 42,
+      "1|4||a": 1,
+      "|u": 1,
+      "3|4|": 1,
+      "True|2||timedelta64[ns]": 1,
+      "0.0|3|4|6|": 1,
+      "1|": 4,
+      "|2000": 1,
+      "1|3|": 1,
+      "False|2|": 1,
+      "2.0|3|4|": 1,
+      "3|": 2,
+      "0|": 1,
+      "False|": 1,
+      "0|2|": 1
+    },
+    "list_N__type": {
+      "|Attribute|Call|Name": 1,
+      "|Call|Name": 1
+    },
+    "N_elts_N_attr": {
+      "": 5,
+      "|inf|nan": 1,
+      "|nan": 4,
+      "|NaT|nan": 1,
+      "|no_default": 1,
+      "|dtype": 1,
+      "|array|float64": 1
+    },
+    "elts_N_value_id": {
+      "|np": 9,
+      "|np|pd|self": 1,
+      "|np|pd": 1,
+      "|self": 1,
+      "": 2
+    },
+    "list_N_func_attr": {
+      "|fixture|parametrize": 1,
+      "|filterwarnings|parametrize": 1
+    },
+    "body_N_value_n": {
+      "0|2|100|": 1,
+      "0|True|": 1,
+      "False|True|": 1,
+      "": 8,
+      "False|1|": 1,
+      "1|": 1,
+      "False||b": 1,
+      "True|": 1,
+      "False|": 1
+    },
+    "body_N_value_s": {
+      "0|2|100|": 1,
+      "0|True|": 1,
+      "False|True|": 1,
+      "": 5,
+      "False|1|": 1,
+      "1|": 1,
+      "True|": 1,
+      "False|": 1
+    },
+    "body_N_value_value": {
+      "0|2|100|": 1,
+      "0|True|": 1,
+      "False|True|": 1,
+      "": 5,
+      "False|1|": 1,
+      "1|": 1,
+      "True|": 1,
+      "False|": 1
+    },
+    "body_N_value_attr": {
+      "|NA|index|param|values": 1,
+      "|_data|index|nan|nbytes|values": 1,
+      "|name|nan": 1,
+      "": 6,
+      "|_ndarray|_values": 1,
+      "|dtype": 1
+    },
+    "N_value_value_id": {
+      "|pd|request|ser": 1,
+      "|np|pd|self": 1,
+      "|np|self": 2,
+      "|arr|data|df|np|self|values": 1,
+      "|result|self": 1,
+      "|self": 12,
+      "|df|index|np|self": 1,
+      "|arr|self": 1,
+      "|df|expected|self": 1,
+      "": 11,
+      "|np": 6,
+      "|freq|self": 1,
+      "|values": 1,
+      "|df": 1,
+      "|NpyDatetimeUnit": 1
+    },
+    "dims_N__type": {
+      "": 16,
+      "|Constant": 12,
+      "|Attribute|Call|Constant|List": 1,
+      "|Call|Constant|List|Tuple": 1,
+      "|Constant|Name": 4,
+      "|Constant|List": 1,
+      "|Name|Subscript": 1,
+      "|Call|Constant|Name": 2,
+      "|Constant|Name|Subscript": 2,
+      "|Name": 8,
+      "|Call|Constant": 1,
+      "|Attribute|Name": 2,
+      "|List": 1,
+      "|Attribute": 2
+    },
+    "value_elts_N_attr": {
+      "|NaT|nan": 1,
+      "|nan": 1,
+      "": 1
+    },
+    "value_value_func_attr": {
+      "|split": 1,
+      "": 6,
+      "|nonzero": 1
+    },
+    "N_dims_N_n": {
+      "False|1|": 1,
+      "": 14,
+      "2|3|5|": 1,
+      "0|True||timedelta64[ns]": 1,
+      "4|5|": 1,
+      "3|": 1
+    },
+    "dims_N_func_id": {
+      "|DataFrame": 1,
+      "|DataFrame|Series": 1,
+      "": 1,
+      "|len": 1
+    },
+    "elts_N_func_id": {
+      "|DataFrame|datetime": 1,
+      "|Timedelta": 1,
+      "|DataFrame|Timestamp|datetime": 1,
+      "|Index|Timedelta|len": 1,
+      "|DataFrame|Series": 1,
+      "": 6,
+      "|Timestamp": 1,
+      "|range": 1,
+      "|datetime": 1,
+      "|slice": 1
+    },
+    "N_elts_N_id": {
+      "|Index|object": 1,
+      "|data|df1": 1,
+      "": 7,
+      "|NA|right": 1
+    },
+    "N_body_N_name": {
+      "|__call__|read": 1,
+      "": 2
+    },
+    "context_expr__type": {
+      "|Call": 2
+    },
+    "expr_args_N_id": {
+      "|AttributeError|FutureWarning|KeyError|TypeError|ValueError|warn_copy_on_write": 1,
+      "|FutureWarning|NotImplementedError|TypeError|path": 1,
+      "|AssertionError|FutureWarning|KeyError|NotImplementedError|TypeError|ValueError|warn_copy_on_write": 1,
+      "": 2,
+      "|ValueError": 1
+    },
+    "expr_func__type": {
+      "|Attribute|Name": 3,
+      "|Attribute": 2
+    },
+    "context_expr_func_attr": {
+      "|assert_cow_warning|assert_produces_warning|catch_warnings|errstate|option_context|raises|temp_setattr": 1,
+      "|assert_produces_warning|catch_warnings|raises": 1,
+      "|assert_cow_warning|assert_produces_warning|raises": 1,
+      "|raises": 2,
+      "": 1
+    },
+    "expr_func_value_id": {
+      "|com|np|pd|pytest|tm|warnings": 1,
+      "|pytest|tm|warnings": 1,
+      "|pytest|tm": 1
+    },
+    "expr_keywords_N_arg": {
+      "|match": 3
+    },
+    "func_value_func_attr": {
+      "|arange|default_rng|set_index": 1,
+      "|arange|default_rng": 1,
+      "|default_rng|integers": 1,
+      "": 4,
+      "|concat": 1
+    },
+    "elts_N_func_attr": {
+      "|param": 1,
+      "|array|astype": 1,
+      "|array": 3,
+      "|array|param": 1,
+      "|Period|astype": 1,
+      "": 1
+    },
+    "N_dims_N_attr": {
+      "": 2,
+      "|nan": 1,
+      "|ndarray": 1
+    },
+    "dims_N_value_id": {
+      "|np": 4,
+      "|list|type": 1,
+      "": 3,
+      "|self": 1
+    },
+    "N_operand__type": {
+      "|Constant": 3,
+      "|Constant|Name": 1,
+      "|Attribute|Call|Name": 1,
+      "|Call|Name": 4,
+      "|Call|Constant": 1,
+      "": 4
+    },
+    "N_dims_N_id": {
+      "|_|right": 1,
+      "": 14,
+      "|object": 1
+    },
+    "N_ctx__type": {
+      "|Del|Store": 1,
+      "|Store": 3
+    },
+    "N_test_left_attr": {
+      "|dtype|freq|kind|name|ndim|shape": 1,
+      "|dtype|freq|name|ndim": 1,
+      "|dtype|param": 1,
+      "": 3,
+      "|storage|type": 1,
+      "|kind": 1,
+      "|type": 1,
+      "|ndim": 2
+    },
+    "left_value__type": {
+      "|Attribute|Call|Name|Subscript": 1,
+      "|Name": 10,
+      "|Call|Name": 1,
+      "|Attribute": 2,
+      "|Attribute|Name": 7,
+      "|Attribute|Call|Name": 3,
+      "": 2
+    },
+    "test_left_value_attr": {
+      "|_ndarray|dtype|iloc": 1,
+      "|iloc": 2,
+      "": 2
+    },
+    "left_value_value_attr": {
+      "|dtype": 1
+    },
+    "value_value_value_id": {
+      "": 5,
+      "|df|pd|self": 1,
+      "|self": 5,
+      "|df|self": 2,
+      "|ser": 1
+    },
+    "right_func__type": {
+      "|Attribute|Name": 4,
+      "|Name": 2
+    },
+    "N_right_func_id": {
+      "": 1
+    },
+    "N_value_slice_n": {
+      "0|": 2,
+      "0|1|": 4,
+      "": 1
+    },
+    "slice_upper__type": {
+      "|Constant|Name|UnaryOp": 1,
+      "|Constant": 6,
+      "|Constant|Name": 1,
+      "": 2
+    },
+    "N_slice_upper_n": {
+      "": 2
+    },
+    "N_iter__type": {
+      "|Call|List|Name": 2,
+      "|Attribute|Call|Name": 4,
+      "|Name": 4,
+      "|Call": 2,
+      "|Call|Name": 7,
+      "|Attribute|Name": 1,
+      "|Attribute|Call|Name|Subscript": 1
+    },
+    "iter_elts_N_n": {
+      "": 2
+    },
+    "N_target__type": {
+      "|Name|Tuple": 7,
+      "|Name": 10,
+      "|Tuple": 1,
+      "": 1
+    },
+    "body_N_target_id": {
+      "|expected|i|k|name|other": 1,
+      "|i|obj|offset|s|val": 1,
+      "": 5,
+      "|i": 1
+    },
+    "body_N_test_attr": {
+      "|_hasna|empty|is_monotonic_increasing": 1,
+      "": 3
+    },
+    "test_value__type": {
+      "|Attribute|Call|Name": 1,
+      "|Name": 3
+    },
+    "N_test_value_id": {
+      "|res|self": 1,
+      "|self": 1,
+      "": 2
+    },
+    "slice_op__type": {
+      "|Invert|USub": 1,
+      "|USub": 1,
+      "": 2
+    },
+    "slice_operand__type": {
+      "|Call|Constant|Name": 1
+    },
+    "value_args_N_attr": {
+      "|_data|columns|nan|value|values": 1,
+      "|_ndarray|dtype|index": 1,
+      "|_ndarray|values": 1,
+      "": 17,
+      "|dtype|nan": 1,
+      "|dtype": 1,
+      "|shape": 1
+    },
+    "test_comparators_N_id": {
+      "|exp|expected|result": 1,
+      "|DataFrame|expected": 1,
+      "|arr|expected": 1,
+      "": 4
+    },
+    "comparators_N_func_id": {
+      "|len": 3,
+      "|Timestamp|getattr|len|str": 1,
+      "|Timedelta|len": 1,
+      "|str": 1,
+      "": 1
+    },
+    "left_args_N_id": {
+      "|other": 1,
+      "|res|result|self": 1,
+      "|result": 1,
+      "": 7,
+      "|keys": 1
+    },
+    "test_left_func_id": {
+      "|len": 4,
+      "|len|str|type": 1
+    },
+    "N_exc__type": {
+      "|Call|Name": 2,
+      "|Call": 2
+    },
+    "body_N_exc_id": {
+      "|NotImplementedError": 2
+    },
+    "decorator_list_N_attr": {
+      "|fixture|setter": 1,
+      "|fixture|single_cpu": 1
+    },
+    "list_N_value_id": {
+      "|pytest": 2
+    },
+    "N_returns__type": {
+      "|BinOp|Constant|Name|Subscript": 1,
+      "|Constant|Name|Subscript": 1,
+      "|Constant|Name": 1
+    },
+    "body_N_returns_id": {
+      "|DataFrame|bool|int|str": 1,
+      "|bool|str": 1,
+      "|int": 1
+    },
+    "decorator_list_N_id": {
+      "|classmethod|final|property": 1,
+      "|contextmanager|overload": 1
+    },
+    "N_comparators_N_attr": {
+      "": 5,
+      "|dtype|no_default": 1,
+      "|no_default": 1
+    },
+    "args_N_left_id": {
+      "": 4,
+      "|index": 1
+    },
+    "value_body__type": {
+      "|Attribute|Call|Constant|Name|Subscript": 1,
+      "|Call": 3,
+      "|Constant|Name": 1,
+      "|Call|Name": 1,
+      "": 1
+    },
+    "body_value__type": {
+      "|Attribute|Name": 1
+    },
+    "value_body_value_attr": {
+      "": 1
+    },
+    "body_value_value_id": {
+      "": 1
+    },
+    "value_orelse__type": {
+      "|Call|Constant|Name": 1,
+      "|Constant": 1,
+      "|Name": 2,
+      "": 1
+    },
+    "N_value_orelse_id": {
+      "": 3
+    },
+    "value_test__type": {
+      "|Compare|Name": 1,
+      "|Compare": 1,
+      "|Call|Compare|Name": 1
+    },
+    "test_comparators_N_n": {
+      "0|": 1,
+      "False|1|2|3||object|pyarrow": 1,
+      "0|1|": 2,
+      "0|True|2||first": 1,
+      "0|1|2|": 1,
+      "": 9,
+      "True|": 1,
+      "1|": 1
+    },
+    "value_test_left_attr": {
+      "|ndim": 1
+    },
+    "test_left_value_id": {
+      "": 4,
+      "|action|res|result|self|tda": 1,
+      "|res|self": 1,
+      "|arr|request|result": 1,
+      "|action|self": 1,
+      "|self": 1
+    },
+    "args_N_slice_n": {
+      "0|1|": 1,
+      "0|": 3
+    },
+    "slice_step__type": {
+      "|Constant|UnaryOp": 1,
+      "": 1
+    },
+    "N_value_value_attr": {
+      "|_ndarray|iloc": 1,
+      "": 11,
+      "|iloc|loc": 1,
+      "|loc": 1
+    },
+    "args_N_value_attr": {
+      "|iloc": 1,
+      "|dtype|index": 1,
+      "": 10,
+      "|obj": 2
+    },
+    "bases_N__type": {
+      "|Attribute|Name|Subscript": 1,
+      "|Attribute|Name": 1
+    },
+    "N_bases_N_id": {
+      "|ASTNode": 1,
+      "": 2
+    },
+    "value_elts_N_n": {
+      "2||B|a|b": 1,
+      "": 7,
+      "False|1|": 1,
+      "0|0.3|1|": 1,
+      "False|": 1,
+      "0|": 2,
+      "1|": 1
+    },
+    "value_value_func_id": {
+      "|DataFrame|Timestamp": 1,
+      "": 2
+    },
+    "slice_elts_N_n": {
+      "": 3,
+      "0|1|": 1
+    },
+    "left_elts_N_n": {
+      "1|": 1,
+      "True|": 1
+    },
+    "args_N_right_n": {
+      "1|3|": 1,
+      "": 2
+    },
+    "N_targets_N_attr": {
+      "|_mgr|columns|tz": 1,
+      "|columns|index|value": 1,
+      "|__doc__|columns|writeable": 1,
+      "": 4
+    },
+    "func_value_func_id": {
+      "|DataFrame|Series|super": 1,
+      "": 7,
+      "|DataFrame|super": 1
+    },
+    "dims_N_func_attr": {
+      "": 2,
+      "|array": 1
+    },
+    "value_left__type": {
+      "|Attribute|BinOp|Call|Constant|Name|Subscript|Tuple": 1,
+      "|Attribute|BinOp|Call|List|Name": 1,
+      "|Attribute|Constant|Name": 1,
+      "|Attribute|BinOp|Call|Name": 1,
+      "|Call": 3,
+      "|Call|Name": 1,
+      "": 2,
+      "|Name": 1,
+      "|Attribute|Name": 1
+    },
+    "N_value_left_attr": {
+      "|index|ndim": 1,
+      "|_hidden_attrs": 1,
+      "": 2
+    },
+    "value_left_value_id": {
+      "|df|self": 1,
+      "|PandasObject": 1,
+      "|self": 1,
+      "": 1
+    },
+    "value_right__type": {
+      "|Attribute|BinOp|Call|Constant|List|Name|Subscript": 1,
+      "|Attribute|BinOp|Call|Constant|Name": 1,
+      "|Constant": 1,
+      "": 1,
+      "|Call|Name": 1,
+      "|Call|Constant": 1,
+      "|Call|Constant|List|Name": 1,
+      "|Name": 1
+    },
+    "right_args_N_n": {
+      "": 1,
+      "|i8": 1
+    },
+    "value_right_func_attr": {
+      "|as_unit": 1,
+      "": 1
+    },
+    "right_func_value_id": {
+      "|np|offsets|pd": 1,
+      "": 1
+    },
+    "test_left_func_attr": {
+      "": 4
+    },
+    "left_func_value_id": {
+      "|np|result": 1,
+      "": 3,
+      "|np|self": 1
+    },
+    "left_slice__type": {
+      "|Constant|Name|Slice|Tuple": 1,
+      "|Constant|Name": 1,
+      "|Constant": 4,
+      "|Attribute|Name": 2,
+      "|Tuple": 1,
+      "": 1
+    },
+    "test_left_slice_n": {
+      "0|1|": 3,
+      "0|": 1
+    },
+    "slice_dims_N_n": {
+      "0|1|": 2,
+      "|...": 3,
+      "|right": 1,
+      "|D": 1,
+      "": 1,
+      "0|": 1
+    },
+    "left_value_value_id": {
+      "|df|result|self": 1,
+      "": 3,
+      "|indexer|self": 1,
+      "|result": 1,
+      "|self": 1
+    },
+    "left_elts_N_id": {
+      "": 1
+    },
+    "right_slice__type": {
+      "|Slice": 1,
+      "": 1,
+      "|Name": 1
+    },
+    "right_value__type": {
+      "|Name": 4
+    },
+    "left_value_func_attr": {
+      "|iinfo": 1,
+      "": 2
+    },
+    "right_elts_N_id": {
+      "": 1
+    },
+    "upper_op__type": {
+      "": 2,
+      "|USub": 1
+    },
+    "N_value_left_id": {
+      "": 5
+    },
+    "right_left__type": {
+      "|Name": 3,
+      "": 3,
+      "|List": 1
+    },
+    "value_right_left_id": {
+      "|offset": 1,
+      "": 1
+    },
+    "right_op__type": {
+      "|Add|Mult": 1,
+      "|Sub": 1,
+      "|Mult": 1
+    },
+    "right_right__type": {
+      "|Constant|Name": 1,
+      "": 1,
+      "|Name": 1
+    },
+    "value_right_right_n": {
+      "": 1,
+      "1|": 1
+    },
+    "args_N_slice_id": {
+      "": 3,
+      "|key": 1
+    },
+    "elts_N_value_attr": {
+      "": 3
+    },
+    "value_value_value_attr": {
+      "": 5
+    },
+    "N_left_value_attr": {
+      "": 1,
+      "|dtype": 1
+    },
+    "N_values_N_id": {
+      "": 3,
+      "|copy": 1
+    },
+    "comparators_N_func_attr": {
+      "|dtype": 2,
+      "": 2
+    },
+    "elts_N_right_n": {
+      "": 2
+    },
+    "targets_N_value_attr": {
+      "|flags": 1,
+      "|axes|iloc|loc": 1,
+      "|iloc|loc": 1,
+      "|flags|iloc|loc": 1
+    },
+    "func_value_value_attr": {
+      "|iloc|obj": 1,
+      "": 3,
+      "|iloc|loc": 1
+    },
+    "iter_args_N_n": {
+      "": 4,
+      "10|": 2
+    },
+    "iter_func__type": {
+      "|Name": 4,
+      "|Attribute|Name": 4,
+      "": 1,
+      "|Attribute": 1
+    },
+    "N_iter_func_id": {
+      "|enumerate|range": 3,
+      "|enumerate|range|zip": 1,
+      "|range|zip": 1,
+      "|range": 4
+    },
+    "body_N_iter_id": {
+      "|axes": 1,
+      "": 3
+    },
+    "left_args_N_attr": {
+      "": 5
+    },
+    "test_op__type": {
+      "|And|Not|Or": 3,
+      "|And|Not": 8,
+      "|And": 3,
+      "|And|Or": 1,
+      "": 1
+    },
+    "test_operand__type": {
+      "|Attribute|Call|Compare|Name": 1,
+      "|Attribute|Call|Name": 2,
+      "|Call|Name": 2,
+      "|Call": 3
+    },
+    "N_test_operand_id": {
+      "": 6
+    },
+    "N_body__type": {
+      "|Attribute|Call": 1,
+      "|Call|Constant": 1,
+      "": 1,
+      "|Constant|Name": 1
+    },
+    "body_func__type": {
+      "|Attribute|Name": 3
+    },
+    "N_upper__type": {
+      "|Constant": 1
+    },
+    "dims_N_upper_n": {
+      "5|": 1
+    },
+    "N_lower__type": {
+      "|Constant": 1
+    },
+    "values_N_value_id": {
+      "|unit": 2,
+      "": 11,
+      "|key": 1,
+      "|self|unit": 1,
+      "|self": 1,
+      "|_fname": 1,
+      "|how": 1
+    },
+    "N_value_right_attr": {
+      "|nan": 1,
+      "": 1
+    },
+    "value_right_value_id": {
+      "|np|self": 1,
+      "": 1
+    },
+    "N_value_body_id": {
+      "": 2,
+      "|data|self": 1
+    },
+    "left_args_N_n": {
+      "": 4,
+      "5|": 1
+    },
+    "test_args_N_n": {
+      "": 4
+    },
+    "operand_args_N_n": {
+      "": 4
+    },
+    "operand_func__type": {
+      "|Attribute|Name": 7,
+      "|Name": 4
+    },
+    "test_operand_func_attr": {
+      "|shares_memory": 1,
+      "|is_": 1,
+      "": 2
+    },
+    "operand_func_value_id": {
+      "|tm": 1,
+      "|self": 1,
+      "": 2,
+      "|lib": 1
+    },
+    "test_comparators_N_attr": {
+      "|NA|value": 1,
+      "": 5,
+      "|dtype|freq|name|nan|ndim|no_default": 1,
+      "|dtype|freq|name|no_default": 1,
+      "|ndim": 1
+    },
+    "comparators_N_value_id": {
+      "|np": 1,
+      "|lib|np|self": 1,
+      "|self": 4,
+      "|expected|lib|np|self|tdi": 1,
+      "|np|self": 1,
+      "": 2
+    },
+    "args_N_left_n": {
+      "2|": 1,
+      "1.1|": 1
+    },
+    "N_comparators_N_id": {
+      "|object": 1,
+      "": 2
+    },
+    "values_N_left_id": {
+      "|method": 1,
+      "|axis": 2,
+      "": 3
+    },
+    "value_values_N_n": {
+      "1|": 1,
+      "": 8,
+      "|]": 1,
+      "False||\n": 1
+    },
+    "N_elt__type": {
+      "|Compare": 2,
+      "|Attribute|Call": 2,
+      "|Call": 4,
+      "|JoinedStr": 1,
+      "": 1
+    },
+    "elt_comparators_N_attr": {
+      "": 1
+    },
+    "generators_N_iter_id": {
+      "": 8,
+      "|index": 1
+    },
+    "generators_N_target_id": {
+      "|x": 4,
+      "|i|n|x": 1,
+      "|i|x": 3,
+      "": 1,
+      "|n|x": 1,
+      "|name": 1
+    },
+    "N_type__type": {
+      "|Name|Tuple": 1,
+      "|Name": 2,
+      "|Attribute|Name|Tuple": 1,
+      "|Tuple": 2
+    },
+    "handlers_N_type_id": {
+      "|FileNotFoundError|ImportError|TypeError|ValueError": 1,
+      "|ImportError": 1,
+      "|TypeError|ValueError": 1,
+      "|Exception": 1
+    },
+    "operand_args_N_id": {
+      "|other|str|tuple": 1,
+      "": 6,
+      "|MultiIndex": 1,
+      "|arr": 1
+    },
+    "slice_lower__type": {
+      "|Constant|Name": 2,
+      "|Constant": 2,
+      "": 2
+    },
+    "value_slice_lower_n": {
+      "1|": 1
+    },
+    "N_value_slice_id": {
+      "|i": 1,
+      "|key": 1,
+      "": 7
+    },
+    "N_value_body_n": {
+      "": 2
+    },
+    "N_value_body_s": {
+      "": 1
+    },
+    "N_value_body_value": {
+      "": 1
+    },
+    "N_value_orelse_n": {
+      "": 2
+    },
+    "N_value_orelse_s": {
+      "": 1
+    },
+    "N_value_orelse_value": {
+      "": 1
+    },
+    "exc_args_N_n": {
+      "": 20
+    },
+    "exc_args_N_s": {
+      "": 20
+    },
+    "exc_args_N_value": {
+      "": 20
+    },
+    "exc_func__type": {
+      "|Name": 8
+    },
+    "N_exc_func_id": {
+      "|TypeError|ValueError": 3,
+      "|AbstractMethodError|AssertionError|TypeError|ValueError": 1,
+      "|ValueError": 6,
+      "": 2
+    },
+    "expr_args_N_n": {
+      "1||rb": 1,
+      "": 2
+    },
+    "value_elts_N_id": {
+      "|values": 1,
+      "|right": 1,
+      "": 8
+    },
+    "value_dims_N_n": {
+      "": 4,
+      "False|": 1,
+      "0|": 1,
+      "0.3|": 1
+    },
+    "N_handlers_N_name": {
+      "": 1,
+      "|e|err": 2
+    },
+    "body_N_cause_id": {
+      "": 1,
+      "|err": 1
+    },
+    "N_annotation__type": {
+      "|BinOp|Name|Subscript": 3,
+      "|Name|Subscript": 1,
+      "|BinOp|Name": 2,
+      "|BinOp|Subscript": 1
+    },
+    "body_N_annotation_id": {
+      "|ASTNode|bool|int": 1,
+      "": 2
+    },
+    "annotation_slice__type": {
+      "|Name|Subscript|Tuple": 1,
+      "|Attribute|Name": 1,
+      "|Attribute|Name|Tuple": 1,
+      "|Name|Tuple": 2
+    },
+    "N_annotation_value_id": {
+      "|ClassVar|list|set|type": 1,
+      "|list|np": 1,
+      "|Literal|Sequence|list": 1,
+      "|list": 1
+    },
+    "slice_dims_N_id": {
+      "|str": 2,
+      "|Hashable|Index|int": 1,
+      "": 6,
+      "|Any|Index": 1
+    },
+    "returns_left__type": {
+      "|Name|Subscript": 1,
+      "|Name": 1
+    },
+    "N_returns_left_id": {
+      "|str": 1,
+      "": 1
+    },
+    "returns_right__type": {
+      "|Attribute|Constant|Name": 1
+    },
+    "returns_slice__type": {
+      "|Attribute|Name|Subscript|Tuple": 1,
+      "|Name|Tuple": 1
+    },
+    "returns_value__type": {
+      "|Attribute|Name": 1
+    },
+    "N_returns_value_id": {
+      "|np|tuple": 1,
+      "|Callable|Generator|tuple": 1
+    },
+    "N_annotation_slice_id": {
+      "|str": 1,
+      "": 3,
+      "|Index": 1
+    },
+    "args_N_annotation_id": {
+      "|DateTimeErrorChoices|bool|int|str": 1,
+      "|DataFrame|bool|int|str": 1,
+      "|ArrayLike|int": 1
+    },
+    "slice_slice__type": {
+      "|Name|Tuple": 1,
+      "": 3
+    },
+    "annotation_slice_value_id": {
+      "|Literal|tuple": 1,
+      "": 1
+    },
+    "kw_defaults_N_n": {
+      "True|": 1,
+      "False|": 1
+    },
+    "annotation_left__type": {
+      "|Name": 1,
+      "|Attribute|BinOp|Name": 1,
+      "|BinOp|Name": 2,
+      "|Name|Subscript": 1
+    },
+    "N_annotation_left_id": {
+      "": 3,
+      "|FilePath|str": 1,
+      "|int|str": 1,
+      "|IndexLabel|str": 1
+    },
+    "args_kwonlyargs_N_arg": {
+      "": 2
+    },
+    "kwonlyargs_N_annotation_id": {
+      "|bool": 2
+    },
+    "annotation_slice_slice_id": {
+      "": 1
+    },
+    "annotation_value__type": {
+      "|Attribute|Name": 2
+    },
+    "annotation_right__type": {
+      "|Attribute|Constant|Name": 1,
+      "|Attribute|Constant": 1,
+      "|Constant|Name": 1,
+      "|Constant": 2
+    },
+    "left_left__type": {
+      "|BinOp|Name": 1,
+      "|Name": 3,
+      "|BinOp": 4,
+      "": 6,
+      "|Attribute|Name": 1,
+      "|Name|Subscript": 1,
+      "|Attribute|Constant|Name": 1
+    },
+    "left_left_left_id": {
+      "": 1
+    },
+    "left_right__type": {
+      "|Name": 3,
+      "|Name|Subscript": 1,
+      "": 2,
+      "|Attribute": 1,
+      "|Constant|Name|Subscript": 1,
+      "|Attribute|Call|Constant|Name": 1,
+      "|BinOp|Constant": 1
+    },
+    "left_right_value_id": {
+      "": 2
+    },
+    "annotation_right_value_id": {
+      "|np": 1,
+      "|ReadBuffer|lib|np": 1
+    },
+    "ifs_N__type": {
+      "|Compare": 1,
+      "|Attribute|Compare": 1
+    },
+    "iter_func_value_id": {
+      "": 4,
+      "|cases": 1
+    },
+    "target_dims_N_id": {
+      "": 5,
+      "|col": 1,
+      "|expected": 1
+    },
+    "list_N_func_id": {
+      "|doc": 1,
+      "|doc|unpack_zerodim_and_defer": 1
+    },
+    "N_values_N_n": {
+      "|'": 2,
+      "|]": 1,
+      "|.pct_change are deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.": 1,
+      "": 18,
+      "2|": 1
+    },
+    "N_values_N_s": {
+      "|'": 2,
+      "|]": 1,
+      "|.pct_change are deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.": 1,
+      "": 14
+    },
+    "N_values_N_value": {
+      "|'": 2,
+      "|]": 1,
+      "|.pct_change are deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.": 1,
+      "": 14
+    },
+    "value_values_N_s": {
+      "": 4,
+      "False||\n": 1
+    },
+    "value_values_N_value": {
+      "": 4,
+      "False||\n": 1
+    },
+    "orelse_N_value_id": {
+      "": 3,
+      "|result": 1
+    },
+    "args_N_annotation_attr": {
+      "|dtype|ndarray": 1,
+      "": 1
+    },
+    "value_operand__type": {
+      "": 1,
+      "|Attribute|BinOp|Call|Constant": 1,
+      "|Constant": 3
+    },
+    "orelse_N_value_attr": {
+      "": 3
+    },
+    "orelse_N_test_id": {
+      "": 4
+    },
+    "test_values_N_id": {
+      "": 5,
+      "|skipna": 1
+    },
+    "iter_args_N_id": {
+      "": 7
+    },
+    "N_left_slice_n": {
+      "0|": 1
+    },
+    "N_left_value_id": {
+      "|self": 5,
+      "": 2
+    },
+    "targets_N_slice_id": {
+      "|mask": 2,
+      "": 3,
+      "|name": 1
+    },
+    "slice_value__type": {
+      "|Name": 2,
+      "|Attribute|Name": 1
+    },
+    "value_dims_N_id": {
+      "": 2,
+      "|right": 1
+    },
+    "dims_N_slice_id": {
+      "": 1
+    },
+    "N_annotation_slice_attr": {
+      "|intp": 1,
+      "|bool_": 1
+    },
+    "N_target_value_id": {
+      "": 1,
+      "|self": 1
+    },
+    "values_N_left_attr": {
+      "|kind|ndim": 1,
+      "|dtype": 1,
+      "|ndim": 1,
+      "": 3,
+      "|dtype|ndim|storage": 1
+    },
+    "N_operand_func_attr": {
+      "": 1
+    },
+    "test_left_slice_id": {
+      "": 1
+    },
+    "value_body_func_attr": {
+      "": 2
+    },
+    "body_func_value_id": {
+      "": 1
+    },
+    "comparators_N_value_attr": {
+      "|index|shape": 1,
+      "": 3
+    },
+    "body_args_N_id": {
+      "": 3
+    },
+    "N_body_func_id": {
+      "": 1
+    },
+    "N_optional_vars_id": {
+      "|m": 1,
+      "|path": 1,
+      "": 1
+    },
+    "args_N_body_n": {
+      "": 1
+    },
+    "values_N_value_attr": {
+      "|__name__": 4,
+      "|dtype|ndim": 1,
+      "": 2
+    },
+    "func_args_N_id": {
+      "|self": 1,
+      "": 2,
+      "|method|op": 1,
+      "|method|self": 1
+    },
+    "value_func_func_id": {
+      "|getattr|type": 2,
+      "|getattr": 1
+    },
+    "N_func_value_n": {
+      "": 2
+    },
+    "N_func_value_s": {
+      "": 2
+    },
+    "N_func_value_value": {
+      "": 2
+    },
+    "N_elts_N_s": {
+      "": 2
+    },
+    "N_elts_N_value": {
+      "": 2
+    },
+    "generators_N_iter_attr": {
+      "": 5,
+      "|columns": 1
+    },
+    "iter_value__type": {
+      "|Attribute|Name": 2,
+      "|Name": 3
+    },
+    "N_iter_value_id": {
+      "": 3,
+      "|self": 3
+    },
+    "N_value_right_id": {
+      "|min_fname_arg_count": 1,
+      "": 4,
+      "|ts": 1
+    },
+    "N_value_right_n": {
+      "2|": 1,
+      "": 1,
+      "1|": 2
+    },
+    "N_value_left_n": {
+      "": 2
+    },
+    "value_left_func_attr": {
+      "|array": 1,
+      "|join|nunique": 1,
+      "": 2
+    },
+    "right_args_N_id": {
+      "": 3
+    },
+    "value_dims_N_attr": {
+      "": 2
+    },
+    "dims_N_value_attr": {
+      "": 1
+    },
+    "value_func_value_n": {
+      "||": 1,
+      "|, ||": 1,
+      "": 1
+    },
+    "value_comparators_N_n": {
+      "True|": 1,
+      "0|1|": 1,
+      "": 1
+    },
+    "left_op__type": {
+      "|Add": 3,
+      "|Add|Sub": 1,
+      "|Add|Div|Sub": 1,
+      "": 1
+    },
+    "elts_N_operand_n": {
+      "": 1
+    },
+    "N_iter_func_attr": {
+      "|items": 2,
+      "": 3
+    },
+    "test_operand_func_id": {
+      "|hasattr|isinstance": 1,
+      "|isinstance": 2,
+      "|is_integer|is_list_like": 1
+    },
+    "N_returns_slice_id": {
+      "|str": 1,
+      "": 1
+    },
+    "args_N_left_attr": {
+      "": 2
+    },
+    "args_N_right_attr": {
+      "": 2
+    },
+    "body_N_target_attr": {
+      "": 2
+    },
+    "operand_args_N_attr": {
+      "": 2,
+      "|dtype": 2
+    },
+    "value_comparators_N_attr": {
+      "|no_default": 1,
+      "": 2
+    },
+    "value_comparators_N_id": {
+      "": 3
+    },
+    "N_test_operand_attr": {
+      "": 3,
+      "|is_monotonic_increasing": 1
+    },
+    "test_operand_value_id": {
+      "|self": 2,
+      "": 2
+    },
+    "value_left_func_id": {
+      "|DataFrame|datetime|len|list": 1,
+      "|len": 2
+    },
+    "values_N_operand_attr": {
+      "": 1
+    },
+    "N_operand_value_id": {
+      "|self": 1
+    },
+    "test_values_N_attr": {
+      "": 3
+    },
+    "N_annotation_right_id": {
+      "|ExtensionArray": 1,
+      "": 2
+    },
+    "values_N_operand_id": {
+      "|PYPY": 1,
+      "": 4
+    },
+    "N_orelse__type": {
+      "": 2,
+      "|Constant": 1
+    },
+    "orelse_N_value_n": {
+      "": 4,
+      "False|": 1
+    },
+    "orelse_N_value_s": {
+      "": 2,
+      "False|": 1
+    },
+    "orelse_N_value_value": {
+      "": 2,
+      "False|": 1
+    },
+    "value_elt__type": {
+      "|Call|Name|Subscript": 1,
+      "": 3,
+      "|Call": 3,
+      "|Call|JoinedStr": 1
+    },
+    "elt_func__type": {
+      "|Attribute|Name": 7,
+      "|Name": 2
+    },
+    "value_elt_func_attr": {
+      "": 3,
+      "|astype": 1
+    },
+    "elt_func_value_id": {
+      "|self": 2,
+      "": 3
+    },
+    "operand_value__type": {
+      "|Attribute|Name": 1,
+      "|Name": 2
+    },
+    "args_N_elt_attr": {
+      "": 1
+    },
+    "elt_value__type": {
+      "|Name": 4
+    },
+    "N_elt_value_id": {
+      "": 1
+    },
+    "elt_args_N_id": {
+      "": 6,
+      "|k|x": 1,
+      "|x": 2
+    },
+    "N_right_value_id": {
+      "": 1
+    },
+    "N_elt_func_attr": {
+      "": 3
+    },
+    "elt_keywords_N_arg": {
+      "": 1
+    },
+    "body_N_iter_attr": {
+      "": 2
+    },
+    "orelse_N_target_id": {
+      "": 2
+    },
+    "orelse_N_iter_id": {
+      "": 1
+    },
+    "value_test_left_id": {
+      "": 2
+    },
+    "N_left_func_id": {
+      "|len": 1
+    },
+    "value_values_N_attr": {
+      "|encoding": 1,
+      "": 1
+    },
+    "type_dims_N_id": {
+      "": 1
+    },
+    "handlers_N_type_attr": {
+      "": 1
+    },
+    "values_N_left_n": {
+      "": 2
+    },
+    "test_func_value_attr": {
+      "": 1,
+      "|index": 1
+    },
+    "N_test_left_n": {
+      "": 2
+    },
+    "N_func_value_attr": {
+      "": 5,
+      "|path": 1,
+      "|_ndarray": 1
+    },
+    "value_elt_func_id": {
+      "": 3
+    },
+    "N_elt_func_id": {
+      "|len": 2,
+      "": 1
+    },
+    "left_func_value_n": {
+      "": 1
+    },
+    "bases_N_slice_id": {
+      "|NDFrameT": 1
+    },
+    "bases_N_value_id": {
+      "|Generic": 1
+    },
+    "right_elts_N_n": {
+      "": 2
+    },
+    "body_N_returns_attr": {
+      "|ndarray": 2
+    },
+    "exc_args_N_id": {
+      "|msg": 3,
+      "|msg|self": 1
+    },
+    "value_slice_value_id": {
+      "|self": 1,
+      "": 1
+    },
+    "annotation_left_value_id": {
+      "": 2,
+      "|Sequence": 1
+    },
+    "N_returns_right_id": {
+      "": 2
+    },
+    "returns_slice_value_id": {
+      "|np": 1
+    },
+    "N_annotation_left_attr": {
+      "": 2
+    },
+    "annotation_left_slice_id": {
+      "|Hashable": 1
+    },
+    "N_annotation_right_attr": {
+      "|NoDefault": 1
+    },
+    "args_defaults_N_attr": {
+      "|no_default": 1
+    },
+    "N_msg__type": {
+      "|Call": 1,
+      "": 1
+    },
+    "value_body_func_id": {
+      "": 1
+    },
+    "orelse_func__type": {
+      "|Attribute|Name": 1,
+      "|Attribute": 1
+    },
+    "value_orelse_func_id": {
+      "": 1
+    },
+    "N_value_test_id": {
+      "|inplace": 1,
+      "": 1
+    },
+    "N_test_value_attr": {
+      "": 1
+    },
+    "test_value_value_id": {
+      "|self": 1
+    },
+    "annotation_left_slice_attr": {
+      "|intp": 1
+    },
+    "value_value_slice_n": {
+      "0|": 2
+    },
+    "value_orelse_func_attr": {
+      "": 1
+    },
+    "orelse_func_value_id": {
+      "|self": 1
+    },
+    "context_expr_func_id": {
+      "|option_context": 2,
+      "": 2
+    },
+    "N_value_elt_attr": {
+      "": 1
+    },
+    "value_elt_value_id": {
+      "": 2
+    },
+    "N_operand_func_id": {
+      "|isinstance": 1,
+      "": 1
+    },
+    "N_iter_value_attr": {
+      "": 2
+    },
+    "iter_value_value_id": {
+      "|self": 1
+    },
+    "annotation_right_slice_id": {
+      "|bytes|int": 1
+    },
+    "value_body_value_id": {
+      "|self": 1
+    },
+    "orelse_keywords_N_arg": {
+      "|axis": 1
+    },
+    "annotation_left_left_id": {
+      "": 1,
+      "|bool": 1
+    },
+    "value_left_left_id": {
+      "": 2
+    },
+    "value_left_right_id": {
+      "|shifted": 1,
+      "": 1
+    },
+    "annotation_left_right_id": {
+      "|Series": 1,
+      "": 2
+    },
+    "N_value_body_attr": {
+      "": 2
+    },
+    "comparators_N_slice_n": {
+      "": 2,
+      "0|1|": 1
+    },
+    "N_bases_N_attr": {
+      "": 2
+    },
+    "returns_left_slice_id": {
+      "": 1
+    },
+    "returns_left_value_id": {
+      "": 1
+    },
+    "left_left_right_id": {
+      "": 1
+    },
+    "args_defaults_N_id": {
+      "": 1
+    },
+    "dims_N_slice_attr": {
+      "": 1
+    },
+    "N_slice_value_id": {
+      "|np": 1
+    },
+    "finalbody_N__type": {
+      "|Expr": 1
+    },
+    "N_right_func_attr": {
+      "|reshape": 1
+    },
+    "N_slice_upper_id": {
+      "": 1
+    },
+    "elt_left__type": {
+      "": 2,
+      "|Name": 1,
+      "|Call": 1
+    },
+    "func_value_slice_id": {
+      "": 3
+    },
+    "N_test_left_s": {
+      "": 1
+    },
+    "N_test_left_value": {
+      "": 1
+    },
+    "iter_args_N_attr": {
+      "": 2,
+      "|axes": 1
+    },
+    "operand_func_value_attr": {
+      "": 1
+    },
+    "expr_args_N_attr": {
+      "": 2
+    },
+    "value_slice_upper_n": {
+      "10|": 1,
+      "": 1
+    },
+    "value_left_left_n": {
+      "": 1
+    },
+    "value_left_right_n": {
+      "": 1
+    },
+    "N_returns_slice_attr": {
+      "": 1,
+      "|bool_|object_": 1
+    },
+    "left_value_func_id": {
+      "": 2
+    },
+    "value_left_value_attr": {
+      "": 2
+    },
+    "slice_left__type": {
+      "|Name": 2,
+      "": 1
+    },
+    "elt_comparators_N_n": {
+      "": 1
+    },
+    "N_elt_left_id": {
+      "": 1
+    },
+    "dims_N_left_id": {
+      "": 1
+    },
+    "value_right_func_id": {
+      "": 1,
+      "|isna": 1,
+      "|isna|set": 1,
+      "|len": 1
+    },
+    "left_left_value_id": {
+      "|Literal": 1,
+      "|self": 1
+    },
+    "left_right_slice_id": {
+      "|str": 1
+    },
+    "N_value_left_s": {
+      "": 1
+    },
+    "N_value_left_value": {
+      "": 1
+    },
+    "func_args_N_attr": {
+      "": 1
+    },
+    "orelse_N_test_attr": {
+      "": 1
+    },
+    "body_N_msg_n": {
+      "": 1
+    },
+    "body_N_msg_s": {
+      "": 1
+    },
+    "body_N_msg_value": {
+      "": 1
+    },
+    "body_value_value_attr": {
+      "": 1
+    },
+    "N_value_test_attr": {
+      "": 1
+    },
+    "ifs_N_func_id": {
+      "|isinstance": 1
+    },
+    "N_value_elt_id": {
+      "|i": 1,
+      "": 1
+    },
+    "left_value_slice_n": {
+      "0|": 1
+    },
+    "N_slice_lower_n": {
+      "": 2
+    },
+    "test_comparators_N_s": {
+      "": 1
+    },
+    "test_comparators_N_value": {
+      "": 1
+    },
+    "comparators_N_left_n": {
+      "": 1
+    },
+    "comparators_N_right_n": {
+      "1|": 1
+    },
+    "args_N_right_id": {
+      "": 1
+    },
+    "elts_N_left_attr": {
+      "": 1
+    },
+    "iter_elts_N_id": {
+      "": 1
+    },
+    "elt_body__type": {
+      "|Name": 1
+    },
+    "value_elt_body_id": {
+      "": 1
+    },
+    "elt_orelse__type": {
+      "|Constant": 1
+    },
+    "value_elt_orelse_n": {
+      "": 1
+    },
+    "right_keywords_N_arg": {
+      "": 1
+    },
+    "annotation_slice_left_id": {
+      "": 1
+    },
+    "slice_right__type": {
+      "|Constant": 1
+    },
+    "test_left_left_id": {
+      "": 1
+    },
+    "N_right_right_id": {
+      "": 1
+    },
+    "value_slice_lower_id": {
+      "": 1
+    },
+    "args_N_orelse_n": {
+      "": 1
+    },
+    "value_left_right_attr": {
+      "": 1
+    },
+    "value_right_right_id": {
+      "": 1
+    },
+    "elts_N_left_n": {
+      "": 1
+    },
+    "N_values_N_attr": {
+      "": 1
+    },
+    "operand_op__type": {
+      "|BitOr": 1,
+      "|And|Or": 1
+    },
+    "dims_N_right_n": {
+      "": 1
+    },
+    "iter_func_value_attr": {
+      "": 1
+    },
+    "value_left_slice_n": {
+      "": 1
+    },
+    "args_N_key_id": {
+      "": 1
+    },
+    "args_N_operand_id": {
+      "": 1
+    },
+    "test_operand_value_attr": {
+      "": 1
+    },
+    "test_slice__type": {
+      "": 1
+    },
+    "args_N_body_attr": {
+      "": 1
+    },
+    "func_value_left_id": {
+      "|result": 1
+    },
+    "left_dims_N_id": {
+      "": 1
+    },
+    "func_value_right_id": {
+      "": 1
+    },
+    "N_value_key_id": {
+      "": 1
+    },
+    "value_left_left_attr": {
+      "|ndim": 1
+    },
+    "left_keywords_N_arg": {
+      "|dtype": 1
+    },
+    "value_slice_upper_id": {
+      "": 1
+    },
+    "operand_left__type": {
+      "": 1
+    },
+    "N_left_right_n": {
+      "": 1
+    },
+    "func_value_left_attr": {
+      "|dtypes": 1
+    },
+    "N_iter_slice_n": {
+      "": 1
+    },
+    "slice_func__type": {
+      "": 1
+    },
+    "args_N_body_id": {
+      "": 1
+    },
+    "returns_right_value_id": {
+      "|np": 1
+    },
+    "N_value_operand_attr": {
+      "": 1
+    },
+    "value_operand_value_id": {
+      "": 1
+    },
+    "elt_args_N_n": {
+      "": 1
+    },
+    "dims_N_lower_n": {
+      "": 1
+    },
+    "N_value_slice_attr": {
+      "": 1
+    },
+    "body_keywords_N_arg": {
+      "": 1
+    },
+    "N_returns_left_attr": {
+      "": 1
+    },
+    "right_args_N_attr": {
+      "": 2
+    },
+    "left_right_func_id": {
+      "": 1
+    },
+    "N_dims_N_s": {
+      "": 2
+    },
+    "N_dims_N_value": {
+      "": 2
+    },
+    "func_slice__type": {
+      "": 1
+    },
+    "body_N_test_n": {
+      "": 1
+    },
+    "iter_keywords_N_arg": {
+      "": 1
+    },
+    "iter_elts_N_attr": {
+      "": 1
+    },
+    "comparators_N_slice_id": {
+      "": 1
+    },
+    "bases_N_value_attr": {
+      "": 1
+    }
+  }
+]
